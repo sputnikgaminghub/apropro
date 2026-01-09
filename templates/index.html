@@ -1,0 +1,3924 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>APRO Token | Presale & Airdrop Platform</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+    <!-- Web3 Support -->
+    <style>
+        :root {
+            --primary: #00ff88;
+            --primary-dark: #00cc6a;
+            --secondary: #667eea;
+            --accent: #764ba2;
+            --background: #0a0b2d;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0c0;
+            --success: #00ff88;
+            --warning: #ffaa00;
+            --error: #ff4757;
+            --mobile-nav-height: 60px;
+            --web3-primary: #6c63ff;
+            --web3-success: #00b09b;
+            --eth-color: #627eea;
+            --bnb-color: #f0b90b;
+            --usdt-color: #26a17b;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, var(--background) 0%, #1a1b3a 100%);
+            color: var(--text-primary);
+            min-height: 100vh;
+            padding-bottom: var(--mobile-nav-height);
+        }
+        
+        /* Animated Background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(119, 198, 255, 0.1) 0%, transparent 50%);
+            z-index: -1;
+            animation: gradientBG 15s ease infinite;
+            background-size: 400% 400%;
+        }
+        
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        /* Main Layout */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Navigation */
+        .main-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(10, 11, 45, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 1000;
+            padding: 15px 0;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+        
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .nav-logo i {
+            font-size: 24px;
+        }
+        
+        .desktop-nav {
+            display: flex;
+            gap: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .desktop-nav {
+                display: none;
+            }
+        }
+        
+        .nav-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 13px;
+            transition: all 0.3s;
+            padding: 8px 12px;
+            border-radius: 8px;
+        }
+        
+        .nav-link:hover, .nav-link.active {
+            color: var(--primary);
+            background: rgba(0, 255, 136, 0.1);
+        }
+        
+        .nav-link i {
+            font-size: 16px;
+        }
+        
+        .wallet-connect-btn {
+            background: linear-gradient(90deg, var(--secondary) 0%, var(--accent) 100%);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+            font-size: 14px;
+            min-width: 180px;
+            justify-content: center;
+        }
+        
+        .wallet-connect-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 24px;
+            cursor: pointer;
+            padding: 8px;
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .nav-logo span {
+                font-size: 18px;
+            }
+        }
+        
+        /* Mobile Navigation */
+        .mobile-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(26, 27, 58, 0.95);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            z-index: 1000;
+            height: var(--mobile-nav-height);
+        }
+        
+        @media (min-width: 769px) {
+            .mobile-nav {
+                display: none;
+            }
+            body {
+                padding-bottom: 0;
+            }
+        }
+        
+        .mobile-nav-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            font-size: 11px;
+            padding: 8px;
+            transition: all 0.3s;
+            flex: 1;
+            min-width: 0;
+        }
+        
+        .mobile-nav-btn.active {
+            color: var(--primary);
+        }
+        
+        .mobile-nav-btn i {
+            font-size: 18px;
+        }
+        
+        /* Main Content */
+        .main-content {
+            padding-top: 80px;
+            padding-bottom: 20px;
+        }
+        
+        .section {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .section.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .section-header h2 {
+            font-size: 32px;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        @media (max-width: 768px) {
+            .section-header h2 {
+                font-size: 28px;
+            }
+        }
+        
+        .section-header p {
+            font-size: 16px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Cards */
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            margin-bottom: 30px;
+        }
+        
+        @media (max-width: 768px) {
+            .card {
+                padding: 20px;
+                border-radius: 16px;
+            }
+        }
+        
+        /* Presale Container */
+        .presale-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        @media (min-width: 992px) {
+            .presale-container {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        /* Buttons */
+        .btn {
+            background: linear-gradient(90deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: var(--background);
+            border: none;
+            padding: 14px 28px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 255, 136, 0.3);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+        }
+        
+        .btn-warning {
+            background: linear-gradient(90deg, var(--warning) 0%, #ff6b6b 100%);
+        }
+        
+        /* NEW: Web3 Payment Buttons */
+        .btn-web3 {
+            background: linear-gradient(135deg, var(--web3-primary) 0%, #4a44c8 100%);
+            color: white;
+        }
+        
+        .btn-web3:hover {
+            box-shadow: 0 10px 20px rgba(108, 99, 255, 0.3);
+        }
+        
+        .btn-success {
+            background: linear-gradient(135deg, var(--web3-success) 0%, #96c93d 100%);
+            color: white;
+        }
+        
+        .btn-success:hover {
+            box-shadow: 0 10px 20px rgba(0, 176, 155, 0.3);
+        }
+        
+        /* Token Status */
+        .token-status-container {
+            margin: 30px 0;
+        }
+        
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        
+        .status-badge.success {
+            background: rgba(0, 255, 136, 0.1);
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            color: var(--primary);
+        }
+        
+        .status-badge.warning {
+            background: rgba(255, 170, 0, 0.1);
+            border: 1px solid rgba(255, 170, 0, 0.3);
+            color: var(--warning);
+        }
+        
+        /* NEW: Payment Method Tabs */
+        .payment-tabs {
+            display: flex;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            margin-bottom: 25px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .payment-tab {
+            flex: 1;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            border-bottom: 3px solid transparent;
+            font-weight: 600;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .payment-tab:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .payment-tab.active {
+            background: rgba(108, 99, 255, 0.1);
+            border-bottom-color: var(--web3-primary);
+            color: var(--web3-primary);
+        }
+        
+        .payment-content {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .payment-content.active {
+            display: block;
+        }
+        
+        /* NEW: Web3 Gateway Styles */
+        .web3-container {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 16px;
+            padding: 20px;
+            margin-top: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .web3-input-group {
+            margin-bottom: 20px;
+        }
+        
+        .web3-label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-secondary);
+            font-size: 14px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .web3-input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        
+        .usd-symbol {
+            position: absolute;
+            left: 15px;
+            color: var(--web3-primary);
+            font-weight: 600;
+            font-size: 16px;
+        }
+        
+        .web3-input {
+            width: 100%;
+            padding: 15px 15px 15px 35px;
+            background: rgba(0, 0, 0, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            color: var(--text-primary);
+            font-size: 18px;
+            transition: all 0.3s;
+        }
+        
+        .web3-input:focus {
+            outline: none;
+            border-color: var(--web3-primary);
+            box-shadow: 0 0 0 2px rgba(108, 99, 255, 0.2);
+        }
+        
+        .web3-payment-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin: 20px 0;
+        }
+        
+        @media (max-width: 480px) {
+            .web3-payment-options {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .web3-payment-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: var(--text-primary);
+        }
+        
+        .web3-payment-btn:hover {
+            background: rgba(108, 99, 255, 0.1);
+            border-color: var(--web3-primary);
+            transform: translateY(-2px);
+        }
+        
+        .web3-payment-btn.selected {
+            background: rgba(108, 99, 255, 0.2);
+            border-color: var(--web3-primary);
+            box-shadow: 0 5px 15px rgba(108, 99, 255, 0.2);
+        }
+        
+        .token-logo {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        
+        .web3-wallet-section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 15px;
+            margin: 20px 0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .web3-wallet-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        #web3WalletAddress {
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            color: var(--text-secondary);
+            word-break: break-all;
+        }
+        
+        .web3-status {
+            margin-top: 15px;
+            padding: 12px;
+            border-radius: 10px;
+            font-size: 13px;
+            display: none;
+        }
+        
+        .web3-status.success {
+            background: rgba(0, 176, 155, 0.1);
+            color: var(--web3-success);
+            border: 1px solid rgba(0, 176, 155, 0.2);
+        }
+        
+        .web3-status.error {
+            background: rgba(255, 107, 107, 0.1);
+            color: var(--error);
+            border: 1px solid rgba(255, 107, 107, 0.2);
+        }
+        
+        .web3-status.pending {
+            background: rgba(255, 193, 7, 0.1);
+            color: var(--warning);
+            border: 1px solid rgba(255, 193, 7, 0.2);
+        }
+        
+        .web3-loading {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid #f3f3f3;
+            border-top: 2px solid var(--web3-primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-right: 8px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .network-indicator {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-left: 8px;
+        }
+        
+        .network-ethereum {
+            background: rgba(108, 99, 255, 0.2);
+            color: var(--eth-color);
+        }
+        
+        .network-bsc {
+            background: rgba(240, 185, 11, 0.2);
+            color: var(--bnb-color);
+        }
+        
+        /* Manual Payment Styles */
+        .manual-instructions {
+            background: rgba(0, 255, 136, 0.05);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 1px solid rgba(0, 255, 136, 0.1);
+        }
+        
+        .address-display {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            font-family: monospace;
+            font-size: 13px;
+            color: var(--primary);
+            word-break: break-all;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* NowPayments Section */
+        .nowpayments-section {
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .nowpayments-note {
+            color: var(--text-secondary);
+            font-size: 13px;
+            margin-top: 10px;
+        }
+        
+        /* Countdown Timer */
+        .countdown-timer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        
+        .time-unit {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 15px;
+            min-width: 70px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        @media (max-width: 768px) {
+            .time-unit {
+                min-width: 60px;
+                padding: 12px;
+            }
+        }
+        
+        .time-value {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary);
+            font-family: monospace;
+        }
+        
+        @media (max-width: 768px) {
+            .time-value {
+                font-size: 24px;
+            }
+        }
+        
+        .time-label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 5px;
+        }
+        
+        /* Forms */
+        .input-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 14px;
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            color: var(--text-primary);
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+        
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(0, 255, 136, 0.2);
+        }
+        
+        /* Token Display */
+        .token-display {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+        
+        .token-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
+        }
+        
+        .token-info {
+            flex: 1;
+        }
+        
+        .token-amount {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary);
+            line-height: 1.2;
+        }
+        
+        .token-symbol {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+        
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        @media (min-width: 768px) {
+            .stats-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+        
+        .stat-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .stat-label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        /* Referral Code */
+        .referral-code-box {
+            background: rgba(0, 255, 136, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            margin: 20px 0;
+            border: 1px dashed rgba(0, 255, 136, 0.5);
+        }
+        
+        .code-display {
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin: 10px 0;
+            color: var(--primary);
+            word-break: break-all;
+        }
+        
+        /* QR Code */
+        .qr-container {
+            text-align: center;
+            margin: 20px 0;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+        }
+        
+        /* Loading */
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .spinner {
+            border: 3px solid rgba(255, 255, 255, 0.1);
+            border-top: 3px solid var(--primary);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 10px;
+        }
+        
+        /* Toast Notifications */
+        .toast-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1002;
+            max-width: 350px;
+        }
+        
+        .toast {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-left: 4px solid var(--primary);
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            animation: slideInRight 0.3s ease;
+        }
+        
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(100%);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        /* Mobile Optimizations */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 15px;
+            }
+            
+            .main-content {
+                padding-top: 70px;
+            }
+            
+            .btn {
+                padding: 12px 20px;
+                font-size: 15px;
+            }
+            
+            .card {
+                margin-bottom: 20px;
+            }
+            
+            input, select, textarea {
+                padding: 12px;
+                font-size: 16px;
+            }
+            
+            .payment-tab {
+                padding: 12px 8px;
+                font-size: 13px;
+            }
+            
+            .web3-input {
+                padding: 12px 12px 12px 30px;
+                font-size: 16px;
+            }
+        }
+        
+        /* Swipe Hint */
+        .swipe-hint {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            color: var(--text-secondary);
+            font-size: 12px;
+            margin-top: 10px;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .swipe-hint {
+                display: flex;
+            }
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            color: var(--text-secondary);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 40px;
+            font-size: 14px;
+        }
+        
+        footer p {
+            margin-bottom: 10px;
+        }
+        
+        /* Mobile Menu Overlay */
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            z-index: 999;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .mobile-menu-overlay.active {
+            display: flex;
+        }
+        
+        .mobile-menu-link {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 20px;
+            padding: 15px 30px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            width: 80%;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        
+        .mobile-menu-link:hover {
+            background: rgba(255, 255, 255, 0.2);
+            color: var(--primary);
+        }
+        
+        .close-menu-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 30px;
+            cursor: pointer;
+        }
+        
+        /* ========== ACHIEVEMENTS STYLES ========== */
+        .achievement-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .achievement-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .achievement-card.unlocked {
+            background: rgba(0, 255, 136, 0.05);
+            border: 1px solid rgba(0, 255, 136, 0.3);
+        }
+        
+        .achievement-card.locked {
+            opacity: 0.7;
+            filter: grayscale(0.3);
+        }
+        
+        .achievement-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            margin: 0 auto 15px;
+            color: white;
+        }
+        
+        .achievement-card.unlocked .achievement-icon {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            box-shadow: 0 5px 15px rgba(0, 255, 136, 0.3);
+        }
+        
+        .achievement-card.locked .achievement-icon {
+            background: linear-gradient(135deg, #666, #444);
+        }
+        
+        .achievement-status {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+        
+        .achievement-card.unlocked .achievement-status {
+            background: rgba(0, 255, 136, 0.2);
+            color: var(--primary);
+        }
+        
+        .achievement-card.locked .achievement-status {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-secondary);
+        }
+        
+        .achievement-reward {
+            display: inline-block;
+            background: rgba(255, 170, 0, 0.1);
+            color: var(--warning);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+        
+        .achievement-progress {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .progress-text {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-bottom: 5px;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .progress-bar {
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--primary-dark));
+            border-radius: 2px;
+            transition: width 0.5s ease;
+        }
+        
+        .achievement-card.locked .progress-fill {
+            background: linear-gradient(90deg, var(--secondary), var(--accent));
+        }
+        
+        @media (max-width: 768px) {
+            .achievement-card {
+                padding: 15px;
+            }
+            
+            .achievement-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 24px;
+            }
+        }
+        
+        /* New Styles for Dashboard Navigation */
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .check-another-wallet-btn {
+            background: transparent;
+            border: 1px solid var(--secondary);
+            color: var(--secondary);
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+        }
+        
+        .check-another-wallet-btn:hover {
+            background: rgba(102, 126, 234, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        .wallet-address-display {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 20px;
+        }
+        
+        .wallet-address-display i {
+            color: var(--primary);
+        }
+        
+        .wallet-address-display code {
+            font-family: monospace;
+            font-size: 14px;
+            color: var(--text-primary);
+            flex: 1;
+            word-break: break-all;
+        }
+        
+        .copy-wallet-btn {
+            background: rgba(0, 255, 136, 0.1);
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            color: var(--primary);
+            padding: 5px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .copy-wallet-btn:hover {
+            background: rgba(0, 255, 136, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
+    
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+        <button class="close-menu-btn" id="closeMenuBtn">
+            <i class="fas fa-times"></i>
+        </button>
+        <a href="#" class="mobile-menu-link" data-section="presale">
+            <i class="fas fa-fire"></i> Presale
+        </a>
+        <a href="#" class="mobile-menu-link" data-section="tokenomics">
+            <i class="fas fa-chart-pie"></i> Tokenomics
+        </a>
+        <a href="#" class="mobile-menu-link" data-section="roadmap">
+            <i class="fas fa-map"></i> Roadmap
+        </a>
+        <a href="#" class="mobile-menu-link" data-section="partners">
+            <i class="fas fa-handshake"></i> Partners
+        </a>
+        <a href="#" class="mobile-menu-link" data-section="team">
+            <i class="fas fa-users"></i> Team
+        </a>
+        <a href="#" class="mobile-menu-link" data-section="airdrop">
+            <i class="fas fa-gift"></i> Airdrop
+        </a>
+    </div>
+    
+    <!-- Navigation -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-rocket"></i>
+                <span>APRO TOKEN</span>
+            </div>
+            
+            <div class="desktop-nav">
+                <a href="#" class="nav-link active" data-section="presale">
+                    <i class="fas fa-fire"></i>
+                    <span>Presale</span>
+                </a>
+                <a href="#" class="nav-link" data-section="tokenomics">
+                    <i class="fas fa-chart-pie"></i>
+                    <span>Tokenomics</span>
+                </a>
+                <a href="#" class="nav-link" data-section="roadmap">
+                    <i class="fas fa-map"></i>
+                    <span>Roadmap</span>
+                </a>
+                <a href="#" class="nav-link" data-section="partners">
+                    <i class="fas fa-handshake"></i>
+                    <span>Partners</span>
+                </a>
+                <a href="#" class="nav-link" data-section="team">
+                    <i class="fas fa-users"></i>
+                    <span>Team</span>
+                </a>
+                <a href="#" class="nav-link" data-section="airdrop">
+                    <i class="fas fa-gift"></i>
+                    <span>Airdrop</span>
+                </a>
+            </div>
+            
+            <div class="nav-wallet" style="display: flex; align-items: center; gap: 10px;">
+                <!-- Removed: Network Indicator -->
+                <!-- Removed: Notification Bell -->
+                
+                <!-- Removed: Wallet Connect Button - Replaced with info text -->
+                <div style="color: var(--text-secondary); font-size: 14px; padding: 8px 12px; border-radius: 8px; background: rgba(255,255,255,0.05);">
+                    <i class="fas fa-wallet"></i> Enter wallet above
+                </div>
+            </div>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+    
+    <!-- Swipe Hint for Mobile -->
+    <div class="swipe-hint">
+        <i class="fas fa-arrows-alt-h"></i>
+        <span>Swipe left/right to navigate</span>
+    </div>
+    
+    <!-- Main Content -->
+    <div class="container">
+        <div class="main-content">
+            <!-- Presale Section -->
+            <section id="presale" class="section active">
+                <div class="section-header">
+                    <h2>Join the APRO Token Presale</h2>
+                    <p>Be among the first to own APRO tokens with exclusive early-bird bonuses</p>
+                </div>
+                
+                <!-- Dynamic Token Status -->
+                <div class="token-status-container" id="tokenStatusContainer">
+                    <!-- Content will be dynamically inserted -->
+                </div>
+                
+                <div class="presale-container">
+                    <!-- Left Card: Participation & Payments -->
+                    <div class="card">
+                        <h3 style="color: var(--primary); margin-bottom: 20px; font-size: 22px;">Participate in Presale</h3>
+                        
+                        <!-- Tier System -->
+                        <div class="tier-system" style="margin-bottom: 25px;">
+                            <div class="tier" style="background: rgba(0, 255, 136, 0.1); padding: 15px; border-radius: 12px; margin-bottom: 10px; border: 1px solid rgba(0, 255, 136, 0.3);">
+                                <h4 style="color: var(--primary); margin-bottom: 5px; font-size: 16px;">🎯 Tier 1: 0.1 - 1 ETH</h4>
+                                <p style="color: var(--primary); font-weight: 600; font-size: 14px;">+20% Bonus Tokens</p>
+                            </div>
+                            <div class="tier" style="background: rgba(255, 255, 255, 0.05); padding: 15px; border-radius: 12px; margin-bottom: 10px; border: 1px solid rgba(255, 255, 255, 0.1);">
+                                <h4 style="color: var(--text-primary); margin-bottom: 5px; font-size: 16px;">🚀 Tier 2: 1 - 5 ETH</h4>
+                                <p style="color: var(--warning); font-weight: 600; font-size: 14px;">+25% Bonus Tokens</p>
+                            </div>
+                            <div class="tier" style="background: rgba(255, 255, 255, 0.05); padding: 15px; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1);">
+                                <h4 style="color: var(--text-primary); margin-bottom: 5px; font-size: 16px;">💎 Tier 3: 5+ ETH</h4>
+                                <p style="color: var(--warning); font-weight: 600; font-size: 14px;">+30% Bonus Tokens</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Token Calculator -->
+                        <div class="contribution-form">
+                            <div class="input-group">
+                                <label for="ethAmount">Enter ETH Amount</label>
+                                <input type="number" id="ethAmount" min="0.1" step="0.1" placeholder="0.1" value="0.1">
+                            </div>
+                            
+                            <div class="calculator-results" style="background: rgba(255, 255, 255, 0.05); padding: 20px; border-radius: 12px; margin: 20px 0; border: 1px solid rgba(255, 255, 255, 0.1);">
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                                    <span style="color: var(--text-secondary); font-size: 14px;">Tokens Received:</span>
+                                    <strong style="color: var(--primary); font-size: 14px;" id="tokensReceived">0 APRO</strong>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                                    <span style="color: var(--text-secondary); font-size: 14px;">Bonus Tokens:</span>
+                                    <strong style="color: var(--warning); font-size: 14px;" id="bonusTokens">0 APRO</strong>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; padding-top: 10px; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+                                    <span style="color: var(--text-secondary); font-weight: 600; font-size: 14px;">Total Tokens:</span>
+                                    <strong style="color: var(--primary); font-size: 16px;" id="totalTokens">0 APRO</strong>
+                                </div>
+                            </div>
+                            
+                            <!-- Payment Method Tabs -->
+                            <div class="payment-tabs">
+                                <div class="payment-tab active" data-tab="manual">
+                                    <i class="fas fa-copy"></i> Manual
+                                </div>
+                                <div class="payment-tab" data-tab="web3">
+                                    <i class="fas fa-plug"></i> Web3 Gateway
+                                </div>
+                            </div>
+                            
+                            <!-- Manual Payment Content -->
+                            <div id="manualPayment" class="payment-content active">
+                                <div class="manual-instructions">
+                                    <h4 style="color: var(--primary); margin-bottom: 10px; font-size: 16px; display: flex; align-items: center; gap: 8px;">
+                                        <i class="fas fa-wallet"></i> Manual Payment Instructions
+                                    </h4>
+                                    
+                                    <button class="btn" id="presaleContributeBtn" onclick="showPresaleInstructions()">
+                                        <i class="fas fa-paper-plane"></i> Show Presale Instructions
+                                    </button>
+                                    
+                                    <div id="manualInstructions" style="display: none; margin-top: 15px;">
+                                        <p style="color: var(--text-secondary); font-size: 13px; margin-bottom: 10px;">
+                                            Send ETH from your personal wallet to the address below:
+                                        </p>
+                                        <div class="address-display" id="manualAddressDisplay">
+                                            0xa84e6D0Fa3B35b18FF7C65568C711A85Ac1A9FC7
+                                        </div>
+                                        <button class="btn-secondary" onclick="copyPresaleAddress()" style="margin-top: 10px;">
+                                            <i class="fas fa-copy"></i> Copy Address
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <!-- NowPayments Integration -->
+                                <div class="nowpayments-section">
+                                    <p style="color: var(--text-secondary); font-size: 14px; margin-bottom: 15px;">
+                                        <i class="fas fa-credit-card"></i> Alternative payment method:
+                                    </p>
+                                    <a href="https://nowpayments.io/donation?api_key=b8eedf66-359a-408e-b01d-e45b3006d199" target="_blank" rel="noreferrer noopener" style="display: block;">
+                                        <img src="https://i.postimg.cc/MZvgbFTp/Buy-Presale-Automatically-With.gif" alt="Cryptocurrency & Bitcoin donation button by NOWPayments" style="width: 100%; border-radius: 10px;">
+                                    </a>
+                                    <p class="nowpayments-note">
+                                        Accepts multiple cryptocurrencies • Credit card support • Minimum: $60 USD
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <!-- Web3 Gateway Content -->
+                            <div id="web3Payment" class="payment-content">
+                                <div class="web3-container">
+                                    <!-- USD Amount Input -->
+                                    <div class="web3-input-group">
+                                        <label class="web3-label" for="web3UsdAmount">
+                                            <i class="fas fa-dollar-sign"></i> Amount in USD (Minimum: $50)
+                                        </label>
+                                        <div class="web3-input-wrapper">
+                                            <span class="usd-symbol">$</span>
+                                            <input type="number" id="web3UsdAmount" class="web3-input" placeholder="0.00" min="50" step="0.01" value="50">
+                                        </div>
+                                        <div id="web3MinAmountNote" style="color: var(--error); font-size: 12px; margin-top: 5px; display: none;">
+                                            <i class="fas fa-exclamation-circle"></i> Minimum amount is $50
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Token Conversion Display -->
+                                    <div id="web3ConversionDisplay" style="background: rgba(108, 99, 255, 0.1); border-radius: 12px; padding: 15px; margin: 15px 0; border: 1px solid rgba(108, 99, 255, 0.2);">
+                                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
+                                            <span style="color: var(--text-secondary); font-size: 13px;">ETH:</span>
+                                            <strong style="color: var(--eth-color); font-family: monospace; font-size: 13px;" id="web3EthAmount">0.016</strong>
+                                        </div>
+                                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
+                                            <span style="color: var(--text-secondary); font-size: 13px;">BNB:</span>
+                                            <strong style="color: var(--bnb-color); font-family: monospace; font-size: 13px;" id="web3BnbAmount">0.057</strong>
+                                        </div>
+                                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
+                                            <span style="color: var(--text-secondary); font-size: 13px;">USDT (ERC20):</span>
+                                            <strong style="color: var(--usdt-color); font-family: monospace; font-size: 13px;" id="web3UsdtErcAmount">50.00</strong>
+                                        </div>
+                                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 0;">
+                                            <span style="color: var(--text-secondary); font-size: 13px;">USDT (BEP20):</span>
+                                            <strong style="color: var(--usdt-color); font-family: monospace; font-size: 13px;" id="web3UsdtBepAmount">50.00</strong>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Token Selection -->
+                                    <div class="web3-payment-options">
+                                        <button class="web3-payment-btn" data-token="ETH" data-network="ethereum" onclick="selectWeb3Token(this)">
+                                            <img src="https://cryptologos.cc/logos/ethereum-eth-logo.png" alt="ETH" class="token-logo">
+                                            <span style="font-size: 13px; font-weight: 600;">ETH</span>
+                                            <span style="font-size: 11px; color: var(--text-secondary);" id="web3EthText">0.016</span>
+                                        </button>
+                                        
+                                        <button class="web3-payment-btn" data-token="BNB" data-network="bsc" onclick="selectWeb3Token(this)">
+                                            <img src="https://cryptologos.cc/logos/binance-coin-bnb-logo.png" alt="BNB" class="token-logo">
+                                            <span style="font-size: 13px; font-weight: 600;">BNB</span>
+                                            <span style="font-size: 11px; color: var(--text-secondary);" id="web3BnbText">0.057</span>
+                                        </button>
+                                        
+                                        <button class="web3-payment-btn" data-token="USDT_ERC20" data-network="ethereum" onclick="selectWeb3Token(this)">
+                                            <img src="https://cryptologos.cc/logos/tether-usdt-logo.png" alt="USDT" class="token-logo">
+                                            <span style="font-size: 13px; font-weight: 600;">USDT</span>
+                                            <span style="font-size: 11px; color: var(--text-secondary);">ERC20</span>
+                                            <span style="font-size: 11px; color: var(--text-secondary);" id="web3UsdtErcText">50.00</span>
+                                        </button>
+                                        
+                                        <button class="web3-payment-btn" data-token="USDT_BEP20" data-network="bsc" onclick="selectWeb3Token(this)">
+                                            <img src="https://cryptologos.cc/logos/tether-usdt-logo.png" alt="USDT" class="token-logo">
+                                            <span style="font-size: 13px; font-weight: 600;">USDT</span>
+                                            <span style="font-size: 11px; color: var(--text-secondary);">BEP20</span>
+                                            <span style="font-size: 11px; color: var(--text-secondary);" id="web3UsdtBepText">50.00</span>
+                                        </button>
+                                    </div>
+                                    
+                                    <!-- Wallet Connection -->
+                                    <div class="web3-wallet-section">
+                                        <div class="web3-wallet-info">
+                                            <div>
+                                                <div id="web3WalletAddress">Not connected</div>
+                                                <div id="web3NetworkInfo"></div>
+                                            </div>
+                                            <button id="web3ConnectWallet" class="btn btn-web3" style="padding: 10px 20px; font-size: 14px; width: auto;">
+                                                <i class="fas fa-plug"></i> Connect Wallet
+                                            </button>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Payment Button -->
+                                    <button id="web3PayBtn" class="btn btn-success" disabled>
+                                        <i class="fas fa-lock"></i> Process Payment
+                                    </button>
+                                    
+                                    <!-- Status Display -->
+                                    <div id="web3Status" class="web3-status"></div>
+                                </div>
+                            </div>
+                            
+                            <!-- Info Notes -->
+                            <div style="margin-top: 25px; color: var(--text-secondary); font-size: 13px;">
+                                <p><i class="fas fa-info-circle" style="color: var(--primary); margin-right: 8px;"></i> Mini buy 60 USD/ETH/BNB, Max buy 50,000 USD</p>
+                                <p><i class="fas fa-info-circle" style="color: var(--primary); margin-right: 8px;"></i> Presale ends on January 15, 2026 Followed by Binance Listing</p>
+                                <p><i class="fas fa-info-circle" style="color: var(--primary); margin-right: 8px;"></i> Our system will automatically send APRO tokens to your wallet instantly.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Right Card: Presale Details -->
+                    <div class="card">
+                        <h3 style="color: var(--primary); margin-bottom: 20px; font-size: 22px;">Presale Details</h3>
+                        <div class="details-list">
+                            <div style="display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
+                                <span style="color: var(--text-secondary); font-size: 14px;">Token Name:</span>
+                                <strong style="color: var(--text-primary); font-size: 14px;">APRO Token</strong>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
+                                <span style="color: var(--text-secondary); font-size: 14px;">Token Symbol:</span>
+                                <strong style="color: var(--text-primary); font-size: 14px;">APRO</strong>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
+                                <span style="color: var(--text-secondary); font-size: 14px;">Total Supply:</span>
+                                <strong style="color: var(--text-primary); font-size: 14px;">1,000,000,000</strong>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
+                                <span style="color: var(--text-secondary); font-size: 14px;">Presale Allocation:</span>
+                                <strong style="color: var(--primary); font-size: 14px;">200,000,000 (20%)</strong>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
+                                <span style="color: var(--text-secondary); font-size: 14px;">Presale Price:</span>
+                                <strong style="color: var(--primary); font-size: 14px;">1 ETH = 10,000 APRO</strong>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
+                                <span style="color: var(--text-secondary); font-size: 14px;">Hard Cap:</span>
+                                <strong style="color: var(--text-primary); font-size: 14px;">$500,000</strong>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
+                                <span style="color: var(--text-secondary); font-size: 14px;">Soft Cap:</span>
+                                <strong style="color: var(--text-primary); font-size: 14px;">$100,000</strong>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; padding: 12px 0;">
+                                <span style="color: var(--text-secondary); font-size: 14px;">Network:</span>
+                                <strong style="color: var(--text-primary); font-size: 14px;">Ethereum</strong>
+                            </div>
+                        </div>
+
+                        <!-- Presale Address Section -->
+                        <div style="margin-top: 25px;">
+                            <div style="background: rgba(0, 255, 136, 0.1); border-radius: 12px; padding: 20px; border: 1px solid rgba(0, 255, 136, 0.3);">
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                                    <h4 style="color: var(--primary); margin: 0; font-size: 16px; display: flex; align-items: center; gap: 8px;">
+                                        <i class="fas fa-wallet"></i> Presale Wallet Address
+                                    </h4>
+                                    <div style="background: rgba(0, 0, 0, 0.3); padding: 4px 10px; border-radius: 6px; font-size: 12px; color: var(--primary); font-weight: 600;">
+                                        1454 ETH Raised
+                                    </div>
+                                </div>
+                                
+                                <div style="display: flex; align-items: center; gap: 10px; background: rgba(0, 0, 0, 0.2); padding: 12px 15px; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 12px;">
+                                    <code style="color: var(--primary); font-family: monospace; font-size: 13px; flex: 1; word-break: break-all;">
+                                        0xa84e6D0Fa3B35b18FF7C65568C711A85Ac1A9FC7
+                                    </code>
+                                    <button onclick="copyPresaleAddress()" style="background: rgba(0, 255, 136, 0.2); border: 1px solid rgba(0, 255, 136, 0.5); color: var(--primary); padding: 6px 12px; border-radius: 6px; font-size: 12px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 5px; white-space: nowrap;">
+                                        <i class="fas fa-copy"></i> Copy
+                                    </button>
+                                </div>
+                                
+                                <div style="display: flex; align-items: center; gap: 8px; color: var(--text-secondary); font-size: 12px;">
+                                    <i class="fas fa-shield-alt" style="color: var(--primary);"></i>
+                                    <span>Address verified and secure</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Warning Section -->
+                        <div style="margin-top: 20px;">
+                            <div style="background: rgba(255, 170, 0, 0.1); border-radius: 12px; padding: 20px; border: 1px solid rgba(255, 170, 0, 0.3);">
+                                <div style="display: flex; align-items: flex-start; gap: 12px;">
+                                    <div style="color: var(--warning); font-size: 18px; margin-top: 2px; flex-shrink: 0;">
+                                        <i class="fas fa-exclamation-triangle"></i>
+                                    </div>
+                                    <div>
+                                        <h4 style="color: var(--warning); margin-bottom: 8px; font-size: 16px;">Important Notice</h4>
+                                        <p style="color: var(--text-primary); font-size: 14px; line-height: 1.5; margin-bottom: 10px;">
+                                            Do not send ETH from exchanges. Only send from your personal wallet (MetaMask, Trust Wallet, etc.).
+                                        </p>
+                                        <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px;">
+                                            <div style="display: flex; align-items: center; gap: 5px; padding: 5px 10px; background: rgba(255, 255, 255, 0.05); border-radius: 6px; border: 1px solid rgba(255, 255, 255, 0.1);">
+                                                <i class="fas fa-check" style="color: var(--primary); font-size: 10px;"></i>
+                                                <span style="color: var(--text-secondary); font-size: 11px;">MetaMask</span>
+                                            </div>
+                                            <div style="display: flex; align-items: center; gap: 5px; padding: 5px 10px; background: rgba(255, 255, 255, 0.05); border-radius: 6px; border: 1px solid rgba(255, 255, 255, 0.1);">
+                                                <i class="fas fa-check" style="color: var(--primary); font-size: 10px;"></i>
+                                                <span style="color: var(--text-secondary); font-size: 11px;">Trust Wallet</span>
+                                            </div>
+                                            <div style="display: flex; align-items: center; gap: 5px; padding: 5px 10px; background: rgba(255, 255, 255, 0.05); border-radius: 6px; border: 1px solid rgba(255, 255, 255, 0.1);">
+                                                <i class="fas fa-check" style="color: var(--primary); font-size: 10px;"></i>
+                                                <span style="color: var(--text-secondary); font-size: 11px;">Coinbase Wallet</span>
+                                            </div>
+                                            <div style="display: flex; align-items: center; gap: 5px; padding: 5px 10px; background: rgba(255, 255, 255, 0.05); border-radius: 6px; border: 1px solid rgba(255, 255, 255, 0.1);">
+                                                <i class="fas fa-check" style="color: var(--primary); font-size: 10px;"></i>
+                                                <span style="color: var(--text-secondary); font-size: 11px;">Ledger</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </section>
+            
+            <!-- Tokenomics Section -->
+            <section id="tokenomics" class="section">
+                <div class="section-header">
+                    <h2>Tokenomics</h2>
+                    <p>Strategic allocation for sustainable growth</p>
+                </div>
+                
+                <div class="presale-container">
+                    <div class="card">
+                        <h3 style="color: var(--primary); margin-bottom: 20px; font-size: 22px;">Token Allocation</h3>
+                        <div style="width: 100%; height: 300px; margin-bottom: 30px;">
+                            <canvas id="tokenomicsChart"></canvas>
+                        </div>
+                        
+                        <div class="allocation-breakdown">
+                            <div style="display: flex; justify-content: space-between; align-items: center; padding: 15px; background: rgba(0, 255, 136, 0.1); border-radius: 12px; margin-bottom: 10px; border: 1px solid rgba(0, 255, 136, 0.3);">
+                                <div style="display: flex; align-items: center; gap: 12px;">
+                                    <div style="width: 12px; height: 12px; background: #00ff88; border-radius: 50%;"></div>
+                                    <div>
+                                        <div style="font-weight: 600; color: var(--text-primary); font-size: 14px;">Ecosystem & Development</div>
+                                        <div style="font-size: 12px; color: var(--text-secondary);">400,000,000 APRO</div>
+                                    </div>
+                                </div>
+                                <div style="font-weight: 700; color: var(--primary); font-size: 14px;">40%</div>
+                            </div>
+                            
+                            <div style="display: flex; justify-content: space-between; align-items: center; padding: 15px; background: rgba(255, 255, 255, 0.05); border-radius: 12px; margin-bottom: 10px; border: 1px solid rgba(255, 255, 255, 0.1);">
+                                <div style="display: flex; align-items: center; gap: 12px;">
+                                    <div style="width: 12px; height: 12px; background: #667eea; border-radius: 50%;"></div>
+                                    <div>
+                                        <div style="font-weight: 600; color: var(--text-primary); font-size: 14px;">Community & Airdrop</div>
+                                        <div style="font-size: 12px; color: var(--text-secondary);">200,000,000 APRO</div>
+                                    </div>
+                                </div>
+                                <div style="font-weight: 700; color: var(--primary); font-size: 14px;">20%</div>
+                            </div>
+                            
+                            <div style="display: flex; justify-content: space-between; align-items: center; padding: 15px; background: rgba(255, 255, 255, 0.05); border-radius: 12px; margin-bottom: 10px; border: 1px solid rgba(255, 255, 255, 0.1);">
+                                <div style="display: flex; align-items: center; gap: 12px;">
+                                    <div style="width: 12px; height: 12px; background: #764ba2; border-radius: 50%;"></div>
+                                    <div>
+                                        <div style="font-weight: 600; color: var(--text-primary); font-size: 14px;">Team & Advisors</div>
+                                        <div style="font-size: 12px; color: var(--text-secondary);">150,000,000 APRO</div>
+                                    </div>
+                                </div>
+                                <div style="font-weight: 700; color: var(--primary); font-size: 14px;">15%</div>
+                            </div>
+                            
+                            <div style="display: flex; justify-content: space-between; align-items: center; padding: 15px; background: rgba(255, 255, 255, 0.05); border-radius: 12px; margin-bottom: 10px; border: 1px solid rgba(255, 255, 255, 0.1);">
+                                <div style="display: flex; align-items: center; gap: 12px;">
+                                    <div style="width: 12px; height: 12px; background: #ff6b6b; border-radius: 50%;"></div>
+                                    <div>
+                                        <div style="font-weight: 600; color: var(--text-primary); font-size: 14px;">Liquidity & Exchange</div>
+                                        <div style="font-size: 12px; color: var(--text-secondary);">150,000,000 APRO</div>
+                                    </div>
+                                </div>
+                                <div style="font-weight: 700; color: var(--primary); font-size: 14px;">15%</div>
+                            </div>
+                            
+                            <div style="display: flex; justify-content: space-between; align-items: center; padding: 15px; background: rgba(255, 255, 255, 0.05); border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1);">
+                                <div style="display: flex; align-items: center; gap: 12px;">
+                                    <div style="width: 12px; height: 12px; background: #ffaa00; border-radius: 50%;"></div>
+                                    <div>
+                                        <div style="font-weight: 600; color: var(--text-primary); font-size: 14px;">Marketing & Partnerships</div>
+                                        <div style="font-size: 12px; color: var(--text-secondary);">100,000,000 APRO</div>
+                                    </div>
+                                </div>
+                                <div style="font-weight: 700; color: var(--primary); font-size: 14px;">10%</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <h3 style="color: var(--primary); margin-bottom: 20px; font-size: 22px;">Token Metrics</h3>
+                        <div class="details-list">
+                            <div style="display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
+                                <span style="color: var(--text-secondary); font-size: 14px;">Total Supply:</span>
+                                <strong style="color: var(--text-primary); font-size: 14px;">1,000,000,000</strong>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
+                                <span style="color: var(--text-secondary); font-size: 14px;">Token Name:</span>
+                                <strong style="color: var(--text-primary); font-size: 14px;">APRO Token</strong>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
+                                <span style="color: var(--text-secondary); font-size: 14px;">Symbol:</span>
+                                <strong style="color: var(--text-primary); font-size: 14px;">APRO</strong>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
+                                <span style="color: var(--text-secondary); font-size: 14px;">Decimals:</span>
+                                <strong style="color: var(--text-primary); font-size: 14px;">18</strong>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
+                                <span style="color: var(--text-secondary); font-size: 14px;">Network:</span>
+                                <strong style="color: var(--text-primary); font-size: 14px;">Ethereum</strong>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
+                                <span style="color: var(--text-secondary); font-size: 14px;">Contract:</span>
+                                <div style="display: flex; align-items: center; gap: 8px;">
+                                    <strong style="color: var(--primary); font-family: monospace; font-size: 12px;">0x742d35Cc6634C053...</strong>
+                                    <button style="background: rgba(255, 255, 255, 0.1); border: none; color: var(--text-primary); padding: 4px 8px; border-radius: 4px; font-size: 11px; cursor: pointer;">Copy</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <h3 style="color: var(--primary); margin: 25px 0 15px 0; font-size: 18px;">Vesting Schedule</h3>
+                        <div style="background: rgba(255, 255, 255, 0.03); padding: 15px; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1);">
+                            <div style="display: flex; align-items: flex-start; gap: 15px; margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
+                                <div style="width: 12px; height: 12px; background: var(--primary); border-radius: 50%; margin-top: 5px;"></div>
+                                <div>
+                                    <div style="font-weight: 600; color: var(--text-primary); margin-bottom: 5px; font-size: 14px;">Team & Advisors</div>
+                                    <div style="color: var(--text-secondary); font-size: 13px;">6-month cliff, then 24-month linear vesting</div>
+                                </div>
+                            </div>
+                            <div style="display: flex; align-items: flex-start; gap: 15px; margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
+                                <div style="width: 12px; height: 12px; background: var(--secondary); border-radius: 50%; margin-top: 5px;"></div>
+                                <div>
+                                    <div style="font-weight: 600; color: var(--text-primary); margin-bottom: 5px; font-size: 14px;">Ecosystem & Development</div>
+                                    <div style="color: var(--text-secondary); font-size: 13px;">Released quarterly based on milestones</div>
+                                </div>
+                            </div>
+                            <div style="display: flex; align-items: flex-start; gap: 15px;">
+                                <div style="width: 12px; height: 12px; background: var(--accent); border-radius: 50%; margin-top: 5px;"></div>
+                                <div>
+                                    <div style="font-weight: 600; color: var(--text-primary); margin-bottom: 5px; font-size: 14px;">Presale Tokens</div>
+                                    <div style="color: var(--text-secondary); font-size: 13px;">25% at TGE, 75% vested over 3 months</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Roadmap Section -->
+            <section id="roadmap" class="section">
+                <div class="section-header">
+                    <h2>Roadmap</h2>
+                    <p>Our journey to revolutionize the Ethereum ecosystem</p>
+                </div>
+                
+                <div class="card">
+                    <div style="position: relative; padding-left: 30px;">
+                        <!-- Timeline line -->
+                        <div style="position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: linear-gradient(to bottom, var(--primary), var(--secondary));"></div>
+                        
+                        <!-- Q4 2023 -->
+                        <div style="position: relative; margin-bottom: 30px;">
+                            <div style="position: absolute; left: -35px; top: 0; width: 20px; height: 20px; background: var(--primary); border-radius: 50%; border: 4px solid var(--background);"></div>
+                            <div style="margin-left: 20px;">
+                                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+                                    <h3 style="color: var(--primary); font-size: 18px;">Q4 2023</h3>
+                                    <span style="background: rgba(0, 255, 136, 0.1); color: var(--primary); padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 600;">COMPLETED</span>
+                                </div>
+                                <ul style="color: var(--text-secondary); margin-left: 20px; font-size: 14px;">
+                                    <li style="margin-bottom: 8px;">✓ Platform Development & Smart Contract Audit</li>
+                                    <li style="margin-bottom: 8px;">✓ Community Building & Social Media Launch</li>
+                                    <li style="margin-bottom: 8px;">✓ Whitepaper Release & Token Design</li>
+                                    <li>✓ Strategic Partnerships Established</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <!-- Q1 2024 -->
+                        <div style="position: relative; margin-bottom: 30px;">
+                            <div style="position: absolute; left: -35px; top: 0; width: 20px; height: 20px; background: var(--secondary); border-radius: 50%; border: 4px solid var(--background);"></div>
+                            <div style="margin-left: 20px;">
+                                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+                                    <h3 style="color: var(--text-primary); font-size: 18px;">Q1 2024</h3>
+                                    <span style="background: rgba(102, 126, 234, 0.1); color: var(--secondary); padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 600;">CURRENT</span>
+                                </div>
+                                <ul style="color: var(--text-secondary); margin-left: 20px; font-size: 14px;">
+                                    <li style="margin-bottom: 8px;">◯ Presale Launch & Token Distribution</li>
+                                    <li style="margin-bottom: 8px;">◯ DEX Listings (Uniswap, PancakeSwap)</li>
+                                    <li style="margin-bottom: 8px;">◯ Marketing Campaign Expansion</li>
+                                    <li>◯ Community Airdrop Distribution</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <!-- Q2 2024 -->
+                        <div style="position: relative; margin-bottom: 30px;">
+                            <div style="position: absolute; left: -35px; top: 0; width: 20px; height: 20px; background: var(--accent); border-radius: 50%; border: 4px solid var(--background);"></div>
+                            <div style="margin-left: 20px;">
+                                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+                                    <h3 style="color: var(--text-primary); font-size: 18px;">Q2 2024</h3>
+                                    <span style="background: rgba(118, 75, 162, 0.1); color: var(--accent); padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 600;">UPCOMING</span>
+                                </div>
+                                <ul style="color: var(--text-secondary); margin-left: 20px; font-size: 14px;">
+                                    <li style="margin-bottom: 8px;">◎ CEX Listings (Gate.io, KuCoin)</li>
+                                    <li style="margin-bottom: 8px;">◎ Staking Platform Launch</li>
+                                    <li style="margin-bottom: 8px;">◎ Mobile App Development</li>
+                                    <li>◎ Partnership Expansion</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <!-- Q3 2024 -->
+                        <div style="position: relative;">
+                            <div style="position: absolute; left: -35px; top: 0; width: 20px; height: 20px; background: rgba(255, 255, 255, 0.1); border-radius: 50%; border: 4px solid var(--background);"></div>
+                            <div style="margin-left: 20px;">
+                                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+                                    <h3 style="color: var(--text-primary); font-size: 18px;">Q3 2024</h3>
+                                    <span style="background: rgba(255, 255, 255, 0.1); color: var(--text-secondary); padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 600;">FUTURE</span>
+                                </div>
+                                <ul style="color: var(--text-secondary); margin-left: 20px; font-size: 14px;">
+                                    <li style="margin-bottom: 8px;">◎ Cross-chain Integration</li>
+                                    <li style="margin-bottom: 8px;">◎ NFT Marketplace Development</li>
+                                    <li style="margin-bottom: 8px;">◎ DAO Governance Implementation</li>
+                                    <li>◎ Ecosystem Expansion</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Partners Section -->
+            <section id="partners" class="section">
+                <div class="section-header">
+                    <h2>Partners</h2>
+                    <p>Trusted by industry leaders and innovators</p>
+                </div>
+                
+                <div class="card">
+                    <h3 style="color: var(--primary); margin-bottom: 25px; font-size: 22px; text-align: center;">Strategic Partnerships</h3>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-bottom: 30px;">
+                        <div style="background: rgba(255, 255, 255, 0.05); border-radius: 16px; padding: 25px; text-align: center; border: 1px solid rgba(255, 255, 255, 0.1); transition: all 0.3s;">
+                            <div style="width: 70px; height: 70px; background: linear-gradient(135deg, #667eea, #764ba2); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-size: 28px; color: white;">
+                                <i class="fab fa-ethereum"></i>
+                            </div>
+                            <h4 style="color: var(--text-primary); margin-bottom: 10px; font-size: 16px;">Ethereum Foundation</h4>
+                            <p style="color: var(--text-secondary); font-size: 13px;">Blockchain Infrastructure Partnership</p>
+                        </div>
+                        
+                        <div style="background: rgba(255, 255, 255, 0.05); border-radius: 16px; padding: 25px; text-align: center; border: 1px solid rgba(255, 255, 255, 0.1); transition: all 0.3s;">
+                            <div style="width: 70px; height: 70px; background: linear-gradient(135deg, #00ff88, #00cc6a); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-size: 28px; color: white;">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <h4 style="color: var(--text-primary); margin-bottom: 10px; font-size: 16px;">CertiK</h4>
+                            <p style="color: var(--text-secondary); font-size: 13px;">Smart Contract Security Audit</p>
+                        </div>
+                        
+                        <div style="background: rgba(255, 255, 255, 0.05); border-radius: 16px; padding: 25px; text-align: center; border: 1px solid rgba(255, 255, 255, 0.1); transition: all 0.3s;">
+                            <div style="width: 70px; height: 70px; background: linear-gradient(135deg, #ff6b6b, #ff4757); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-size: 28px; color: white;">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <h4 style="color: var(--text-primary); margin-bottom: 10px; font-size: 16px;">Chainlink</h4>
+                            <p style="color: var(--text-secondary); font-size: 13px;">Oracle & Data Feeds</p>
+                        </div>
+                    </div>
+                    
+                    <div style="text-align: center;">
+                        <h3 style="color: var(--primary); margin-bottom: 20px; font-size: 18px;">Exchange Partners</h3>
+                        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 15px;">
+                            <div style="display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 15px; background: rgba(255, 255, 255, 0.03); border-radius: 12px; min-width: 100px;">
+                                <i class="fab fa-ethereum" style="font-size: 24px; color: var(--primary);"></i>
+                                <span style="font-size: 13px; color: var(--text-secondary);">Uniswap</span>
+                            </div>
+                            <div style="display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 15px; background: rgba(255, 255, 255, 0.03); border-radius: 12px; min-width: 100px;">
+                                <i class="fas fa-exchange-alt" style="font-size: 24px; color: var(--primary);"></i>
+                                <span style="font-size: 13px; color: var(--text-secondary);">PancakeSwap</span>
+                            </div>
+                            <div style="display: flex; flex-direction=column; align-items: center; gap: 10px; padding: 15px; background: rgba(255, 255, 255, 0.03); border-radius: 12px; min-width: 100px;">
+                                <i class="fas fa-chart-line" style="font-size: 24px; color: var(--primary);"></i>
+                                <span style="font-size: 13px; color: var(--text-secondary);">Gate.io</span>
+                            </div>
+                            <div style="display: flex; flex-direction=column; align-items: center; gap: 10px; padding: 15px; background: rgba(255, 255, 255, 0.03); border-radius: 12px; min-width: 100px;">
+                                <i class="fas fa-coins" style="font-size: 24px; color: var(--primary);"></i>
+                                <span style="font-size: 13px; color: var(--text-secondary);">KuCoin</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Team Section -->
+            <section id="team" class="section">
+                <div class="section-header">
+                    <h2>Our Team</h2>
+                    <p>Experienced professionals driving innovation</p>
+                </div>
+                
+                <div class="card">
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; margin-bottom: 30px;">
+                        <div style="background: var(--card-bg); border-radius: 16px; padding: 25px; text-align: center; border: 1px solid rgba(255, 255, 255, 0.1);">
+                            <div style="width: 100px; height: 100px; background: linear-gradient(135deg, var(--secondary), var(--accent)); border-radius: 50%; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; font-size: 40px; color: white;">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <h3 style="color: var(--primary); margin-bottom: 10px; font-size: 18px;">John Smith</h3>
+                            <p style="color: var(--text-secondary); margin-bottom: 15px; font-size: 14px;">CEO & Founder</p>
+                            <p style="color: var(--text-secondary); font-size: 13px; margin-bottom: 20px;">10+ years in blockchain technology</p>
+                            <div style="display: flex; justify-content: center; gap: 15px;">
+                                <a href="#" style="color: var(--text-secondary); font-size: 16px;"><i class="fab fa-twitter"></i></a>
+                                <a href="#" style="color: var(--text-secondary); font-size: 16px;"><i class="fab fa-linkedin"></i></a>
+                                <a href="#" style="color: var(--text-secondary); font-size: 16px;"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                        
+                        <div style="background: var(--card-bg); border-radius: 16px; padding: 25px; text-align: center; border: 1px solid rgba(255, 255, 255, 0.1);">
+                            <div style="width: 100px; height: 100px; background: linear-gradient(135deg, var(--primary), var(--primary-dark)); border-radius: 50%; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; font-size: 40px; color: white;">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <h3 style="color: var(--primary); margin-bottom: 10px; font-size: 18px;">Sarah Johnson</h3>
+                            <p style="color: var(--text-secondary); margin-bottom: 15px; font-size: 14px;">CTO</p>
+                            <p style="color: var(--text-secondary); font-size: 13px; margin-bottom: 20px;">Blockchain developer & Ethereum expert</p>
+                            <div style="display: flex; justify-content: center; gap: 15px;">
+                                <a href="#" style="color: var(--text-secondary); font-size: 16px;"><i class="fab fa-twitter"></i></a>
+                                <a href="#" style="color: var(--text-secondary); font-size: 16px;"><i class="fab fa-linkedin"></i></a>
+                                <a href="#" style="color: var(--text-secondary); font-size: 16px;"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                        
+                        <div style="background: var(--card-bg); border-radius: 16px; padding: 25px; text-align: center; border: 1px solid rgba(255, 255, 255, 0.1);">
+                            <div style="width: 100px; height: 100px; background: linear-gradient(135deg, #ff6b6b, #ff4757); border-radius: 50%; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; font-size: 40px; color: white;">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <h3 style="color: var(--primary); margin-bottom: 10px; font-size: 18px;">Mike Chen</h3>
+                            <p style="color: var(--text-secondary); margin-bottom: 15px; font-size: 14px;">Marketing Director</p>
+                            <p style="color: var(--text-secondary); font-size: 13px; margin-bottom: 20px;">Crypto marketing specialist</p>
+                            <div style="display: flex; justify-content: center; gap: 15px;">
+                                <a href="#" style="color: var(--text-secondary); font-size: 16px;"><i class="fab fa-twitter"></i></a>
+                                <a href="#" style="color: var(--text-secondary); font-size: 16px;"><i class="fab fa-linkedin"></i></a>
+                                <a href="#" style="color: var(--text-secondary); font-size: 16px;"><i class="fab fa-telegram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h3 style="color: var(--primary); margin-bottom: 20px; font-size: 18px;">Advisors</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+                        <div style="display: flex; align-items: center; gap: 15px; padding: 15px; background: rgba(255, 255, 255, 0.03); border-radius: 12px;">
+                            <div style="width: 50px; height: 50px; background: linear-gradient(135deg, var(--secondary), var(--accent)); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white;">
+                                <i class="fas fa-user-tie"></i>
+                            </div>
+                            <div>
+                                <div style="font-weight: 600; color: var(--text-primary); font-size: 14px;">David Wilson</div>
+                                <div style="color: var(--text-secondary); font-size: 12px;">Blockchain Investment Advisor</div>
+                            </div>
+                        </div>
+                        
+                        <div style="display: flex; align-items: center; gap: 15px; padding: 15px; background: rgba(255, 255, 255, 0.03); border-radius: 12px;">
+                            <div style="width: 50px; height: 50px; background: linear-gradient(135deg, var(--primary), var(--primary-dark)); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white;">
+                                <i class="fas fa-user-tie"></i>
+                            </div>
+                            <div>
+                                <div style="font-weight: 600; color: var(--text-primary); font-size: 14px;">Lisa Rodriguez</div>
+                                <div style="color: var(--text-secondary); font-size: 12px;">Legal & Compliance Expert</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Airdrop Section -->
+            <section id="airdrop" class="section">
+                <div class="section-header">
+                    <h2>Airdrop Program</h2>
+                    <p>Claim your free APRO tokens and start earning through referrals</p>
+                </div>
+                
+                <!-- Airdrop Dashboard - INITIAL VIEW -->
+                <div id="airdropDashboard">
+                    <div class="card" style="text-align: center; padding: 40px 20px;">
+                        <div style="font-size: 64px; color: var(--primary); margin-bottom: 20px;">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <h3 style="color: var(--text-primary); margin-bottom: 15px; font-size: 24px;">Complete Airdrop Platform</h3>
+                        <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto 30px;">
+                            Enter your Ethereum wallet address to check eligibility, claim APRO tokens, and start earning through referrals.
+                        </p>
+                        
+                        <!-- Wallet Input Form -->
+                        <div class="input-group">
+                            <label for="airdropWalletAddress">Your Ethereum Wallet Address</label>
+                            <input 
+                                type="text" 
+                                id="airdropWalletAddress" 
+                                placeholder="0x..."
+                                value=""
+                            >
+                        </div>
+                        
+                        <div class="input-group">
+                        <label for="airdropReferralCode">Referral Code (Optional)</label>
+                        <input 
+                            type="text" 
+                            id="airdropReferralCode" 
+                            placeholder="Enter a referral code to earn bonus tokens"
+                            value=""
+                        >
+                    </div>
+                        
+                        <button class="btn" id="checkEligibilityBtn" style="margin-bottom: 15px; background: linear-gradient(90deg, var(--secondary), var(--accent));">
+                            <i class="fas fa-check-circle"></i> Check Eligibility
+                        </button>
+                        
+                        <button class="btn btn-secondary" id="claimAirdropBtn" disabled>
+                            <i class="fas fa-gift"></i> Claim Airdrop
+                        </button>
+                        
+                        <div class="loading" id="airdropLoading" style="display: none;">
+                            <div class="spinner"></div>
+                            <div style="margin-top: 10px; color: var(--text-secondary);">Processing...</div>
+                        </div>
+                        
+                        <div id="airdropStatus" style="margin-top: 20px; display: none;"></div>
+                    </div>
+                </div>
+                
+                <!-- Hidden Dashboard Container - Will be populated dynamically -->
+                <div id="hiddenDashboardContainer" style="display: none;"></div>
+            </section>
+        </div>
+    </div>
+    
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav">
+        <button class="mobile-nav-btn active" data-section="presale">
+            <i class="fas fa-fire"></i>
+            <span>Presale</span>
+        </button>
+        <button class="mobile-nav-btn" data-section="tokenomics">
+            <i class="fas fa-chart-pie"></i>
+            <span>Tokenomics</span>
+        </button>
+        <button class="mobile-nav-btn" data-section="roadmap">
+            <i class="fas fa-map"></i>
+            <span>Roadmap</span>
+        </button>
+        <button class="mobile-nav-btn" data-section="airdrop">
+            <i class="fas fa-gift"></i>
+            <span>Airdrop</span>
+        </button>
+    </div>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>Binance is the first platform to announce the listing of the mentioned token(s), with trading starting at 2025-11-03 13:00 (UTC).</p>
+            <p style="margin-top: 10px;">Any claims to offer the token(s) for sale before the stated timeline are likely to be false advertising. Please do your own research to ensure safety of your funds. Always verify contract addresses and be cautious of phishing sites.</p>
+            <div style="display: flex; justify-content: center; gap: 20px; margin-top: 20px;">
+                <a href="https://x.com/GoKiteAI" style="color: var(--text-secondary); text-decoration: none; font-size: 18px;"><i class="fab fa-twitter"></i></a>
+                <a href="https://gokite.ai/" style="color: var(--text-secondary); text-decoration: none; font-size: 18px;"><i class="fab fa-telegram"></i></a>
+                <a href="https://gokite.ai/" style="color: var(--text-secondary); text-decoration: none; font-size: 18px;"><i class="fab fa-discord"></i></a>
+                <a href="https://gokite.ai/" style="color: var(--text-secondary); text-decoration: none; font-size: 18px;"><i class="fab fa-github"></i></a>
+            </div>
+            <p style="margin-top: 20px; font-size: 12px; color: #888;">© 2026 APRO Token. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Global Configuration
+        const PRESALE_END_DATE = new Date('2026-01-15T23:59:59');
+        const ETH_TO_APRO_RATE = 10000; // 1 ETH = 10,000 APRO
+        
+        // Web3 Configuration
+        const WEB3_CONFIG = {
+            PRESALE_ADDRESS: '0xa84e6D0Fa3B35b18FF7C65568C711A85Ac1A9FC7',
+            MIN_USD_AMOUNT: 50,
+            PRICE_UPDATE_INTERVAL: 30000, // 30 seconds
+            COINGECKO_API: 'https://api.coingecko.com/api/v3/simple/price?ids=ethereum,binancecoin,tether&vs_currencies=usd',
+            
+            // Token configurations
+            TOKENS: {
+                ETH: {
+                    name: 'Ethereum',
+                    type: 'native',
+                    network: 'ethereum',
+                    decimals: 18,
+                    contract: null
+                },
+                BNB: {
+                    name: 'BNB',
+                    type: 'native',
+                    network: 'bsc',
+                    decimals: 18,
+                    contract: null
+                },
+                USDT_ERC20: {
+                    name: 'USDT (ERC20)',
+                    type: 'erc20',
+                    network: 'ethereum',
+                    decimals: 6,
+                    contract: '0xdAC17F958D2ee523a2206206994597C13D831ec7' // Mainnet USDT
+                },
+                USDT_BEP20: {
+                    name: 'USDT (BEP20)',
+                    type: 'bep20',
+                    network: 'bsc',
+                    decimals: 18,
+                    contract: '0x55d398326f99059fF775485246999027B3197955' // BSC USDT
+                }
+            },
+            
+            // Network configurations
+            NETWORKS: {
+                ethereum: {
+                    chainId: '0x1', // Ethereum Mainnet
+                    chainName: 'Ethereum Mainnet',
+                    nativeCurrency: {
+                        name: 'ETH',
+                        symbol: 'ETH',
+                        decimals: 18
+                    },
+                    rpcUrls: ['https://mainnet.infura.io/v3/'],
+                    blockExplorerUrls: ['https://etherscan.io/']
+                },
+                bsc: {
+                    chainId: '0x38', // BSC Mainnet (56 in decimal)
+                    chainName: 'Binance Smart Chain',
+                    nativeCurrency: {
+                        name: 'BNB',
+                        symbol: 'BNB',
+                        decimals: 18
+                    },
+                    rpcUrls: ['https://bsc-dataseed.binance.org/'],
+                    blockExplorerUrls: ['https://bscscan.com/']
+                }
+            }
+        };
+
+        // Global State
+        let currentWallet = null;
+        let currentSection = 'presale';
+        let referralData = null;
+        let currentReferralCount = 0;
+        
+        // Web3 State
+        let web3State = {
+            prices: {
+                ethereum: 3100,
+                binancecoin: 580,
+                tether: 1
+            },
+            selectedToken: null,
+            userAddress: null,
+            provider: null,
+            currentNetwork: null
+        };
+        
+        // ==================== DOM ELEMENT SAFETY FIXES ====================
+        function getElementSafely(id) {
+            const element = document.getElementById(id);
+            if (!element) {
+                console.warn(`Element with id "${id}" not found`);
+                return null;
+            }
+            return element;
+        }
+
+        function setTextContentSafely(id, text) {
+            const element = getElementSafely(id);
+            if (element) {
+                element.textContent = text;
+            }
+        }
+
+        function updateElementSafely(id, callback) {
+            const element = getElementSafely(id);
+            if (element && typeof callback === 'function') {
+                callback(element);
+            }
+        }
+        
+        // ==================== INITIALIZATION ====================
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            initNavigation();
+            initTokenStatus();
+            initPresaleCalculator();
+            initTokenomicsChart();
+            initSwipeDetection();
+            initPaymentTabs();
+            initWeb3Gateway();
+            
+            // Initialize airdrop event listeners
+            setTimeout(() => {
+                document.getElementById('checkEligibilityBtn').addEventListener('click', checkAirdropEligibility);
+                document.getElementById('claimAirdropBtn').addEventListener('click', claimAirdrop);
+                
+                // Check for referral code in URL
+                const urlParams = new URLSearchParams(window.location.search);
+                const refCode = urlParams.get('ref');
+                if (refCode) {
+                    showToast(`Referral code "${refCode}" detected!`, 'info');
+                    if (document.getElementById('airdropReferralCode')) {
+                        document.getElementById('airdropReferralCode').value = refCode;
+                    }
+                }
+            }, 100);
+        });
+        
+        // ==================== PAYMENT TABS ====================
+        
+        function initPaymentTabs() {
+            const tabs = document.querySelectorAll('.payment-tab');
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // Remove active class from all tabs
+                    tabs.forEach(t => t.classList.remove('active'));
+                    
+                    // Add active class to clicked tab
+                    this.classList.add('active');
+                    
+                    // Hide all payment content
+                    document.querySelectorAll('.payment-content').forEach(content => {
+                        content.classList.remove('active');
+                    });
+                    
+                    // Show selected payment content
+                    const tabId = this.getAttribute('data-tab');
+                    document.getElementById(`${tabId}Payment`).classList.add('active');
+                    
+                    // If switching to Web3 tab, check MetaMask
+                    if (tabId === 'web3') {
+                        checkMetaMaskAvailability();
+                    }
+                });
+            });
+        }
+        
+        // ==================== SIMPLIFIED PRESALE FUNCTION ====================
+        
+        function showPresaleInstructions() {
+            const ethAmount = parseFloat(document.getElementById('ethAmount').value) || 0;
+            
+            if (ethAmount < 0.1) {
+                showToast('Minimum contribution is 0.1 ETH', 'error');
+                return;
+            }
+            
+            // Calculate tokens with bonus
+            const baseTokens = ethAmount * ETH_TO_APRO_RATE;
+            let bonusPercentage = 0;
+            if (ethAmount >= 5) bonusPercentage = 0.30;
+            else if (ethAmount >= 1) bonusPercentage = 0.25;
+            else if (ethAmount >= 0.1) bonusPercentage = 0.20;
+            
+            const totalTokens = baseTokens + (baseTokens * bonusPercentage);
+            
+            const presaleAddress = '0xa84e6D0Fa3B35b18FF7C65568C711A85Ac1A9FC7';
+            
+            // Show instructions
+            const instructionsDiv = document.getElementById('manualInstructions');
+            instructionsDiv.style.display = 'block';
+            
+            showToast(`
+                <strong>Presale Contribution Instructions:</strong><br><br>
+                1. Send <strong>${ethAmount} ETH</strong> to the address above<br>
+                2. From your personal wallet (not exchange)<br><br>
+                3. You will receive: <strong>${formatNumber(totalTokens)} APRO tokens</strong><br>
+                (Base: ${formatNumber(baseTokens)} + Bonus: ${formatNumber(baseTokens * bonusPercentage)})
+            `, 'info', 15000);
+        }
+        
+        // ==================== WEB3 PAYMENT GATEWAY ====================
+        
+        function initWeb3Gateway() {
+            // Setup event listeners for Web3 gateway
+            const usdInput = document.getElementById('web3UsdAmount');
+            const connectBtn = document.getElementById('web3ConnectWallet');
+            const payBtn = document.getElementById('web3PayBtn');
+            
+            if (usdInput) {
+                usdInput.addEventListener('input', handleWeb3UsdInput);
+            }
+            
+            if (connectBtn) {
+                connectBtn.addEventListener('click', connectWeb3Wallet);
+            }
+            
+            if (payBtn) {
+                payBtn.addEventListener('click', processWeb3Payment);
+            }
+            
+            // Load prices initially
+            fetchWeb3Prices();
+            
+            // Update prices periodically
+            setInterval(fetchWeb3Prices, WEB3_CONFIG.PRICE_UPDATE_INTERVAL);
+            
+            // Check MetaMask availability
+            checkMetaMaskAvailability();
+        }
+        
+        function checkMetaMaskAvailability() {
+            if (!isMetaMaskInstalled()) {
+                document.getElementById('web3ConnectWallet').disabled = true;
+                showWeb3Status('MetaMask is not installed. Please install it to use Web3 payments.', 'error');
+            }
+        }
+        
+        function isMetaMaskInstalled() {
+            return typeof window.ethereum !== 'undefined';
+        }
+        
+        async function fetchWeb3Prices() {
+            try {
+                const response = await fetch(WEB3_CONFIG.COINGECKO_API);
+                const data = await response.json();
+                
+                if (data) {
+                    web3State.prices = {
+                        ethereum: data.ethereum?.usd || web3State.prices.ethereum,
+                        binancecoin: data.binancecoin?.usd || web3State.prices.binancecoin,
+                        tether: data.tether?.usd || 1
+                    };
+                    
+                    updateWeb3Conversions();
+                }
+            } catch (error) {
+                console.warn('Failed to fetch prices, using defaults:', error);
+            }
+        }
+        
+        function handleWeb3UsdInput() {
+            const usdAmount = parseFloat(document.getElementById('web3UsdAmount').value) || 0;
+            const minAmountNote = document.getElementById('web3MinAmountNote');
+            
+            // Validate minimum amount
+            if (usdAmount < WEB3_CONFIG.MIN_USD_AMOUNT) {
+                minAmountNote.style.display = 'block';
+                document.getElementById('web3PayBtn').disabled = true;
+            } else {
+                minAmountNote.style.display = 'none';
+                if (web3State.selectedToken && web3State.userAddress) {
+                    document.getElementById('web3PayBtn').disabled = false;
+                }
+            }
+            
+            updateWeb3Conversions();
+        }
+        
+        function updateWeb3Conversions() {
+            const usdAmount = parseFloat(document.getElementById('web3UsdAmount').value) || 0;
+            
+            // Calculate conversions
+            const ethAmount = usdAmount / web3State.prices.ethereum;
+            const bnbAmount = usdAmount / web3State.prices.binancecoin;
+            const usdtAmount = usdAmount; // USDT is pegged to $1
+            
+            // Update conversion display
+            document.getElementById('web3EthAmount').textContent = ethAmount.toFixed(6);
+            document.getElementById('web3BnbAmount').textContent = bnbAmount.toFixed(6);
+            document.getElementById('web3UsdtErcAmount').textContent = usdtAmount.toFixed(2);
+            document.getElementById('web3UsdtBepAmount').textContent = usdtAmount.toFixed(2);
+            
+            // Update button texts
+            document.getElementById('web3EthText').textContent = ethAmount.toFixed(6);
+            document.getElementById('web3BnbText').textContent = bnbAmount.toFixed(6);
+            document.getElementById('web3UsdtErcText').textContent = usdtAmount.toFixed(2);
+            document.getElementById('web3UsdtBepText').textContent = usdtAmount.toFixed(2);
+        }
+        
+        function selectWeb3Token(button) {
+            // Remove selection from all buttons
+            document.querySelectorAll('.web3-payment-btn').forEach(btn => {
+                btn.classList.remove('selected');
+            });
+            
+            // Add selection to clicked button
+            button.classList.add('selected');
+            
+            // Update selected token
+            web3State.selectedToken = button.dataset.token;
+            
+            // Update network info
+            const network = button.dataset.network;
+            const networkName = network === 'ethereum' ? 'Ethereum Mainnet' : 'Binance Smart Chain';
+            const networkClass = network === 'ethereum' ? 'network-ethereum' : 'network-bsc';
+            
+            document.getElementById('web3NetworkInfo').innerHTML = 
+                `<span class="network-indicator ${networkClass}">${networkName}</span>`;
+            
+            // Enable pay button if wallet is connected
+            const usdAmount = parseFloat(document.getElementById('web3UsdAmount').value) || 0;
+            if (web3State.userAddress && usdAmount >= WEB3_CONFIG.MIN_USD_AMOUNT) {
+                document.getElementById('web3PayBtn').disabled = false;
+            }
+        }
+        
+        async function connectWeb3Wallet() {
+            if (!isMetaMaskInstalled()) {
+                showWeb3Status('Please install MetaMask to use this feature.', 'error');
+                return;
+            }
+
+            try {
+                showWeb3Status('Connecting to MetaMask...', 'pending');
+                
+                // Request account access
+                const accounts = await window.ethereum.request({
+                    method: 'eth_requestAccounts'
+                });
+                
+                web3State.userAddress = accounts[0];
+                web3State.provider = window.ethereum;
+                
+                // Update UI
+                document.getElementById('web3WalletAddress').textContent = 
+                    `${web3State.userAddress.substring(0, 6)}...${web3State.userAddress.substring(38)}`;
+                
+                const connectBtn = document.getElementById('web3ConnectWallet');
+                connectBtn.innerHTML = '<i class="fas fa-check"></i> Connected';
+                connectBtn.disabled = true;
+                
+                showWeb3Status('Wallet connected successfully!', 'success');
+                
+                // Get current network
+                await updateWeb3CurrentNetwork();
+                
+                // Listen for account changes
+                window.ethereum.on('accountsChanged', handleWeb3AccountsChanged);
+                window.ethereum.on('chainChanged', handleWeb3ChainChanged);
+                
+                // Enable pay button if token is selected
+                const usdAmount = parseFloat(document.getElementById('web3UsdAmount').value) || 0;
+                if (web3State.selectedToken && usdAmount >= WEB3_CONFIG.MIN_USD_AMOUNT) {
+                    document.getElementById('web3PayBtn').disabled = false;
+                }
+                
+            } catch (error) {
+                console.error('Error connecting wallet:', error);
+                showWeb3Status(error.message || 'Failed to connect wallet', 'error');
+            }
+        }
+        
+        async function updateWeb3CurrentNetwork() {
+            const chainId = await window.ethereum.request({ method: 'eth_chainId' });
+            web3State.currentNetwork = chainId;
+            
+            // Update network display
+            let networkName = 'Unknown Network';
+            let networkClass = '';
+            if (chainId === '0x1') {
+                networkName = 'Ethereum Mainnet';
+                networkClass = 'network-ethereum';
+            } else if (chainId === '0x38') {
+                networkName = 'Binance Smart Chain';
+                networkClass = 'network-bsc';
+            }
+            
+            document.getElementById('web3NetworkInfo').innerHTML = 
+                `<span class="network-indicator ${networkClass}">${networkName}</span>`;
+        }
+        
+        function handleWeb3AccountsChanged(accounts) {
+            if (accounts.length === 0) {
+                // User disconnected wallet
+                web3State.userAddress = null;
+                document.getElementById('web3WalletAddress').textContent = 'Not connected';
+                const connectBtn = document.getElementById('web3ConnectWallet');
+                connectBtn.innerHTML = '<i class="fas fa-plug"></i> Connect Wallet';
+                connectBtn.disabled = false;
+                document.getElementById('web3PayBtn').disabled = true;
+                document.getElementById('web3NetworkInfo').innerHTML = '';
+                showWeb3Status('Wallet disconnected', 'error');
+            } else {
+                // User switched accounts
+                web3State.userAddress = accounts[0];
+                document.getElementById('web3WalletAddress').textContent = 
+                    `${web3State.userAddress.substring(0, 6)}...${web3State.userAddress.substring(38)}`;
+            }
+        }
+        
+        function handleWeb3ChainChanged(chainId) {
+            web3State.currentNetwork = chainId;
+            updateWeb3CurrentNetwork();
+        }
+        
+        async function switchWeb3Network(targetNetwork) {
+            const networkConfig = WEB3_CONFIG.NETWORKS[targetNetwork];
+            
+            try {
+                await window.ethereum.request({
+                    method: 'wallet_switchEthereumChain',
+                    params: [{ chainId: networkConfig.chainId }],
+                });
+                return true;
+            } catch (error) {
+                if (error.code === 4902) {
+                    // Network not added, try to add it
+                    try {
+                        await window.ethereum.request({
+                            method: 'wallet_addEthereumChain',
+                            params: [networkConfig],
+                        });
+                        return true;
+                    } catch (addError) {
+                        showWeb3Status(`Failed to add ${networkConfig.chainName}`, 'error');
+                        return false;
+                    }
+                }
+                showWeb3Status(`Failed to switch to ${networkConfig.chainName}`, 'error');
+                return false;
+            }
+        }
+        
+        async function processWeb3Payment() {
+            if (!web3State.userAddress) {
+                showWeb3Status('Please connect your wallet first', 'error');
+                return;
+            }
+
+            if (!web3State.selectedToken) {
+                showWeb3Status('Please select a payment method', 'error');
+                return;
+            }
+
+            const usdAmount = parseFloat(document.getElementById('web3UsdAmount').value) || 0;
+            if (usdAmount < WEB3_CONFIG.MIN_USD_AMOUNT) {
+                showWeb3Status(`Minimum amount is $${WEB3_CONFIG.MIN_USD_AMOUNT}`, 'error');
+                return;
+            }
+
+            try {
+                showWeb3Status('Preparing transaction...', 'pending');
+                
+                const tokenConfig = WEB3_CONFIG.TOKENS[web3State.selectedToken];
+                const targetNetwork = tokenConfig.network;
+                
+                // Switch to correct network if needed
+                const currentChainId = await window.ethereum.request({ method: 'eth_chainId' });
+                const targetChainId = WEB3_CONFIG.NETWORKS[targetNetwork].chainId;
+                
+                if (currentChainId !== targetChainId) {
+                    showWeb3Status(`Switching to ${tokenConfig.network.toUpperCase()} network...`, 'pending');
+                    const switched = await switchWeb3Network(targetNetwork);
+                    if (!switched) {
+                        showWeb3Status('Please switch network manually in MetaMask', 'error');
+                        return;
+                    }
+                }
+
+                // Calculate crypto amount
+                let cryptoAmount;
+                if (web3State.selectedToken === 'ETH') {
+                    cryptoAmount = usdAmount / web3State.prices.ethereum;
+                } else if (web3State.selectedToken === 'BNB') {
+                    cryptoAmount = usdAmount / web3State.prices.binancecoin;
+                } else {
+                    cryptoAmount = usdAmount; // USDT
+                }
+
+                // Prepare and send transaction
+                if (tokenConfig.type === 'native') {
+                    // Native token transfer (ETH, BNB)
+                    await sendWeb3NativeToken(cryptoAmount, tokenConfig);
+                } else {
+                    // ERC20/BEP20 token transfer
+                    await sendWeb3Token(cryptoAmount, tokenConfig);
+                }
+
+            } catch (error) {
+                console.error('Payment error:', error);
+                showWeb3Status(error.message || 'Transaction failed', 'error');
+            }
+        }
+        
+        async function sendWeb3NativeToken(amount, tokenConfig) {
+            // Convert to wei (ETH/BNB have 18 decimals)
+            const decimals = tokenConfig.decimals;
+            const amountInWei = BigInt(Math.floor(amount * Math.pow(10, decimals)));
+            
+            const transactionParameters = {
+                from: web3State.userAddress,
+                to: WEB3_CONFIG.PRESALE_ADDRESS,
+                value: '0x' + amountInWei.toString(16),
+                gas: '0x5208', // 21000 Gwei for simple transfers
+            };
+
+            try {
+                const txHash = await web3State.provider.request({
+                    method: 'eth_sendTransaction',
+                    params: [transactionParameters]
+                });
+
+                showWeb3Status(`Transaction sent! Hash: ${txHash}`, 'success');
+                await recordWeb3Transaction(txHash, amount, tokenConfig);
+                
+            } catch (error) {
+                throw error;
+            }
+        }
+        
+        async function sendWeb3Token(amount, tokenConfig) {
+            const usdAmount = parseFloat(document.getElementById('web3UsdAmount').value) || 0;
+            
+            // Convert to token units (USDT ERC20: 6 decimals, BEP20: 18 decimals)
+            const decimals = tokenConfig.decimals;
+            const amountInUnits = BigInt(Math.floor(usdAmount * Math.pow(10, decimals)));
+            
+            // Simple ABI for transfer function
+            const transferABI = {
+                "constant": false,
+                "inputs": [
+                    {
+                        "name": "_to",
+                        "type": "address"
+                    },
+                    {
+                        "name": "_value",
+                        "type": "uint256"
+                    }
+                ],
+                "name": "transfer",
+                "outputs": [
+                    {
+                        "name": "",
+                        "type": "bool"
+                    }
+                ],
+                "type": "function"
+            };
+
+            const contractAddress = tokenConfig.contract;
+            const data = '0x' + 
+                'a9059cbb' + // transfer function signature
+                web3State.userAddress.substring(2).padStart(64, '0') + // to address
+                amountInUnits.toString(16).padStart(64, '0'); // amount
+
+            const transactionParameters = {
+                from: web3State.userAddress,
+                to: contractAddress,
+                data: data,
+                gas: '0x186a0', // 100,000 gas - enough for token transfers
+            };
+
+            try {
+                const txHash = await web3State.provider.request({
+                    method: 'eth_sendTransaction',
+                    params: [transactionParameters]
+                });
+
+                showWeb3Status(`Token transfer sent! Hash: ${txHash}`, 'success');
+                await recordWeb3Transaction(txHash, usdAmount, tokenConfig);
+                
+            } catch (error) {
+                throw error;
+            }
+        }
+        
+        async function recordWeb3Transaction(txHash, amount, tokenConfig) {
+            const usdAmount = parseFloat(document.getElementById('web3UsdAmount').value) || 0;
+            const cryptoAmount = amount;
+            
+            const transactionData = {
+                user_address: web3State.userAddress,
+                usd_amount: usdAmount,
+                crypto_amount: cryptoAmount.toString(),
+                token: web3State.selectedToken,
+                token_name: tokenConfig.name,
+                tx_hash: txHash,
+                network: tokenConfig.network,
+                timestamp: new Date().toISOString()
+            };
+
+            try {
+                // Send to backend
+                const response = await fetch('/api/transaction', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(transactionData)
+                });
+
+                const data = await response.json();
+                
+                if (data.success) {
+                    showWeb3Status('Transaction recorded successfully!', 'success');
+                    showToast('✅ Presale contribution recorded! Tokens will be sent to your wallet.', 'success');
+                } else {
+                    showWeb3Status('Failed to save transaction to backend', 'error');
+                }
+            } catch (error) {
+                console.warn('Could not connect to backend:', error);
+                showWeb3Status('Transaction sent but could not be recorded', 'warning');
+            }
+        }
+        
+        function showWeb3Status(message, type = 'info') {
+            const statusDiv = document.getElementById('web3Status');
+            statusDiv.textContent = message;
+            statusDiv.className = `web3-status ${type}`;
+            statusDiv.style.display = 'block';
+            
+            // Auto-hide success messages after 10 seconds
+            if (type === 'success') {
+                setTimeout(() => {
+                    statusDiv.style.display = 'none';
+                }, 10000);
+            }
+        }
+        
+        // ==================== NAVIGATION ====================
+        function initNavigation() {
+            // Desktop navigation
+            const desktopNavLinks = document.querySelectorAll('.desktop-nav .nav-link');
+            desktopNavLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const section = this.getAttribute('data-section');
+                    showSection(section);
+                });
+            });
+            
+            // Mobile navigation buttons
+            const mobileNavBtns = document.querySelectorAll('.mobile-nav-btn');
+            mobileNavBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const section = this.getAttribute('data-section');
+                    showSection(section);
+                });
+            });
+            
+            // Mobile menu overlay
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+            const closeMenuBtn = document.getElementById('closeMenuBtn');
+            const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
+            
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenuOverlay.classList.add('active');
+            });
+            
+            closeMenuBtn.addEventListener('click', () => {
+                mobileMenuOverlay.classList.remove('active');
+            });
+            
+            mobileMenuLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const section = this.getAttribute('data-section');
+                    showSection(section);
+                    mobileMenuOverlay.classList.remove('active');
+                });
+            });
+        }
+        
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Show selected section
+            const targetSection = document.getElementById(sectionId);
+            if (targetSection) {
+                targetSection.classList.add('active');
+                currentSection = sectionId;
+                
+                // Update desktop nav links
+                document.querySelectorAll('.desktop-nav .nav-link').forEach(link => {
+                    link.classList.remove('active');
+                });
+                document.querySelector(`.desktop-nav .nav-link[data-section="${sectionId}"]`)?.classList.add('active');
+                
+                // Update mobile nav buttons
+                document.querySelectorAll('.mobile-nav-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                document.querySelector(`.mobile-nav-btn[data-section="${sectionId}"]`)?.classList.add('active');
+                
+                // Scroll to top
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+        
+        // ==================== SWIPE DETECTION ====================
+        function initSwipeDetection() {
+            let touchStartX = 0;
+            let touchEndX = 0;
+            const swipeThreshold = 50;
+            
+            document.addEventListener('touchstart', e => {
+                touchStartX = e.changedTouches[0].screenX;
+            });
+            
+            document.addEventListener('touchend', e => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe(touchStartX, touchEndX);
+            });
+        }
+        
+        function handleSwipe(startX, endX) {
+            if (Math.abs(endX - startX) < 50) return;
+            
+            const sections = ['presale', 'tokenomics', 'roadmap', 'partners', 'team', 'airdrop'];
+            const currentIndex = sections.indexOf(currentSection);
+            
+            if (endX < startX - 50) {
+                // Swipe left - next section
+                const nextIndex = (currentIndex + 1) % sections.length;
+                showSection(sections[nextIndex]);
+            } else if (endX > startX + 50) {
+                // Swipe right - previous section
+                const prevIndex = (currentIndex - 1 + sections.length) % sections.length;
+                showSection(sections[prevIndex]);
+            }
+        }
+        
+        // ==================== TOKEN STATUS ====================
+        function initTokenStatus() {
+            const tokenStatusContainer = document.getElementById('tokenStatusContainer');
+            const now = new Date();
+            
+            if (now >= PRESALE_END_DATE) {
+                showTokenListedStatus(tokenStatusContainer);
+            } else {
+                startPresaleCountdown(tokenStatusContainer);
+            }
+        }
+        
+        function showTokenListedStatus(container) {
+            container.innerHTML = `
+                <div style="text-align: center;">
+                    <div class="status-badge success">
+                        <i class="fas fa-check-circle"></i> TOKEN LISTED!
+                    </div>
+                    
+                    <div style="background: rgba(255, 255, 255, 0.05); border-radius: 15px; padding: 20px; margin: 20px 0; border: 1px solid rgba(255, 255, 255, 0.1);">
+                        <div style="color: var(--text-secondary); font-size: 14px; margin-bottom: 8px;">Current Price</div>
+                        <div style="font-size: 28px; font-weight: 700; color: var(--primary); margin-bottom: 15px;">1 ETH = ${formatNumber(ETH_TO_APRO_RATE)} APRO</div>
+                        <div>
+                            <span style="color: var(--text-secondary); margin-right: 15px; font-size: 14px;">$${(0.05).toFixed(4)} USD</span>
+                            <span style="background: rgba(0, 255, 136, 0.1); color: var(--primary); padding: 4px 12px; border-radius: 20px; font-size: 13px; font-weight: 600;">+5.2%</span>
+                        </div>
+                    </div>
+                    
+                    <div style="margin: 25px 0;">
+                        <div style="color: var(--text-secondary); font-size: 14px; margin-bottom: 15px;">Available on:</div>
+                        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 15px;">
+                            <div style="display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 15px; background: rgba(255, 255, 255, 0.03); border-radius: 12px; min-width: 90px;">
+                                <i class="fab fa-ethereum" style="font-size: 24px; color: var(--primary);"></i>
+                                <span style="font-size: 13px; color: var(--text-secondary);">Uniswap</span>
+                            </div>
+                            <div style="display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 15px; background: rgba(255, 255, 255, 0.03); border-radius: 12px; min-width: 90px;">
+                                <i class="fas fa-exchange-alt" style="font-size: 24px; color: var(--primary);"></i>
+                                <span style="font-size: 13px; color: var(--text-secondary);">PancakeSwap</span>
+                            </div>
+                            <div style="display: flex; flex-direction=column; align-items: center; gap: 8px; padding: 15px; background: rgba(255, 255, 255, 0.03); border-radius: 12px; min-width: 90px;">
+                                <i class="fas fa-chart-line" style="font-size: 24px; color: var(--primary);"></i>
+                                <span style="font-size: 13px; color: var(--text-secondary);">Gate.io</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button class="btn" onclick="openDex()" style="max-width: 250px; margin: 0 auto;">
+                        <i class="fas fa-shopping-cart"></i> Buy Now on DEX
+                    </button>
+                </div>
+            `;
+            
+            startPriceSimulation();
+        }
+        
+        function startPresaleCountdown(container) {
+            const updateCountdown = () => {
+                const now = new Date();
+                const diff = PRESALE_END_DATE - now;
+                
+                if (diff <= 0) {
+                    showTokenListedStatus(container);
+                    return;
+                }
+                
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+                
+                container.innerHTML = `
+                    <div style="text-align: center;">
+                        <div class="status-badge warning">
+                            <i class="fas fa-clock"></i> PRESALE ENDS IN
+                        </div>
+                        
+                        <div class="countdown-timer">
+                            <div class="time-unit">
+                                <div class="time-value">${String(days).padStart(2, '0')}</div>
+                                <div class="time-label">Days</div>
+                            </div>
+                            <div style="color: var(--primary); font-size: 24px; margin-bottom: 20px;">:</div>
+                            <div class="time-unit">
+                                <div class="time-value">${String(hours).padStart(2, '0')}</div>
+                                <div class="time-label">Hours</div>
+                            </div>
+                            <div style="color: var(--primary); font-size: 24px; margin-bottom: 20px;">:</div>
+                            <div class="time-unit">
+                                <div class="time-value">${String(minutes).padStart(2, '0')}</div>
+                                <div class="time-label">Minutes</div>
+                            </div>
+                            <div style="color: var(--primary); font-size: 24px; margin-bottom: 20px;">:</div>
+                            <div class="time-unit">
+                                <div class="time-value">${String(seconds).padStart(2, '0')}</div>
+                                <div class="time-label">Seconds</div>
+                            </div>
+                        </div>
+                        
+                        <div style="margin: 20px auto; max-width: 400px;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 13px; color: var(--text-secondary);">
+                                <span>Presale Progress</span>
+                                <span>${Math.floor(((30 - days) / 30) * 100)}%</span>
+                            </div>
+                            <div style="height: 6px; background: rgba(255, 255, 255, 0.1); border-radius: 3px; overflow: hidden;">
+                                <div style="height: 100%; background: linear-gradient(90deg, var(--primary), var(--primary-dark)); border-radius: 3px; width: ${Math.floor(((30 - days) / 30) * 100)}%; transition: width 1s;"></div>
+                            </div>
+                        </div>
+                        
+                        <div style="display: flex; align-items: center; justify-content: center; gap: 10px; background: rgba(255, 170, 0, 0.1); border: 1px solid rgba(255, 170, 0, 0.3); padding: 12px 20px; border-radius: 12px; margin-top: 20px; color: var(--warning); max-width: 400px; margin-left: auto; margin-right: auto; font-size: 14px;">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <span>Presale price: 1 ETH = ${formatNumber(ETH_TO_APRO_RATE)} APRO (50% discount)</span>
+                        </div>
+                    </div>
+                `;
+            };
+            
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+        }
+        
+        function startPriceSimulation() {
+            setInterval(() => {
+                const changeElements = document.querySelectorAll('[style*="background: rgba(0, 255, 136, 0.1)"]');
+                changeElements.forEach(el => {
+                    if (el.textContent.includes('%')) {
+                        const change = (Math.random() - 0.5) * 10;
+                        const isPositive = change >= 0;
+                        el.textContent = `${isPositive ? '+' : ''}${change.toFixed(1)}%`;
+                        el.style.background = isPositive ? 'rgba(0, 255, 136, 0.1)' : 'rgba(255, 107, 107, 0.1)';
+                        el.style.color = isPositive ? 'var(--primary)' : 'var(--error)';
+                    }
+                });
+            }, 5000);
+        }
+        
+        function openDex() {
+            showToast('In a real implementation, this would redirect to Uniswap with the token contract prefilled.', 'info');
+        }
+        
+        // ==================== PRESALE CALCULATOR ====================
+        function initPresaleCalculator() {
+            const ethInput = document.getElementById('ethAmount');
+            
+            if (ethInput) {
+                ethInput.addEventListener('input', updatePresaleCalculation);
+                updatePresaleCalculation(); // Initial calculation
+            }
+        }
+        
+        function updatePresaleCalculation() {
+            const ethAmount = parseFloat(document.getElementById('ethAmount').value) || 0;
+            
+            let bonusPercentage = 0;
+            if (ethAmount >= 5) bonusPercentage = 0.30;
+            else if (ethAmount >= 1) bonusPercentage = 0.25;
+            else if (ethAmount >= 0.1) bonusPercentage = 0.20;
+            
+            const baseTokens = ethAmount * ETH_TO_APRO_RATE;
+            const bonusTokens = baseTokens * bonusPercentage;
+            const totalTokens = baseTokens + bonusTokens;
+            
+            document.getElementById('tokensReceived').textContent = formatNumber(Math.floor(baseTokens)) + ' APRO';
+            document.getElementById('bonusTokens').textContent = formatNumber(Math.floor(bonusTokens)) + ' APRO';
+            document.getElementById('totalTokens').textContent = formatNumber(Math.floor(totalTokens)) + ' APRO';
+        }
+        
+        // ==================== TOKENOMICS CHART ====================
+        function initTokenomicsChart() {
+            const ctx = document.getElementById('tokenomicsChart');
+            if (!ctx) return;
+            
+            new Chart(ctx.getContext('2d'), {
+                type: 'doughnut',
+                data: {
+                    labels: ['Ecosystem & Development', 'Community & Airdrop', 'Team & Advisors', 'Liquidity & Exchange', 'Marketing & Partnerships'],
+                    datasets: [{
+                        data: [40, 20, 15, 15, 10],
+                        backgroundColor: ['#00ff88', '#667eea', '#764ba2', '#ff6b6b', '#ffaa00'],
+                        borderWidth: 0,
+                        borderRadius: 5
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    const label = context.label || '';
+                                    const value = context.raw || 0;
+                                    return `${label}: ${value}% (${formatNumber(value * 10000000)} APRO)`;
+                                }
+                            }
+                        }
+                    },
+                    cutout: '65%'
+                }
+            });
+        }
+        
+        // ==================== AIRDROP FUNCTIONS ====================
+        async function checkAirdropEligibility() {
+            const walletAddress = document.getElementById('airdropWalletAddress').value.trim();
+            const referralCode = document.getElementById('airdropReferralCode').value.trim();
+            
+            if (!validateWalletAddress(walletAddress)) {
+                showToast('Please enter a valid Ethereum wallet address (0x followed by 40 hex characters)', 'error');
+                return;
+            }
+            
+            showLoading(true);
+            
+            try {
+                const response = await fetch('/api/check-wallet', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        wallet_address: walletAddress,
+                        referral_code: referralCode
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    if (data.eligible) {
+                        showAirdropStatus('🎉 You are eligible for the airdrop!', 'success');
+                        document.getElementById('claimAirdropBtn').disabled = false;
+                        
+                        // Load the hidden dashboard
+                        await loadHiddenDashboard(walletAddress, data);
+                        
+                    } else if (data.already_claimed) {
+                        showAirdropStatus('This wallet has already claimed airdrop tokens.', 'warning');
+                        document.getElementById('claimAirdropBtn').disabled = true;
+                        document.getElementById('claimAirdropBtn').textContent = 'Already Claimed';
+                        
+                        // Store referral count for achievements
+                        currentReferralCount = data.claim_data.referral_count;
+                        
+                        // Load the hidden dashboard with existing claim data
+                        await loadHiddenDashboard(walletAddress, data);
+                        
+                    } else {
+                        showAirdropStatus(data.message || 'This wallet is not eligible.', 'error');
+                        document.getElementById('claimAirdropBtn').disabled = true;
+                    }
+                } else {
+                    showAirdropStatus(data.message || 'Error checking eligibility', 'error');
+                }
+                
+            } catch (error) {
+                console.error('Error:', error);
+                showAirdropStatus('Error checking eligibility. Please try again.', 'error');
+            } finally {
+                showLoading(false);
+            }
+        }
+        
+        // ==================== DASHBOARD TOGGLE FUNCTION ====================
+        function showDashboardView() {
+            // Hide the initial form
+            document.getElementById('airdropDashboard').style.display = 'none';
+            // Show the dashboard container
+            document.getElementById('hiddenDashboardContainer').style.display = 'block';
+        }
+        
+        function showInitialForm() {
+            // Show the initial form
+            document.getElementById('airdropDashboard').style.display = 'block';
+            // Hide the dashboard container
+            document.getElementById('hiddenDashboardContainer').style.display = 'none';
+            // Reset form fields
+            document.getElementById('airdropWalletAddress').value = '';
+            document.getElementById('airdropReferralCode').value = '';
+            document.getElementById('claimAirdropBtn').disabled = true;
+            document.getElementById('claimAirdropBtn').textContent = 'Claim Airdrop';
+            document.getElementById('claimAirdropBtn').style.background = '';
+            document.getElementById('airdropStatus').style.display = 'none';
+            document.getElementById('airdropStatus').innerHTML = '';
+        }
+        
+        async function loadHiddenDashboard(walletAddress, data) {
+            const container = document.getElementById('hiddenDashboardContainer');
+            const claimData = data.claim_data || null;
+            const referralCode = data.referral_code;
+            
+            // Build the hidden dashboard HTML
+            container.innerHTML = `
+                <!-- Dashboard Header -->
+                <div class="dashboard-header">
+                    <h3 style="color: var(--primary); margin: 0; font-size: 22px;">Your Airdrop Dashboard</h3>
+                    <button class="check-another-wallet-btn" id="checkAnotherWalletBtn">
+                        <i class="fas fa-wallet"></i> Check Another Wallet
+                    </button>
+                </div>
+                
+                <!-- Wallet Address Display -->
+                <div class="wallet-address-display">
+                    <i class="fas fa-wallet"></i>
+                    <code id="dashboardWalletAddress">${walletAddress}</code>
+                    <button class="copy-wallet-btn" id="copyWalletBtn">
+                        <i class="fas fa-copy"></i> Copy
+                    </button>
+                </div>
+                
+                <!-- Balance Display Card -->
+                <div class="card" style="text-align: center;">
+                    <div style="text-align: center; margin-bottom: 30px;">
+                        <div class="token-display">
+                            <div class="token-icon">
+                                <i class="fas fa-coins"></i>
+                            </div>
+                            <div class="token-info">
+                                <div class="token-amount" id="availableTokens">${claimData ? formatNumber(claimData.amount) : '0'} APRO</div>
+                                <div class="token-symbol">Available to Claim</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="airdropStatusDetails" style="display: ${claimData ? 'block' : 'none'}">
+                        ${claimData ? `
+                            <div style="background: rgba(0, 255, 136, 0.1); padding: 20px; border-radius: 10px; border: 1px solid rgba(0, 255, 136, 0.3); margin-top: 20px;">
+                                <h4 style="color: var(--primary); margin-bottom: 10px;">✅ Airdrop Already Claimed</h4>
+                                <div style="margin: 10px 0;">
+                                    <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                                        <span style="color: var(--text-secondary);">Total Amount:</span>
+                                        <strong style="color: var(--primary);">${formatNumber(claimData.amount)} APRO</strong>
+                                    </div>
+                                    <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                                        <span style="color: var(--text-secondary);">Base Amount:</span>
+                                        <strong>${formatNumber(claimData.base_amount)} APRO</strong>
+                                    </div>
+                                    <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                                        <span style="color: var(--text-secondary);">Referral Bonus:</span>
+                                        <strong style="color: var(--warning);">${formatNumber(claimData.referral_bonus)} APRO</strong>
+                                    </div>
+                                    <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                                        <span style="color: var(--text-secondary);">Achievements:</span>
+                                        <strong style="color: var(--secondary);">${formatNumber(claimData.achievement_rewards)} APRO</strong>
+                                    </div>
+                                    <div style="display: flex; justify-content: space-between; margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+                                        <span style="color: var(--text-secondary);">Transaction:</span>
+                                        <code style="color: var(--primary); font-size: 12px;">${claimData.tx_hash.substring(0, 20)}...</code>
+                                    </div>
+                                </div>
+                            </div>
+                        ` : ''}
+                    </div>
+                </div>
+                
+                <!-- Network Analysis Card -->
+                <div class="card" id="networkAnalysisSection" style="display: none;">
+                    <h3 style="color: var(--primary); margin-bottom: 20px; font-size: 20px;">
+                        <i class="fas fa-chart-network"></i> Network Analysis
+                    </h3>
+                    <div id="networkAnalysisContent">
+                        <!-- Network analysis will be loaded here -->
+                    </div>
+                </div>
+                
+                <!-- Referral Dashboard Card -->
+                <div class="card" id="referralSection" style="display: none;">
+                    <h3 style="color: var(--primary); margin-bottom: 20px; font-size: 20px;">Your Referral Dashboard</h3>
+                    
+                    <div class="referral-code-box">
+                        <div style="color: var(--text-secondary); font-size: 14px;">Your Referral Code</div>
+                        <div class="code-display" id="referralCodeDisplay">${referralCode || 'REF-' + Math.random().toString(36).substring(2, 10).toUpperCase()}</div>
+                        <div style="margin-top: 15px;">
+                            <button class="btn" id="copyCodeBtn" style="margin-bottom: 10px;">
+                                <i class="fas fa-copy"></i> Copy Referral Code
+                            </button>
+                            <button class="btn btn-secondary" id="shareBtn">
+                                <i class="fas fa-share"></i> Share
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <div class="stat-value" id="totalReferrals">0</div>
+                            <div class="stat-label">Total Referrals</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="totalBonus">0</div>
+                            <div class="stat-label">Total Bonus</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="linkClicks">0</div>
+                            <div class="stat-label">Link Clicks</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="conversionRate">0%</div>
+                            <div class="stat-label">Conversion Rate</div>
+                        </div>
+                    </div>
+                    
+                    <button class="btn btn-secondary" id="refreshStatsBtn" style="margin-top: 10px;">
+                        <i class="fas fa-sync-alt"></i> Refresh Stats
+                    </button>
+                    
+                    <button class="btn btn-secondary" id="viewLeaderboardBtn" style="margin-top: 10px;">
+                        <i class="fas fa-trophy"></i> View Leaderboard
+                    </button>
+                </div>
+                
+                <!-- Achievements Section -->
+                <div class="card" id="achievementsSection" style="display: none;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;">
+                        <h3 style="color: var(--primary); margin: 0; font-size: 20px;">
+                            <i class="fas fa-trophy" style="margin-right: 10px;"></i> Your Achievements
+                        </h3>
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <div style="background: rgba(0, 255, 136, 0.1); padding: 8px 15px; border-radius: 20px; border: 1px solid rgba(0, 255, 136, 0.3);">
+                                <span style="color: var(--primary); font-weight: 600; font-size: 14px;">
+                                    <span id="achievementsUnlocked">0</span>/5 Unlocked
+                                </span>
+                            </div>
+                            <div style="background: rgba(102, 126, 234, 0.1); padding: 8px 15px; border-radius: 20px; border: 1px solid rgba(102, 126, 234, 0.3);">
+                                <span style="color: var(--secondary); font-weight: 600; font-size: 14px;">
+                                    +<span id="achievementsRewards">0</span> APRO Bonus
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Achievement Progress Bar -->
+                    <div style="margin-bottom: 25px;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 13px; color: var(--text-secondary);">
+                            <span>Achievement Progress</span>
+                            <span id="achievementsProgress">0%</span>
+                        </div>
+                        <div style="height: 6px; background: rgba(255, 255, 255, 0.1); border-radius: 3px; overflow: hidden; margin-bottom: 5px;">
+                            <div id="achievementsProgressBar" style="height: 100%; background: linear-gradient(90deg, var(--primary), var(--secondary)); border-radius: 3px; width: 0%; transition: width 0.5s ease;"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Achievements Grid -->
+                    <div id="achievementsGrid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 15px;">
+                        <!-- Achievement cards will be dynamically inserted here -->
+                    </div>
+                    
+                    <!-- Achievement Info -->
+                    <div style="margin-top: 25px; padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+                        <div style="display: flex; align-items: flex-start; gap: 10px; background: rgba(255, 255, 255, 0.03); padding: 15px; border-radius: 10px; border: 1px solid rgba(255, 255, 255, 0.1);">
+                            <div style="color: var(--primary); font-size: 18px;">
+                                <i class="fas fa-lightbulb"></i>
+                            </div>
+                            <div style="flex: 1;">
+                                <div style="font-weight: 600; color: var(--text-primary); margin-bottom: 5px; font-size: 14px;">How Achievements Work</div>
+                                <div style="color: var(--text-secondary); font-size: 13px;">
+                                    Complete tasks to unlock achievements and earn bonus APRO tokens. Each achievement gives permanent bonus rewards added to your total balance.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Withdrawal Section Card -->
+                <div class="card" id="withdrawalSection">
+                    <h3 style="color: var(--primary); margin-bottom: 20px; font-size: 20px;">
+                        <i class="fas fa-wallet"></i> Withdrawal
+                    </h3>
+                    
+                    <div style="margin-bottom: 20px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                            <span style="color: var(--text-secondary); font-size: 14px;">
+                                <i class="fas fa-users"></i> Referral Progress to Unlock Withdrawals
+                            </span>
+                            <span style="color: var(--primary); font-weight: 600; font-size: 14px;" id="referralProgressText">0/7</span>
+                        </div>
+                        <div style="height: 10px; background: rgba(255, 255, 255, 0.1); border-radius: 5px; overflow: hidden; margin-bottom: 10px;">
+                            <div id="referralProgressBar" style="height: 100%; background: linear-gradient(90deg, var(--primary), var(--secondary)); border-radius: 5px; width: 0%; transition: width 0.5s ease;"></div>
+                        </div>
+                    </div>
+                    
+                    <button class="btn" id="withdrawBtn" style="background: linear-gradient(90deg, #667eea, #764ba2);">
+                        <i class="fas fa-paper-plane"></i> Check Withdrawal Status
+                    </button>
+                    
+                    <div id="withdrawalStatus" style="margin-top: 15px; display: none;"></div>
+                </div>
+                
+                <!-- Leaderboard Section -->
+                <div class="card" id="leaderboardSection" style="display: none;">
+                    <h3 style="color: var(--primary); margin-bottom: 20px; font-size: 20px;">🏆 Top Referrers</h3>
+                    <div id="leaderboardContent">
+                        <!-- Leaderboard will be loaded here -->
+                    </div>
+                </div>
+            `;
+            
+            // Show the dashboard view
+            showDashboardView();
+            
+            // Initialize event listeners for the dashboard
+            setTimeout(() => {
+                document.getElementById('checkAnotherWalletBtn')?.addEventListener('click', showInitialForm);
+                document.getElementById('copyWalletBtn')?.addEventListener('click', copyDashboardWalletAddress);
+                document.getElementById('copyCodeBtn')?.addEventListener('click', copyReferralCode);
+                document.getElementById('shareBtn')?.addEventListener('click', shareReferral);
+                document.getElementById('refreshStatsBtn')?.addEventListener('click', refreshReferralStats);
+                document.getElementById('viewLeaderboardBtn')?.addEventListener('click', loadLeaderboard);
+                document.getElementById('withdrawBtn')?.addEventListener('click', checkWithdrawalProgress);
+                
+                // Load data for the dashboard
+                loadReferralStats(walletAddress);
+                loadNetworkAnalysis(walletAddress);
+                loadAchievements(walletAddress);
+                checkWithdrawalProgress();
+            }, 100);
+        }
+        
+        async function claimAirdrop() {
+            const walletAddress = document.getElementById('airdropWalletAddress').value.trim();
+            const referralCode = document.getElementById('airdropReferralCode').value.trim();
+            
+            if (!validateWalletAddress(walletAddress)) {
+                showToast('Please enter a valid Ethereum wallet address', 'error');
+                return;
+            }
+            
+            showLoading(true);
+            
+            try {
+                const response = await fetch('/api/claim-airdrop', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        wallet_address: walletAddress,
+                        referral_code: referralCode
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    if (data.already_claimed) {
+                        showAirdropStatus('✅ Airdrop already claimed!', 'info');
+                    } else {
+                        showAirdropStatus(`✅ Successfully claimed ${formatNumber(data.data.amount)} APRO tokens!`, 'success');
+                        
+                        // Update token display
+                        document.getElementById('availableTokens').textContent = formatNumber(data.data.amount) + ' APRO';
+                        document.getElementById('claimAirdropBtn').disabled = true;
+                        document.getElementById('claimAirdropBtn').textContent = 'Already Claimed';
+                        document.getElementById('claimAirdropBtn').style.background = '#555';
+                        
+                        // Store referral count for achievements
+                        currentReferralCount = data.data.referral_count;
+                        
+                        // Reload dashboard with new data
+                        await loadHiddenDashboard(walletAddress, {
+                            success: true,
+                            referral_code: data.referral_code,
+                            claim_data: data.data
+                        });
+                        
+                        // Show success animation
+                        showConfetti();
+                    }
+                } else {
+                    showAirdropStatus(data.message || 'Error claiming airdrop', 'error');
+                }
+                
+            } catch (error) {
+                console.error('Error:', error);
+                showAirdropStatus('Error claiming airdrop. Please try again.', 'error');
+            } finally {
+                showLoading(false);
+            }
+        }
+        
+        // ==================== DASHBOARD UTILITY FUNCTIONS ====================
+        function copyDashboardWalletAddress() {
+            const walletAddress = document.getElementById('dashboardWalletAddress').textContent;
+            navigator.clipboard.writeText(walletAddress).then(() => {
+                showToast('Wallet address copied to clipboard!', 'success');
+            });
+        }
+        
+        // ==================== WITHDRAWAL FUNCTIONS ====================
+        async function checkWithdrawalProgress() {
+            const walletAddress = document.getElementById('airdropWalletAddress').value.trim();
+            
+            if (!validateWalletAddress(walletAddress)) {
+                showToast('Please enter a valid wallet address first', 'error');
+                return;
+            }
+            
+            try {
+                const response = await fetch(`/api/check-withdrawal-eligibility?wallet=${walletAddress}`);
+                const data = await response.json();
+                
+                if (data.success) {
+                    // Update progress bar
+                    const progress = Math.min((data.referral_count / 7) * 100, 100);
+                    document.getElementById('referralProgressText').textContent = `${data.referral_count}/7`;
+                    document.getElementById('referralProgressBar').style.width = `${progress}%`;
+                    
+                    // Update button text based on eligibility
+                    const withdrawBtn = document.getElementById('withdrawBtn');
+                    if (data.is_eligible) {
+                        withdrawBtn.innerHTML = '<i class="fas fa-unlock"></i> Eligible for Withdrawal';
+                        withdrawBtn.style.background = 'linear-gradient(90deg, var(--primary), var(--primary-dark))';
+                    } else {
+                        withdrawBtn.innerHTML = '<i class="fas fa-lock"></i> Check Withdrawal Status';
+                        withdrawBtn.style.background = 'linear-gradient(90deg, #667eea, #764ba2)';
+                    }
+                    
+                    // Show detailed withdrawal status
+                    await simulateWithdrawal();
+                }
+            } catch (error) {
+                console.error('Error checking withdrawal progress:', error);
+            }
+        }
+        
+        async function simulateWithdrawal() {
+            const walletAddress = document.getElementById('airdropWalletAddress').value.trim();
+            
+            if (!validateWalletAddress(walletAddress)) {
+                showToast('Please enter a valid wallet address first', 'error');
+                return;
+            }
+            
+            const withdrawBtn = document.getElementById('withdrawBtn');
+            const originalText = withdrawBtn.innerHTML;
+            
+            try {
+                withdrawBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Checking...';
+                withdrawBtn.disabled = true;
+                
+                const response = await fetch('/api/simulate-withdrawal', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ wallet: walletAddress })
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    // Show appropriate message
+                    showWithdrawalMessage(data);
+                    
+                    // Show toast notification for ineligible users
+                    if (!data.is_eligible) {
+                        showToast('You need 7+ referrals to withdraw', 'warning');
+                    }
+                    
+                    // Update progress display
+                    document.getElementById('referralProgressText').textContent = `${data.referral_count}/7`;
+                    const progress = Math.min((data.referral_count / 7) * 100, 100);
+                    document.getElementById('referralProgressBar').style.width = `${progress}%`;
+                    
+                    // Update button based on eligibility
+                    if (data.is_eligible) {
+                        withdrawBtn.innerHTML = '<i class="fas fa-unlock"></i> Eligible for Withdrawal';
+                        withdrawBtn.style.background = 'linear-gradient(90deg, var(--primary), var(--primary-dark))';
+                    } else {
+                        withdrawBtn.innerHTML = '<i class="fas fa-lock"></i> Check Withdrawal Status';
+                        withdrawBtn.style.background = 'linear-gradient(90deg, #667eea, #764ba2)';
+                    }
+                    
+                } else {
+                    showToast(data.message || 'Withdrawal check failed', 'error');
+                }
+                
+            } catch (error) {
+                console.error('Withdrawal error:', error);
+                showToast('Error checking withdrawal status', 'error');
+            } finally {
+                withdrawBtn.disabled = false;
+            }
+        }
+        
+        function showWithdrawalMessage(data) {
+            const statusElement = document.getElementById('withdrawalStatus');
+            
+            if (data.is_eligible) {
+                // Eligible user message
+                statusElement.innerHTML = `
+                    <div style="background: rgba(0, 255, 136, 0.1); padding: 20px; border-radius: 12px; border: 1px solid rgba(0, 255, 136, 0.3);">
+                        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 15px;">
+                            <div style="width: 40px; height: 40px; background: rgba(0, 255, 136, 0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--primary);">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <div>
+                                <div style="color: var(--primary); font-weight: 600; font-size: 16px;">Withdrawal Status</div>
+                                <div style="color: var(--text-secondary); font-size: 13px;">Eligible • ${data.referral_count} Referrals</div>
+                            </div>
+                        </div>
+                        <div style="white-space: pre-line; color: var(--text-primary); line-height: 1.6; font-size: 14px; margin-bottom: 15px;">
+                            ${data.message}
+                        </div>
+                        <div style="background: rgba(255, 255, 255, 0.05); padding: 15px; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1);">
+                            <div style="display: flex; align-items: center; gap: 10px; color: var(--text-secondary); font-size: 13px;">
+                                <i class="fas fa-calendar-check" style="color: var(--primary);"></i>
+                                <span>Withdrawals open on <strong>January 15th, 2026</strong></span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else {
+                // Ineligible user message
+                statusElement.innerHTML = `
+                    <div style="background: rgba(255, 170, 0, 0.1); padding: 20px; border-radius: 12px; border: 1px solid rgba(255, 170, 0, 0.3);">
+                        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 15px;">
+                            <div style="width: 40px; height: 40px; background: rgba(255, 170, 0, 0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--warning);">
+                                <i class="fas fa-exclamation-circle"></i>
+                            </div>
+                            <div>
+                                <div style="color: var(--warning); font-weight: 600; font-size: 16px;">Withdrawal Locked</div>
+                                <div style="color: var(--text-secondary); font-size: 13px;">${data.remaining_needed} more referrals needed</div>
+                            </div>
+                        </div>
+                        <div style="white-space: pre-line; color: var(--text-primary); line-height: 1.6; font-size: 14px; margin-bottom: 15px;">
+                            ${data.progress_message || data.message}
+                        </div>
+                        <div style="background: rgba(255, 255, 255, 0.05); padding: 15px; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1);">
+                            <div style="display: flex; align-items: center; gap: 10px; color: var(--text-secondary); font-size: 13px;">
+                                <i class="fas fa-user-plus" style="color: var(--primary);"></i>
+                                <span>Share your referral link to invite more friends</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            statusElement.style.display = 'block';
+            statusElement.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+        
+        // ==================== DASHBOARD DATA FUNCTIONS ====================
+        async function loadReferralStats(walletAddress) {
+            try {
+                const response = await fetch(`/api/get-referral-stats?wallet=${walletAddress}`);
+                const data = await response.json();
+                
+                if (data.success) {
+                    document.getElementById('referralSection').style.display = 'block';
+                    document.getElementById('totalReferrals').textContent = data.data.referral_count;
+                    document.getElementById('totalBonus').textContent = formatNumber(data.data.total_bonus);
+                    document.getElementById('linkClicks').textContent = data.data.link_clicks;
+                    document.getElementById('conversionRate').textContent = data.data.conversion_rate + '%';
+                    
+                    // Update referral code display
+                    document.getElementById('referralCodeDisplay').textContent = data.data.referral_code;
+                    
+                    // Store referral data globally for share function
+                    referralData = data.data;
+                    
+                    // Update current referral count for achievements
+                    currentReferralCount = data.data.referral_count;
+                }
+            } catch (error) {
+                console.error('Error loading stats:', error);
+            }
+        }
+        
+        async function loadNetworkAnalysis(walletAddress) {
+            try {
+                const response = await fetch(`/api/get-network-analysis?wallet=${walletAddress}`);
+                const data = await response.json();
+                
+                if (data.success) {
+                    document.getElementById('networkAnalysisSection').style.display = 'block';
+                    document.getElementById('networkAnalysisContent').innerHTML = `
+                        <div class="stats-grid">
+                            <div class="stat-item">
+                                <div class="stat-value">${data.data.direct_referrals_count}</div>
+                                <div class="stat-label">Direct Referrals</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">${data.data.active_referrals_count}</div>
+                                <div class="stat-label">Active</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">${data.data.inactive_referrals_count}</div>
+                                <div class="stat-label">Inactive</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">${formatNumber(data.data.total_amount)}</div>
+                                <div class="stat-label">Total APRO</div>
+                            </div>
+                        </div>
+                        ${data.data.can_withdraw ? `
+                        <div style="background: rgba(0, 255, 136, 0.1); padding: 15px; border-radius: 8px; margin-top: 15px; text-align: center; border: 1px solid rgba(0, 255, 136, 0.3);">
+                            <strong style="color: var(--primary);">✅ Eligible for Withdrawal!</strong>
+                            <p style="color: var(--text-secondary); font-size: 13px; margin-top: 5px;">You can withdraw ${formatNumber(data.data.available_for_withdrawal)} APRO</p>
+                        </div>
+                        ` : `
+                        <div style="background: rgba(255, 170, 0, 0.1); padding: 15px; border-radius: 8px; margin-top: 15px; text-align: center; border: 1px solid rgba(255, 170, 0, 0.3);">
+                            <strong style="color: var(--warning);">⚠️ Not Eligible for Withdrawal Yet</strong>
+                            <p style="color: var(--text-secondary); font-size: 13px; margin-top: 5px;">${data.data.withdrawal_message}</p>
+                        </div>
+                        `}
+                    `;
+                }
+            } catch (error) {
+                console.error('Error loading network analysis:', error);
+            }
+        }
+        
+        async function loadAchievements(walletAddress) {
+            if (!walletAddress || !validateWalletAddress(walletAddress)) {
+                return;
+            }
+            
+            try {
+                const response = await fetch(`/api/get-achievements?wallet=${walletAddress}`);
+                const data = await response.json();
+                
+                if (data.success) {
+                    document.getElementById('achievementsSection').style.display = 'block';
+                    displayAchievements(data.data);
+                }
+            } catch (error) {
+                console.error('Error loading achievements:', error);
+            }
+        }
+        
+        function displayAchievements(achievementsData) {
+            const achievementsGrid = document.getElementById('achievementsGrid');
+            const achievements = achievementsData.achievements;
+            
+            document.getElementById('achievementsUnlocked').textContent = achievementsData.total_unlocked;
+            document.getElementById('achievementsRewards').textContent = formatNumber(achievementsData.total_rewards);
+            
+            const progressPercentage = Math.round((achievementsData.total_unlocked / achievements.length) * 100);
+            document.getElementById('achievementsProgress').textContent = progressPercentage + '%';
+            document.getElementById('achievementsProgressBar').style.width = progressPercentage + '%';
+            
+            achievementsGrid.innerHTML = '';
+            
+            achievements.forEach(achievement => {
+                const card = document.createElement('div');
+                card.className = `achievement-card ${achievement.unlocked ? 'unlocked' : 'locked'}`;
+                
+                let progressHtml = '';
+                if (!achievement.unlocked) {
+                    const progress = Math.min(Math.max(currentReferralCount / achievement.requirement, 0), 1);
+                    progressHtml = `
+                        <div class="achievement-progress">
+                            <div class="progress-text">
+                                <span>Progress</span>
+                                <span>${currentReferralCount}/${achievement.requirement}</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: ${progress * 100}%"></div>
+                            </div>
+                        </div>
+                    `;
+                }
+                
+                card.innerHTML = `
+                    <div class="achievement-status">
+                        <i class="fas fa-${achievement.unlocked ? 'check' : 'lock'}"></i>
+                    </div>
+                    
+                    <div class="achievement-icon">
+                        ${achievement.icon}
+                    </div>
+                    
+                    <h4 style="color: ${achievement.unlocked ? 'var(--primary)' : 'var(--text-primary)'}; text-align: center; margin-bottom: 8px; font-size: 16px;">
+                        ${achievement.name}
+                    </h4>
+                    
+                    <p style="color: var(--text-secondary); text-align: center; font-size: 13px; margin-bottom: 10px;">
+                        ${achievement.description || `Earn ${formatNumber(achievement.reward)} APRO bonus`}
+                    </p>
+                    
+                    <div style="text-align: center;">
+                        <span class="achievement-reward">
+                            +${formatNumber(achievement.reward)} APRO
+                        </span>
+                    </div>
+                    
+                    ${progressHtml}
+                `;
+                
+                achievementsGrid.appendChild(card);
+            });
+        }
+        
+        async function loadLeaderboard() {
+            const walletAddress = document.getElementById('airdropWalletAddress').value.trim();
+            
+            if (!validateWalletAddress(walletAddress)) {
+                showToast('Please enter wallet address first', 'error');
+                return;
+            }
+            
+            try {
+                const response = await fetch(`/api/leaderboard?wallet=${walletAddress}`);
+                const data = await response.json();
+                
+                if (data.success) {
+                    const leaderboardSection = document.getElementById('leaderboardSection');
+                    const leaderboardContent = document.getElementById('leaderboardContent');
+                    
+                    leaderboardSection.style.display = 'block';
+                    
+                    let html = `
+                        <div style="margin-bottom: 20px;">
+                            <div style="display: flex; justify-content: space-between; font-size: 12px; color: var(--text-secondary); margin-bottom: 10px; padding: 0 10px;">
+                                <span>Rank</span>
+                                <span>Referrals</span>
+                                <span>Total Tokens</span>
+                            </div>
+                    `;
+                    
+                    data.data.top_referrers.forEach(user => {
+                        html += `
+                            <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px 15px; background: rgba(255, 255, 255, 0.05); border-radius: 8px; margin-bottom: 8px; border: 1px solid rgba(255, 255, 255, 0.1);">
+                                <div style="display: flex; align-items: center; gap: 10px;">
+                                    <div style="width: 30px; height: 30px; background: ${user.rank <= 3 ? 'linear-gradient(135deg, var(--primary), var(--primary-dark))' : 'rgba(255, 255, 255, 0.1)'}; 
+                                        border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; color: white; font-size: 12px;">
+                                        ${user.rank}
+                                    </div>
+                                    <span style="font-size: 14px;">${user.display_wallet}</span>
+                                </div>
+                                <div style="display: flex; gap: 20px;">
+                                    <span style="font-weight: 600; color: var(--primary);">${user.referral_count}</span>
+                                    <span style="font-weight: 600; color: var(--warning);">${formatNumber(user.total_tokens)}</span>
+                                </div>
+                            </div>
+                        `;
+                    });
+                    
+                    if (data.data.current_user) {
+                        html += `
+                            <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+                                <h4 style="color: var(--text-secondary); font-size: 14px; margin-bottom: 10px;">Your Position</h4>
+                                <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px 15px; background: rgba(102, 126, 234, 0.1); border-radius: 8px; border: 1px solid rgba(102, 126, 234, 0.3);">
+                                    <div style="display: flex; align-items: center; gap: 10px;">
+                                        <div style="width: 30px; height: 30px; background: rgba(255, 255, 255, 0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; color: white; font-size: 12px;">
+                                            ${data.data.current_user.rank}
+                                        </div>
+                                        <span style="font-size: 14px;">${data.data.current_user.display_wallet}</span>
+                                    </div>
+                                    <div style="display: flex; gap: 20px;">
+                                        <span style="font-weight: 600; color: var(--primary);">${data.data.current_user.referral_count}</span>
+                                        <span style="font-weight: 600; color: var(--warning);">${formatNumber(data.data.current_user.total_tokens)}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                    }
+                    
+                    html += '</div>';
+                    leaderboardContent.innerHTML = html;
+                    
+                    leaderboardSection.scrollIntoView({ behavior: 'smooth' });
+                    
+                } else {
+                    showToast('Error loading leaderboard', 'error');
+                }
+                
+            } catch (error) {
+                console.error('Error loading leaderboard:', error);
+                showToast('Error loading leaderboard', 'error');
+            }
+        }
+        
+        function refreshReferralStats() {
+            const walletAddress = document.getElementById('airdropWalletAddress').value.trim();
+            if (!walletAddress) {
+                showToast('Please check eligibility first', 'error');
+                return;
+            }
+            
+            showToast('Refreshing stats...', 'info');
+            loadReferralStats(walletAddress);
+        }
+        
+        function copyReferralCode() {
+            const code = document.getElementById('referralCodeDisplay').textContent;
+            navigator.clipboard.writeText(code).then(() => {
+                showToast('Referral code copied to clipboard!', 'success');
+            });
+        }
+        
+        function shareReferral() {
+            if (!referralData) {
+                showToast('Please check eligibility first', 'error');
+                return;
+            }
+            
+            const code = document.getElementById('referralCodeDisplay').textContent;
+            const baseUrl = window.location.origin;
+            const referralLink = `${baseUrl}?ref=${code}`;
+            const text = `🎉 Claim free APRO tokens! Use my referral code: ${code}\n\n${referralLink}`;
+            
+            // Track link click before sharing
+            fetch('/api/track-link-click', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    referral_code: code
+                })
+            });
+            
+            if (navigator.share) {
+                navigator.share({
+                    title: 'APRO Token Airdrop',
+                    text: `Claim free APRO tokens using my referral code: ${code}`,
+                    url: referralLink
+                });
+            } else {
+                navigator.clipboard.writeText(text).then(() => {
+                    showToast('Referral link copied to clipboard!', 'success');
+                });
+            }
+        }
+        
+        // ==================== UTILITY FUNCTIONS ====================
+        function validateWalletAddress(address) {
+            if (!address) return false;
+            address = address.trim();
+            const ethAddressRegex = /^0x[a-fA-F0-9]{40}$/;
+            return ethAddressRegex.test(address);
+        }
+        
+        function showToast(message, type = 'info', duration = 3000) {
+            const toastContainer = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.innerHTML = `
+                <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle'}" 
+                   style="color: ${type === 'success' ? 'var(--primary)' : type === 'error' ? 'var(--error)' : 'var(--secondary)'}"></i>
+                <span>${message}</span>
+            `;
+            toastContainer.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transform = 'translateX(100%)';
+                setTimeout(() => toast.remove(), 300);
+            }, duration);
+        }
+        
+        function showLoading(show) {
+            const loadingElement = document.getElementById('airdropLoading');
+            if (loadingElement) {
+                loadingElement.style.display = show ? 'block' : 'none';
+            }
+        }
+        
+        function showAirdropStatus(message, type) {
+            const statusElement = document.getElementById('airdropStatus');
+            if (statusElement) {
+                statusElement.innerHTML = `
+                    <div style="background: ${type === 'success' ? 'rgba(0, 255, 136, 0.1)' : 'rgba(255, 107, 107, 0.1)'}; 
+                                border: 1px solid ${type === 'success' ? 'rgba(0, 255, 136, 0.3)' : 'rgba(255, 107, 107, 0.3)'}; 
+                                padding: 15px; border-radius: 10px; color: ${type === 'success' ? 'var(--primary)' : 'var(--error)'};">
+                        <i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'}"></i>
+                        ${message}
+                    </div>
+                `;
+                statusElement.style.display = 'block';
+            }
+        }
+        
+        function showConfetti() {
+            for (let i = 0; i < 50; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.style.position = 'fixed';
+                    confetti.style.width = '10px';
+                    confetti.style.height = '10px';
+                    confetti.style.background = ['#00ff88', '#667eea', '#764ba2', '#ffaa00'][Math.floor(Math.random() * 4)];
+                    confetti.style.borderRadius = '50%';
+                    confetti.style.left = Math.random() * 100 + 'vw';
+                    confetti.style.top = '-10px';
+                    confetti.style.zIndex = '9999';
+                    confetti.style.pointerEvents = 'none';
+                    document.body.appendChild(confetti);
+                    
+                    const animation = confetti.animate([
+                        { transform: 'translateY(0) rotate(0deg)', opacity: 1 },
+                        { transform: `translateY(${window.innerHeight}px) rotate(${Math.random() * 360}deg)`, opacity: 0 }
+                    ], {
+                        duration: Math.random() * 2000 + 1000,
+                        easing: 'cubic-bezier(0.215, 0.61, 0.355, 1)'
+                    });
+                    
+                    animation.onfinish = () => confetti.remove();
+                }, i * 50);
+            }
+        }
+        
+        function formatNumber(num) {
+            if (isNaN(num)) return '0';
+            return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+        
+        // Copy Presale Address Function
+        function copyPresaleAddress() {
+            const address = '0xa84e6D0Fa3B35b18FF7C65568C711A85Ac1A9FC7';
+            
+            navigator.clipboard.writeText(address).then(() => {
+                showToast('Presale address copied to clipboard!', 'success');
+                
+                const button = event.target.closest('button');
+                const originalText = button.innerHTML;
+                button.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                button.style.background = 'rgba(0, 255, 136, 0.3)';
+                
+                setTimeout(() => {
+                    button.innerHTML = originalText;
+                    button.style.background = 'rgba(0, 255, 136, 0.2)';
+                }, 2000);
+                
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+                showToast('Do not send crypto from Exchange', 'error');
+            });
+        }
+    </script>
+</body>
+</html>
