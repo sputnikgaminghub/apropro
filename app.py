@@ -1575,9 +1575,9 @@ with app.app_context():
         
         db.session.commit()
 
-if __name__ == '__main__':
-    port = int(os.getenv('PORT', 5000))
-    debug = os.getenv('FLASK_ENV', 'development') == 'development'
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
     
     print("=" * 60)
     print("APRO Token Presale & Airdrop Platform")
