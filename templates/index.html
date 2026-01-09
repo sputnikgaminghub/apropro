@@ -4,9 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>APRO Token | Presale & Airdrop Platform</title>
+    
+    <!-- ========== FAVICON ========== -->
+    <link rel="icon" type="image/png" href="https://i.postimg.cc/PrMf7V3m/favicon.png">
+    <link rel="apple-touch-icon" href="https://i.postimg.cc/PrMf7V3m/favicon.png">
+    
+    <!-- ========== OPEN GRAPH & SOCIAL META TAGS ========== -->
+    <meta property="og:title" content="APRO Token | Presale & Airdrop Platform">
+    <meta property="og:description" content="Join the APRO Token presale and airdrop platform. Be among the first to own APRO tokens with exclusive early-bird bonuses.">
+    <meta property="og:image" content="https://i.postimg.cc/yd7vLdkt/og-image.png">
+    <meta property="og:url" content="https://aprotoken.com">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="APRO Token">
+    
+    <!-- ========== TWITTER CARD ========== -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="APRO Token | Presale & Airdrop Platform">
+    <meta name="twitter:description" content="Join the APRO Token presale and airdrop platform. Be among the first to own APRO tokens with exclusive early-bird bonuses.">
+    <meta name="twitter:image" content="https://i.postimg.cc/yd7vLdkt/og-image.png">
+    <meta name="twitter:site" content="@GoKiteAI">
+    
+    <!-- ========== ADDITIONAL META TAGS ========== -->
+    <meta name="description" content="Join the APRO Token presale and airdrop platform. Be among the first to own APRO tokens with exclusive early-bird bonuses.">
+    <meta name="keywords" content="APRO Token, cryptocurrency, presale, airdrop, Ethereum, blockchain, token, crypto">
+    <meta name="author" content="APRO Token">
+    
+    <!-- ========== EXISTING STYLESHEETS & SCRIPTS ========== -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+    
     <!-- Web3 Support -->
     <style>
         :root {
@@ -1009,6 +1036,12 @@
             overflow: hidden;
         }
         
+        @media (min-width: 992px) {
+    #airdropDashboard .presale-container > div {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
         .achievement-card:hover {
             transform: translateY(-2px);
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
@@ -1190,6 +1223,110 @@
         .copy-wallet-btn:hover {
             background: rgba(0, 255, 136, 0.2);
         }
+        
+        /* ========== ENHANCED REFERRAL SHARING STYLES ========== */
+        .share-platform-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 15px 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: var(--text-primary);
+        }
+        
+        .share-platform-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+        
+        .platform-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: white;
+        }
+        
+        /* Platform-specific hover effects */
+        .share-platform-btn[data-platform="twitter"]:hover {
+            background: rgba(29, 161, 242, 0.1);
+            border-color: rgba(29, 161, 242, 0.3);
+        }
+        
+        .share-platform-btn[data-platform="telegram"]:hover {
+            background: rgba(38, 165, 228, 0.1);
+            border-color: rgba(38, 165, 228, 0.3);
+        }
+        
+        .share-platform-btn[data-platform="discord"]:hover {
+            background: rgba(88, 101, 242, 0.1);
+            border-color: rgba(88, 101, 242, 0.3);
+        }
+        
+        .share-platform-btn[data-platform="reddit"]:hover {
+            background: rgba(255, 69, 0, 0.1);
+            border-color: rgba(255, 69, 0, 0.3);
+        }
+        
+        /* Enhanced referral section styles */
+        .enhanced-referral-box {
+            background: rgba(0, 255, 136, 0.1);
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            margin: 20px 0;
+            border: 1px dashed rgba(0, 255, 136, 0.5);
+        }
+        
+        .enhanced-referral-box h4 {
+            color: var(--primary);
+            margin: 0 0 20px 0;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .referral-link-container {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .referral-link-container .address-display {
+            margin: 0;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .referral-link-container .address-display:hover {
+            background: rgba(0, 255, 136, 0.1);
+        }
+        
+        .share-platforms-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin: 20px 0;
+        }
+        
+        @media (max-width: 480px) {
+            .share-platforms-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
     </style>
 </head>
 <body>
@@ -1257,14 +1394,7 @@
             </div>
             
             <div class="nav-wallet" style="display: flex; align-items: center; gap: 10px;">
-                <!-- Removed: Network Indicator -->
-                <!-- Removed: Notification Bell -->
                 
-                <!-- Removed: Wallet Connect Button - Replaced with info text -->
-                <div style="color: var(--text-secondary); font-size: 14px; padding: 8px 12px; border-radius: 8px; background: rgba(255,255,255,0.05);">
-                    <i class="fas fa-wallet"></i> Enter wallet above
-                </div>
-            </div>
             
             <button class="mobile-menu-btn" id="mobileMenuBtn">
                 <i class="fas fa-bars"></i>
@@ -1940,35 +2070,39 @@
             </section>
             
             <!-- Airdrop Section -->
-            <section id="airdrop" class="section">
-                <div class="section-header">
-                    <h2>Airdrop Program</h2>
-                    <p>Claim your free APRO tokens and start earning through referrals</p>
-                </div>
+<section id="airdrop" class="section">
+    <div class="section-header">
+        <h2>Airdrop Program</h2>
+        <p>Claim your free APRO tokens and start earning through referrals</p>
+    </div>
+    
+    <!-- Airdrop Dashboard Container -->
+    <div id="airdropDashboard">
+        <div class="presale-container" style="grid-template-columns: 1fr;">
+            <div style="display: grid; grid-template-columns: 1fr; gap: 30px;">
                 
-                <!-- Airdrop Dashboard - INITIAL VIEW -->
-                <div id="airdropDashboard">
-                    <div class="card" style="text-align: center; padding: 40px 20px;">
-                        <div style="font-size: 64px; color: var(--primary); margin-bottom: 20px;">
-                            <i class="fas fa-rocket"></i>
-                        </div>
-                        <h3 style="color: var(--text-primary); margin-bottom: 15px; font-size: 24px;">Complete Airdrop Platform</h3>
-                        <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto 30px;">
-                            Enter your Ethereum wallet address to check eligibility, claim APRO tokens, and start earning through referrals.
-                        </p>
-                        
-                        <!-- Wallet Input Form -->
-                        <div class="input-group">
-                            <label for="airdropWalletAddress">Your Ethereum Wallet Address</label>
-                            <input 
-                                type="text" 
-                                id="airdropWalletAddress" 
-                                placeholder="0x..."
-                                value=""
-                            >
-                        </div>
-                        
-                        <div class="input-group">
+                <!-- Left: Wallet Input Card -->
+                <div class="card" style="text-align: center; padding: 40px 20px;">
+                    <div style="font-size: 64px; color: var(--primary); margin-bottom: 20px;">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3 style="color: var(--text-primary); margin-bottom: 15px; font-size: 24px;">Complete Airdrop Platform</h3>
+                    <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto 30px;">
+                        Enter your Ethereum wallet address to check eligibility, claim APRO tokens, and start earning through referrals.
+                    </p>
+                    
+                    <!-- Wallet Input Form -->
+                    <div class="input-group">
+                        <label for="airdropWalletAddress">Your Ethereum Wallet Address</label>
+                        <input 
+                            type="text" 
+                            id="airdropWalletAddress" 
+                            placeholder="0x..."
+                            value=""
+                        >
+                    </div>
+                    
+                    <div class="input-group">
                         <label for="airdropReferralCode">Referral Code (Optional)</label>
                         <input 
                             type="text" 
@@ -1977,27 +2111,105 @@
                             value=""
                         >
                     </div>
+                    
+                    <!-- ONLY CHECK ELIGIBILITY BUTTON - Claim button moved to dashboard -->
+                    <button class="btn" id="checkEligibilityBtn" style="margin-bottom: 15px; background: linear-gradient(90deg, var(--secondary), var(--accent));">
+                        <i class="fas fa-check-circle"></i> Check Eligibility
+                    </button>
+                    
+                    <div class="loading" id="airdropLoading" style="display: none;">
+                        <div class="spinner"></div>
+                        <div style="margin-top: 10px; color: var(--text-secondary);">Processing...</div>
+                    </div>
+                    
+                    <div id="airdropStatus" style="margin-top: 20px; display: none;"></div>
+                </div>
+                
+                <!-- Right: Guide Card -->
+                <div class="card" style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1);">
+                    <h3 style="color: var(--primary); margin-bottom: 25px; font-size: 22px; text-align: center;">
+                        <i class="fas fa-graduation-cap"></i> How Referrals Work
+                    </h3>
+                    
+                    <!-- Referral Steps -->
+                    <div style="display: flex; flex-direction: column; gap: 20px;">
                         
-                        <button class="btn" id="checkEligibilityBtn" style="margin-bottom: 15px; background: linear-gradient(90deg, var(--secondary), var(--accent));">
-                            <i class="fas fa-check-circle"></i> Check Eligibility
-                        </button>
-                        
-                        <button class="btn btn-secondary" id="claimAirdropBtn" disabled>
-                            <i class="fas fa-gift"></i> Claim Airdrop
-                        </button>
-                        
-                        <div class="loading" id="airdropLoading" style="display: none;">
-                            <div class="spinner"></div>
-                            <div style="margin-top: 10px; color: var(--text-secondary);">Processing...</div>
+                        <!-- Step 1 -->
+                        <div style="display: flex; align-items: flex-start; gap: 15px; padding: 15px; background: rgba(0, 255, 136, 0.05); border-radius: 12px; border: 1px solid rgba(0, 255, 136, 0.1);">
+                            <div style="width: 32px; height: 32px; background: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; flex-shrink: 0;">
+                                1
+                            </div>
+                            <div>
+                                <h4 style="color: var(--primary); margin-bottom: 8px; font-size: 16px;">Earn 121 APRO per Referral</h4>
+                                <p style="color: var(--text-secondary); font-size: 14px; line-height: 1.5;">
+                                    You earn 121 APRO for each friend who claims tokens using your referral
+                                </p>
+                            </div>
                         </div>
                         
-                        <div id="airdropStatus" style="margin-top: 20px; display: none;"></div>
+                        <!-- Step 2 -->
+                        <div style="display: flex; align-items: flex-start; gap: 15px; padding: 15px; background: rgba(102, 126, 234, 0.05); border-radius: 12px; border: 1px solid rgba(102, 126, 234, 0.1);">
+                            <div style="width: 32px; height: 32px; background: var(--secondary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; flex-shrink: 0;">
+                                2
+                            </div>
+                            <div>
+                                <h4 style="color: var(--secondary); margin-bottom: 8px; font-size: 16px;">Link Clicks Don't Count</h4>
+                                <p style="color: var(--text-secondary); font-size: 14px; line-height: 1.5;">
+                                    Only completed claims give you bonuses. Clicks without claims don't count.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <!-- Step 3 -->
+                        <div style="display: flex; align-items: flex-start; gap: 15px; padding: 15px; background: rgba(255, 170, 0, 0.05); border-radius: 12px; border: 1px solid rgba(255, 170, 0, 0.1);">
+                            <div style="width: 32px; height: 32px; background: var(--warning); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; flex-shrink: 0;">
+                                3
+                            </div>
+                            <div>
+                                <h4 style="color: var(--warning); margin-bottom: 8px; font-size: 16px;">Need 7+ Referrals to Withdraw</h4>
+                                <p style="color: var(--text-secondary); font-size: 14px; line-height: 1.5;">
+                                    Minimum 7 referrals required for withdrawal access
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <!-- Step 4 -->
+                        <div style="display: flex; align-items: flex-start; gap: 15px; padding: 15px; background: rgba(118, 75, 162, 0.05); border-radius: 12px; border: 1px solid rgba(118, 75, 162, 0.1);">
+                            <div style="width: 32px; height: 32px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; flex-shrink: 0;">
+                                4
+                            </div>
+                            <div>
+                                <h4 style="color: var(--accent); margin-bottom: 8px; font-size: 16px;">Active Referrals Grow Your Network</h4>
+                                <p style="color: var(--text-secondary); font-size: 14px; line-height: 1.5;">
+                                    Active referrals (with 2+ referrals themselves) help grow your network
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Info Note -->
+                    <div style="margin-top: 25px; padding: 15px; background: rgba(255, 255, 255, 0.05); border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1);">
+                        <div style="display: flex; align-items: center; gap: 12px;">
+                            <div style="color: var(--primary); font-size: 20px;">
+                                <i class="fas fa-info-circle"></i>
+                            </div>
+                            <div>
+                                <div style="font-weight: 600; color: var(--text-primary); font-size: 14px; margin-bottom: 5px;">Check Your Status</div>
+                                <div style="color: var(--text-secondary); font-size: 13px;">
+                                    Enter your wallet address above to see your personalized airdrop status and referral dashboard
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 
-                <!-- Hidden Dashboard Container - Will be populated dynamically -->
-                <div id="hiddenDashboardContainer" style="display: none;"></div>
-            </section>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Hidden Dashboard Container - Will be populated dynamically -->
+    <div id="hiddenDashboardContainer" style="display: none;"></div>
+</section>
         </div>
     </div>
     
@@ -2112,6 +2324,7 @@
         let currentSection = 'presale';
         let referralData = null;
         let currentReferralCount = 0;
+        let currentUserData = null; // Store user data from backend
         
         // Web3 State
         let web3State = {
@@ -2164,7 +2377,6 @@
             // Initialize airdrop event listeners
             setTimeout(() => {
                 document.getElementById('checkEligibilityBtn').addEventListener('click', checkAirdropEligibility);
-                document.getElementById('claimAirdropBtn').addEventListener('click', claimAirdrop);
                 
                 // Check for referral code in URL
                 const urlParams = new URLSearchParams(window.location.search);
@@ -2992,6 +3204,171 @@
             });
         }
         
+        // ==================== ENHANCED REFERRAL SHARING FUNCTIONS ====================
+        
+        // Generate referral code if not provided
+        function generateReferralCode() {
+            return 'REF-' + Math.random().toString(36).substring(2, 10).toUpperCase();
+        }
+
+        // Get current domain for dynamic link generation
+        function getReferralLink(code) {
+            const baseUrl = window.location.origin;
+            return `${baseUrl}?ref=${encodeURIComponent(code)}`;
+        }
+
+        // Initialize referral link display
+        function initReferralLink() {
+            const codeElement = document.getElementById('referralCodeValue') || 
+                               document.getElementById('referralCodeDisplay');
+            if (codeElement) {
+                const code = codeElement.textContent;
+                const link = getReferralLink(code);
+                const linkDisplay = document.getElementById('referralLinkDisplay');
+                if (linkDisplay) {
+                    linkDisplay.textContent = link;
+                    
+                    // Update QR code if visible
+                    const qrContainer = document.getElementById('qrContainer');
+                    if (qrContainer && qrContainer.style.display === 'block') {
+                        qrContainer.innerHTML = '<div style="margin-bottom: 10px; color: var(--text-secondary); font-size: 12px;">Scan QR Code:</div>';
+                        new QRCode(qrContainer, {
+                            text: link,
+                            width: 120,
+                            height: 120,
+                            colorDark: "#00ff88",
+                            colorLight: "transparent",
+                            correctLevel: QRCode.CorrectLevel.H
+                        });
+                    }
+                }
+            }
+        }
+
+        // Platform-specific sharing functions with YOUR exact message format
+        function shareOnTwitter() {
+            const code = getReferralCode();
+            const link = getReferralLink(code);
+            const text = `Claim your FREE APRO airdrop tokens! Use my referral code ${code} for bonus tokens! ${link} #APRO #Airdrop #Crypto`;
+            const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`;
+            window.open(url, '_blank', 'width=550,height=420');
+            trackShare('twitter');
+        }
+
+        function shareOnTelegram() {
+            const code = getReferralCode();
+            const link = getReferralLink(code);
+            const text = `Claim your FREE APRO airdrop tokens! Use my referral code ${code} for bonus tokens! ${link} #APRO #Airdrop #Crypto`;
+            const url = `https://t.me/share/url?url=${encodeURIComponent(link)}&text=${encodeURIComponent(text)}`;
+            window.open(url, '_blank', 'width=550,height=420');
+            trackShare('telegram');
+        }
+
+        function shareOnDiscord() {
+            const code = getReferralCode();
+            const link = getReferralLink(code);
+            const message = `**🎁 Claim FREE APRO Airdrop Tokens!**\n\nUse my referral code \`${code}\` for bonus tokens!\n\n${link}\n\n#APRO #Airdrop #Crypto`;
+            
+            navigator.clipboard.writeText(message).then(() => {
+                showToast('Discord message copied! Paste it in your Discord server/channel.', 'success');
+            });
+            trackShare('discord');
+        }
+
+        function shareOnReddit() {
+            const code = getReferralCode();
+            const link = getReferralLink(code);
+            const title = "Claim FREE APRO Airdrop Tokens!";
+            const text = `Claim your FREE APRO airdrop tokens! Use my referral code **${code}** for bonus tokens!\n\n${link}\n\n#APRO #Airdrop #Crypto`;
+            const url = `https://www.reddit.com/submit?title=${encodeURIComponent(title)}&text=${encodeURIComponent(text)}`;
+            window.open(url, '_blank', 'width=750,height=600');
+            trackShare('reddit');
+        }
+
+        // Helper function to get referral code
+        function getReferralCode() {
+            const codeElement = document.getElementById('referralCodeDisplay');
+            return codeElement ? codeElement.textContent : generateReferralCode();
+        }
+
+        // Copy functions
+        function copyReferralCode() {
+            const code = getReferralCode();
+            navigator.clipboard.writeText(code).then(() => {
+                showToast('Referral code copied to clipboard!', 'success');
+            });
+        }
+
+        function copyReferralLink() {
+            const link = document.getElementById('referralLinkDisplay').textContent;
+            navigator.clipboard.writeText(link).then(() => {
+                showToast('Referral link copied to clipboard!', 'success');
+            });
+        }
+
+        // QR Code functionality
+        function initQRCodeButton() {
+            const qrBtn = document.getElementById('showQrBtn');
+            if (qrBtn) {
+                qrBtn.addEventListener('click', function() {
+                    const qrContainer = document.getElementById('qrContainer');
+                    const showQrBtn = document.getElementById('showQrBtn');
+                    
+                    if (qrContainer.style.display === 'none' || !qrContainer.style.display) {
+                        const link = document.getElementById('referralLinkDisplay').textContent;
+                        qrContainer.innerHTML = '<div style="margin-bottom: 10px; color: var(--text-secondary); font-size: 12px;">Scan QR Code:</div>';
+                        
+                        // Generate QR code
+                        new QRCode(qrContainer, {
+                            text: link,
+                            width: 120,
+                            height: 120,
+                            colorDark: "#00ff88",
+                            colorLight: "transparent",
+                            correctLevel: QRCode.CorrectLevel.H
+                        });
+                        
+                        qrContainer.style.display = 'block';
+                        showQrBtn.innerHTML = '<i class="fas fa-times"></i> Hide QR Code';
+                    } else {
+                        qrContainer.style.display = 'none';
+                        qrContainer.innerHTML = '';
+                        showQrBtn.innerHTML = '<i class="fas fa-qrcode"></i> Show QR Code';
+                    }
+                });
+            }
+        }
+
+        // Track shares for analytics
+        function trackShare(platform) {
+            const code = getReferralCode();
+            
+            fetch('/api/track-share', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    referral_code: code,
+                    platform: platform,
+                    timestamp: new Date().toISOString()
+                })
+            });
+            
+            // Update share count in UI
+            const shareBtn = document.querySelector(`[data-platform="${platform}"]`);
+            if (shareBtn) {
+                const originalHTML = shareBtn.innerHTML;
+                shareBtn.innerHTML = '<i class="fas fa-check"></i> Shared!';
+                shareBtn.style.background = 'rgba(0, 255, 136, 0.1)';
+                
+                setTimeout(() => {
+                    shareBtn.innerHTML = originalHTML;
+                    shareBtn.style.background = '';
+                }, 2000);
+            }
+        }
+        
         // ==================== AIRDROP FUNCTIONS ====================
         async function checkAirdropEligibility() {
             const walletAddress = document.getElementById('airdropWalletAddress').value.trim();
@@ -3019,27 +3396,26 @@
                 const data = await response.json();
                 
                 if (data.success) {
+                    // Store user data globally
+                    currentUserData = data;
+                    
                     if (data.eligible) {
                         showAirdropStatus('🎉 You are eligible for the airdrop!', 'success');
-                        document.getElementById('claimAirdropBtn').disabled = false;
                         
-                        // Load the hidden dashboard
+                        // Load the hidden dashboard with claim button
                         await loadHiddenDashboard(walletAddress, data);
                         
                     } else if (data.already_claimed) {
                         showAirdropStatus('This wallet has already claimed airdrop tokens.', 'warning');
-                        document.getElementById('claimAirdropBtn').disabled = true;
-                        document.getElementById('claimAirdropBtn').textContent = 'Already Claimed';
                         
                         // Store referral count for achievements
                         currentReferralCount = data.claim_data.referral_count;
                         
-                        // Load the hidden dashboard with existing claim data
+                        // Load the hidden dashboard with existing claim data (no claim button)
                         await loadHiddenDashboard(walletAddress, data);
                         
                     } else {
                         showAirdropStatus(data.message || 'This wallet is not eligible.', 'error');
-                        document.getElementById('claimAirdropBtn').disabled = true;
                     }
                 } else {
                     showAirdropStatus(data.message || 'Error checking eligibility', 'error');
@@ -3069,9 +3445,6 @@
             // Reset form fields
             document.getElementById('airdropWalletAddress').value = '';
             document.getElementById('airdropReferralCode').value = '';
-            document.getElementById('claimAirdropBtn').disabled = true;
-            document.getElementById('claimAirdropBtn').textContent = 'Claim Airdrop';
-            document.getElementById('claimAirdropBtn').style.background = '';
             document.getElementById('airdropStatus').style.display = 'none';
             document.getElementById('airdropStatus').innerHTML = '';
         }
@@ -3079,15 +3452,17 @@
         async function loadHiddenDashboard(walletAddress, data) {
             const container = document.getElementById('hiddenDashboardContainer');
             const claimData = data.claim_data || null;
-            const referralCode = data.referral_code;
+            const referralCode = data.referral_code || generateReferralCode();
+            const isEligible = data.eligible || false;
+            const alreadyClaimed = data.already_claimed || false;
             
-            // Build the hidden dashboard HTML
+            // Build the hidden dashboard HTML with ENHANCED referral section
             container.innerHTML = `
                 <!-- Dashboard Header -->
                 <div class="dashboard-header">
                     <h3 style="color: var(--primary); margin: 0; font-size: 22px;">Your Airdrop Dashboard</h3>
                     <button class="check-another-wallet-btn" id="checkAnotherWalletBtn">
-                        <i class="fas fa-wallet"></i> Check Another Wallet
+                        <i class="fas fa-wallet"></i> Logout
                     </button>
                 </div>
                 
@@ -3108,10 +3483,33 @@
                                 <i class="fas fa-coins"></i>
                             </div>
                             <div class="token-info">
-                                <div class="token-amount" id="availableTokens">${claimData ? formatNumber(claimData.amount) : '0'} APRO</div>
+                                <div class="token-amount" id="availableTokens">
+                                    ${claimData ? formatNumber(claimData.amount) : 
+                                      (isEligible && !alreadyClaimed ? formatNumber(1005) : '0')} APRO
+                                </div>
                                 <div class="token-symbol">Available to Claim</div>
                             </div>
                         </div>
+                        
+                        <!-- CLAIM AIRDROP BUTTON - Only show if eligible and not already claimed -->
+                        ${isEligible && !alreadyClaimed ? `
+                            <button class="btn" id="dashboardClaimBtn" style="margin-top: 20px; background: linear-gradient(90deg, var(--primary), var(--primary-dark));">
+                                <i class="fas fa-gift"></i> Claim ${formatNumber(1005)} APRO Welcome Bonus
+                            </button>
+                            
+                            <div style="margin-top: 15px; color: var(--text-secondary); font-size: 13px;">
+                                <i class="fas fa-info-circle"></i> You can earn more through referrals and achievements
+                            </div>
+                        ` : ''}
+                        
+                        ${alreadyClaimed ? `
+                            <div style="margin-top: 20px; padding: 15px; background: rgba(0, 255, 136, 0.1); border-radius: 10px; border: 1px solid rgba(0, 255, 136, 0.3);">
+                                <div style="display: flex; align-items: center; gap: 10px; justify-content: center; color: var(--primary);">
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>Airdrop Already Claimed</span>
+                                </div>
+                            </div>
+                        ` : ''}
                     </div>
                     
                     <div id="airdropStatusDetails" style="display: ${claimData ? 'block' : 'none'}">
@@ -3155,24 +3553,101 @@
                     </div>
                 </div>
                 
-                <!-- Referral Dashboard Card -->
-                <div class="card" id="referralSection" style="display: none;">
-                    <h3 style="color: var(--primary); margin-bottom: 20px; font-size: 20px;">Your Referral Dashboard</h3>
+                <!-- ENHANCED Referral Dashboard Card -->
+                <div class="card" id="referralSection">
+                    <div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 15px;">
+                        <i class="fas fa-link" style="color: var(--primary); font-size: 20px;"></i>
+                        <h3 style="color: var(--primary); margin: 0; font-size: 20px;">Your Referral Code</h3>
+                    </div>
                     
-                    <div class="referral-code-box">
-                        <div style="color: var(--text-secondary); font-size: 14px;">Your Referral Code</div>
-                        <div class="code-display" id="referralCodeDisplay">${referralCode || 'REF-' + Math.random().toString(36).substring(2, 10).toUpperCase()}</div>
-                        <div style="margin-top: 15px;">
-                            <button class="btn" id="copyCodeBtn" style="margin-bottom: 10px;">
-                                <i class="fas fa-copy"></i> Copy Referral Code
+                    <!-- Referral Code Display -->
+                    <div class="code-display" id="referralCodeDisplay" style="font-size: 22px; letter-spacing: 3px;">
+                        ${referralCode}
+                    </div>
+                    
+                    <!-- Referral Link -->
+                    <div style="margin: 20px 0;">
+                        <div style="color: var(--text-secondary); font-size: 14px; margin-bottom: 8px; text-align: center;">
+                            <i class="fas fa-external-link-alt"></i> Your Referral Link:
+                        </div>
+                        <div class="referral-link-container">
+                            <div class="address-display" id="referralLinkDisplay" style="text-align: center; font-size: 14px; cursor: pointer;">
+                                Loading...
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- QR Code Option -->
+                    <div style="text-align: center; margin: 15px 0;">
+                        <button id="showQrBtn" class="btn-secondary" style="padding: 8px 15px; font-size: 13px;">
+                            <i class="fas fa-qrcode"></i> Show QR Code
+                        </button>
+                        <div id="qrContainer" style="display: none; margin-top: 15px;"></div>
+                    </div>
+                    
+                    <!-- Share on Platforms -->
+                    <div style="margin: 25px 0;">
+                        <div style="color: var(--text-secondary); font-size: 14px; margin-bottom: 15px; text-align: center;">
+                            <i class="fas fa-share-alt"></i> Share on:
+                        </div>
+                        
+                        <div class="share-platforms-grid">
+                            <!-- Twitter Button -->
+                            <button class="share-platform-btn" data-platform="twitter" onclick="shareOnTwitter()">
+                                <div class="platform-icon" style="background: #1DA1F2;">
+                                    <i class="fab fa-x-twitter"></i>
+                                </div>
+                                <span style="font-size: 13px; font-weight: 600;">X (Twitter)</span>
                             </button>
-                            <button class="btn btn-secondary" id="shareBtn">
-                                <i class="fas fa-share"></i> Share
+                            
+                            <!-- Telegram Button -->
+                            <button class="share-platform-btn" data-platform="telegram" onclick="shareOnTelegram()">
+                                <div class="platform-icon" style="background: #26A5E4;">
+                                    <i class="fab fa-telegram"></i>
+                                </div>
+                                <span style="font-size: 13px; font-weight: 600;">Telegram</span>
+                            </button>
+                            
+                            <!-- Discord Button -->
+                            <button class="share-platform-btn" data-platform="discord" onclick="shareOnDiscord()">
+                                <div class="platform-icon" style="background: #5865F2;">
+                                    <i class="fab fa-discord"></i>
+                                </div>
+                                <span style="font-size: 13px; font-weight: 600;">Discord</span>
+                            </button>
+                            
+                            <!-- Reddit Button (Optional) -->
+                            <button class="share-platform-btn" data-platform="reddit" onclick="shareOnReddit()" style="grid-column: span 3; max-width: 200px; margin: 0 auto;">
+                                <div class="platform-icon" style="background: #FF4500;">
+                                    <i class="fab fa-reddit"></i>
+                                </div>
+                                <span style="font-size: 13px; font-weight: 600;">Reddit</span>
                             </button>
                         </div>
                     </div>
                     
-                    <div class="stats-grid">
+                    <!-- Copy Buttons -->
+                    <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+                        <button class="btn" id="copyCodeBtn" style="flex: 1;">
+                            <i class="fas fa-copy"></i> Copy Code
+                        </button>
+                        <button class="btn btn-secondary" id="copyLinkBtn" style="flex: 1;">
+                            <i class="fas fa-link"></i> Copy Link
+                        </button>
+                    </div>
+                    
+                    <!-- Incentive Message -->
+                    <div style="background: rgba(0, 255, 136, 0.1); padding: 12px; border-radius: 8px; text-align: center; border: 1px solid rgba(0, 255, 136, 0.3);">
+                        <div style="color: var(--primary); font-weight: 600; font-size: 14px; display: flex; align-items: center; justify-content: center; gap: 8px;">
+                            <i class="fas fa-gift"></i>
+                            Share to earn 121 bonus tokens per referral
+                        </div>
+                        <div style="color: var(--text-secondary); font-size: 12px; margin-top: 5px;">
+                            Minimum 7 referrals required for withdrawal
+                        </div>
+                    </div>
+                    
+                    <div class="stats-grid" style="margin-top: 20px;">
                         <div class="stat-item">
                             <div class="stat-value" id="totalReferrals">0</div>
                             <div class="stat-label">Total Referrals</div>
@@ -3191,12 +3666,8 @@
                         </div>
                     </div>
                     
-                    <button class="btn btn-secondary" id="refreshStatsBtn" style="margin-top: 10px;">
+                    <button class="btn btn-secondary" id="refreshStatsBtn" style="margin-top: 10px; width: 100%;">
                         <i class="fas fa-sync-alt"></i> Refresh Stats
-                    </button>
-                    
-                    <button class="btn btn-secondary" id="viewLeaderboardBtn" style="margin-top: 10px;">
-                        <i class="fas fa-trophy"></i> View Leaderboard
                     </button>
                 </div>
                 
@@ -3270,11 +3741,15 @@
                         </div>
                     </div>
                     
-                    <button class="btn" id="withdrawBtn" style="background: linear-gradient(90deg, #667eea, #764ba2);">
+                    <button class="btn" id="withdrawBtn" style="background: linear-gradient(90deg, #667eea, #764ba2); width: 100%;">
                         <i class="fas fa-paper-plane"></i> Check Withdrawal Status
                     </button>
                     
                     <div id="withdrawalStatus" style="margin-top: 15px; display: none;"></div>
+                    
+                    <button class="btn btn-secondary" id="viewLeaderboardBtn" style="margin-top: 10px; width: 100%;">
+                        <i class="fas fa-trophy"></i> View Leaderboard
+                    </button>
                 </div>
                 
                 <!-- Leaderboard Section -->
@@ -3291,34 +3766,54 @@
             
             // Initialize event listeners for the dashboard
             setTimeout(() => {
+                // Initialize referral link
+                initReferralLink();
+                
+                // Initialize buttons
                 document.getElementById('checkAnotherWalletBtn')?.addEventListener('click', showInitialForm);
                 document.getElementById('copyWalletBtn')?.addEventListener('click', copyDashboardWalletAddress);
                 document.getElementById('copyCodeBtn')?.addEventListener('click', copyReferralCode);
-                document.getElementById('shareBtn')?.addEventListener('click', shareReferral);
+                document.getElementById('copyLinkBtn')?.addEventListener('click', copyReferralLink);
                 document.getElementById('refreshStatsBtn')?.addEventListener('click', refreshReferralStats);
                 document.getElementById('viewLeaderboardBtn')?.addEventListener('click', loadLeaderboard);
                 document.getElementById('withdrawBtn')?.addEventListener('click', checkWithdrawalProgress);
+                document.getElementById('dashboardClaimBtn')?.addEventListener('click', claimAirdrop);
+                
+                // Initialize QR code button
+                initQRCodeButton();
                 
                 // Load data for the dashboard
-                loadReferralStats(walletAddress);
-                loadNetworkAnalysis(walletAddress);
-                loadAchievements(walletAddress);
-                checkWithdrawalProgress();
+                if (walletAddress && validateWalletAddress(walletAddress)) {
+                    loadReferralStats(walletAddress);
+                    loadNetworkAnalysis(walletAddress);
+                    loadAchievements(walletAddress);
+                    checkWithdrawalProgress();
+                }
             }, 100);
         }
         
+        // ==================== CLAIM AIRDROP FUNCTION (MOVED TO DASHBOARD) ====================
         async function claimAirdrop() {
-            const walletAddress = document.getElementById('airdropWalletAddress').value.trim();
-            const referralCode = document.getElementById('airdropReferralCode').value.trim();
+            // Get wallet address from dashboard, not initial form
+            const walletAddress = document.getElementById('dashboardWalletAddress')?.textContent || 
+                                 document.getElementById('airdropWalletAddress')?.value.trim();
+            const referralCode = document.getElementById('airdropReferralCode')?.value.trim() || '';
             
             if (!validateWalletAddress(walletAddress)) {
                 showToast('Please enter a valid Ethereum wallet address', 'error');
                 return;
             }
             
-            showLoading(true);
+            // Get claim button and show loading state
+            const claimBtn = document.getElementById('dashboardClaimBtn');
+            const originalText = claimBtn?.innerHTML || '';
             
             try {
+                if (claimBtn) {
+                    claimBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Claiming...';
+                    claimBtn.disabled = true;
+                }
+                
                 const response = await fetch('/api/claim-airdrop', {
                     method: 'POST',
                     headers: {
@@ -3334,38 +3829,80 @@
                 
                 if (data.success) {
                     if (data.already_claimed) {
-                        showAirdropStatus('✅ Airdrop already claimed!', 'info');
-                    } else {
-                        showAirdropStatus(`✅ Successfully claimed ${formatNumber(data.data.amount)} APRO tokens!`, 'success');
+                        showToast('✅ Airdrop already claimed!', 'info');
                         
-                        // Update token display
+                        // Update UI for already claimed
+                        if (claimBtn) {
+                            claimBtn.style.display = 'none';
+                        }
+                        
+                    } else {
+                        showToast(`✅ Successfully claimed ${formatNumber(data.data.amount)} APRO tokens!`, 'success');
+                        
+                        // Update token display in dashboard
                         document.getElementById('availableTokens').textContent = formatNumber(data.data.amount) + ' APRO';
-                        document.getElementById('claimAirdropBtn').disabled = true;
-                        document.getElementById('claimAirdropBtn').textContent = 'Already Claimed';
-                        document.getElementById('claimAirdropBtn').style.background = '#555';
+                        
+                        // Remove claim button (since already claimed)
+                        if (claimBtn) {
+                            claimBtn.style.display = 'none';
+                        }
                         
                         // Store referral count for achievements
                         currentReferralCount = data.data.referral_count;
                         
-                        // Reload dashboard with new data
-                        await loadHiddenDashboard(walletAddress, {
-                            success: true,
-                            referral_code: data.referral_code,
-                            claim_data: data.data
-                        });
+                        // Reload dashboard sections with new data
+                        await loadReferralStats(walletAddress);
+                        await loadNetworkAnalysis(walletAddress);
+                        await loadAchievements(walletAddress);
                         
                         // Show success animation
                         showConfetti();
+                        
+                        // Update airdrop status details
+                        document.getElementById('airdropStatusDetails').style.display = 'block';
+                        document.getElementById('airdropStatusDetails').innerHTML = `
+                            <div style="background: rgba(0, 255, 136, 0.1); padding: 20px; border-radius: 10px; border: 1px solid rgba(0, 255, 136, 0.3); margin-top: 20px;">
+                                <h4 style="color: var(--primary); margin-bottom: 10px;">✅ Airdrop Claimed Successfully!</h4>
+                                <div style="margin: 10px 0;">
+                                    <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                                        <span style="color: var(--text-secondary);">Total Amount:</span>
+                                        <strong style="color: var(--primary);">${formatNumber(data.data.amount)} APRO</strong>
+                                    </div>
+                                    <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                                        <span style="color: var(--text-secondary);">Base Amount:</span>
+                                        <strong>${formatNumber(data.data.base_amount)} APRO</strong>
+                                    </div>
+                                    <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                                        <span style="color: var(--text-secondary);">Referral Bonus:</span>
+                                        <strong style="color: var(--warning);">${formatNumber(data.data.referral_bonus)} APRO</strong>
+                                    </div>
+                                    <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                                        <span style="color: var(--text-secondary);">Achievements:</span>
+                                        <strong style="color: var(--secondary);">${formatNumber(data.data.achievement_rewards)} APRO</strong>
+                                    </div>
+                                    <div style="display: flex; justify-content: space-between; margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+                                        <span style="color: var(--text-secondary);">Transaction:</span>
+                                        <code style="color: var(--primary); font-size: 12px;">${data.data.tx_hash.substring(0, 20)}...</code>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
                     }
                 } else {
-                    showAirdropStatus(data.message || 'Error claiming airdrop', 'error');
+                    showToast(data.message || 'Error claiming airdrop', 'error');
+                    if (claimBtn) {
+                        claimBtn.innerHTML = originalText;
+                        claimBtn.disabled = false;
+                    }
                 }
                 
             } catch (error) {
                 console.error('Error:', error);
-                showAirdropStatus('Error claiming airdrop. Please try again.', 'error');
-            } finally {
-                showLoading(false);
+                showToast('Error claiming airdrop. Please try again.', 'error');
+                if (claimBtn) {
+                    claimBtn.innerHTML = originalText;
+                    claimBtn.disabled = false;
+                }
             }
         }
         
@@ -3379,7 +3916,8 @@
         
         // ==================== WITHDRAWAL FUNCTIONS ====================
         async function checkWithdrawalProgress() {
-            const walletAddress = document.getElementById('airdropWalletAddress').value.trim();
+            const walletAddress = document.getElementById('dashboardWalletAddress')?.textContent || 
+                                 document.getElementById('airdropWalletAddress')?.value.trim();
             
             if (!validateWalletAddress(walletAddress)) {
                 showToast('Please enter a valid wallet address first', 'error');
@@ -3415,7 +3953,8 @@
         }
         
         async function simulateWithdrawal() {
-            const walletAddress = document.getElementById('airdropWalletAddress').value.trim();
+            const walletAddress = document.getElementById('dashboardWalletAddress')?.textContent || 
+                                 document.getElementById('airdropWalletAddress')?.value.trim();
             
             if (!validateWalletAddress(walletAddress)) {
                 showToast('Please enter a valid wallet address first', 'error');
@@ -3544,14 +4083,19 @@
                     document.getElementById('linkClicks').textContent = data.data.link_clicks;
                     document.getElementById('conversionRate').textContent = data.data.conversion_rate + '%';
                     
-                    // Update referral code display
-                    document.getElementById('referralCodeDisplay').textContent = data.data.referral_code;
+                    // Update referral code display if needed
+                    if (data.data.referral_code) {
+                        document.getElementById('referralCodeDisplay').textContent = data.data.referral_code;
+                    }
                     
                     // Store referral data globally for share function
                     referralData = data.data;
                     
                     // Update current referral count for achievements
                     currentReferralCount = data.data.referral_count;
+                    
+                    // Update referral link
+                    initReferralLink();
                 }
             } catch (error) {
                 console.error('Error loading stats:', error);
@@ -3684,10 +4228,11 @@
         }
         
         async function loadLeaderboard() {
-            const walletAddress = document.getElementById('airdropWalletAddress').value.trim();
+            const walletAddress = document.getElementById('dashboardWalletAddress')?.textContent || 
+                                 document.getElementById('airdropWalletAddress')?.value.trim();
             
             if (!validateWalletAddress(walletAddress)) {
-                showToast('Please enter wallet address first', 'error');
+                showToast('Please check eligibility first', 'error');
                 return;
             }
             
@@ -3764,7 +4309,8 @@
         }
         
         function refreshReferralStats() {
-            const walletAddress = document.getElementById('airdropWalletAddress').value.trim();
+            const walletAddress = document.getElementById('dashboardWalletAddress')?.textContent || 
+                                 document.getElementById('airdropWalletAddress')?.value.trim();
             if (!walletAddress) {
                 showToast('Please check eligibility first', 'error');
                 return;
@@ -3772,48 +4318,8 @@
             
             showToast('Refreshing stats...', 'info');
             loadReferralStats(walletAddress);
-        }
-        
-        function copyReferralCode() {
-            const code = document.getElementById('referralCodeDisplay').textContent;
-            navigator.clipboard.writeText(code).then(() => {
-                showToast('Referral code copied to clipboard!', 'success');
-            });
-        }
-        
-        function shareReferral() {
-            if (!referralData) {
-                showToast('Please check eligibility first', 'error');
-                return;
-            }
-            
-            const code = document.getElementById('referralCodeDisplay').textContent;
-            const baseUrl = window.location.origin;
-            const referralLink = `${baseUrl}?ref=${code}`;
-            const text = `🎉 Claim free APRO tokens! Use my referral code: ${code}\n\n${referralLink}`;
-            
-            // Track link click before sharing
-            fetch('/api/track-link-click', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    referral_code: code
-                })
-            });
-            
-            if (navigator.share) {
-                navigator.share({
-                    title: 'APRO Token Airdrop',
-                    text: `Claim free APRO tokens using my referral code: ${code}`,
-                    url: referralLink
-                });
-            } else {
-                navigator.clipboard.writeText(text).then(() => {
-                    showToast('Referral link copied to clipboard!', 'success');
-                });
-            }
+            // Re-initialize referral link after refresh
+            setTimeout(initReferralLink, 100);
         }
         
         // ==================== UTILITY FUNCTIONS ====================
