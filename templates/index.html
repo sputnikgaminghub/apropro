@@ -13,7 +13,7 @@
     <meta property="og:title" content="APRO Token | Presale & Airdrop Platform">
     <meta property="og:description" content="Join the APRO Token presale and airdrop platform. Be among the first to own APRO tokens with exclusive early-bird bonuses.">
     <meta property="og:image" content="https://i.postimg.cc/yd7vLdkt/og-image.png">
-    <meta property="og:url" content="https://apropro.onrender.com/">
+    <meta property="og:url" content="https://aprotoken.com">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="APRO Token">
     
@@ -1036,12 +1036,6 @@
             overflow: hidden;
         }
         
-        @media (min-width: 992px) {
-    #airdropDashboard .presale-container > div {
-        grid-template-columns: 1fr 1fr;
-    }
-}
-
         .achievement-card:hover {
             transform: translateY(-2px);
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
@@ -1157,17 +1151,22 @@
             }
         }
         
-        /* New Styles for Dashboard Navigation */
+        /* ========== DASHBOARD TABS STYLES ========== */
         .dashboard-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             padding-bottom: 15px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: sticky;
+            top: 70px;
+            background: var(--background);
+            z-index: 100;
+            padding-top: 10px;
         }
         
-        .check-another-wallet-btn {
+        .back-to-form-btn {
             background: transparent;
             border: 1px solid var(--secondary);
             color: var(--secondary);
@@ -1181,9 +1180,148 @@
             transition: all 0.3s;
         }
         
-        .check-another-wallet-btn:hover {
+        .back-to-form-btn:hover {
             background: rgba(102, 126, 234, 0.1);
             transform: translateY(-2px);
+        }
+        
+        .share-floating-btn {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 255, 136, 0.3);
+            z-index: 1000;
+            transition: all 0.3s;
+            border: none;
+        }
+        
+        .share-floating-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(0, 255, 136, 0.4);
+        }
+        
+        .dashboard-tabs-container {
+            position: sticky;
+            top: 130px;
+            background: var(--background);
+            z-index: 100;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .dashboard-tabs-nav {
+            display: flex;
+            overflow-x: auto;
+            gap: 8px;
+            padding: 12px 15px;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            min-height: 60px;
+        }
+        
+        .dashboard-tabs-nav::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .dashboard-tab {
+            flex: 0 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 10px 14px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            color: var(--text-secondary);
+            white-space: nowrap;
+            transition: all 0.3s;
+            font-size: 13px;
+            cursor: pointer;
+            min-height: 44px;
+        }
+        
+        .dashboard-tab i {
+            font-size: 14px;
+        }
+        
+        .dashboard-tab.active {
+            background: rgba(108, 99, 255, 0.2);
+            border-color: var(--web3-primary);
+            color: var(--web3-primary);
+            box-shadow: 0 4px 12px rgba(108, 99, 255, 0.2);
+        }
+        
+        .dashboard-tab:hover:not(.active) {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        .tab-badge {
+            background: rgba(255, 170, 0, 0.2);
+            color: var(--warning);
+            font-size: 10px;
+            padding: 2px 6px;
+            border-radius: 10px;
+            font-weight: 600;
+            margin-left: 4px;
+        }
+        
+        .sticky-balance-bar {
+            position: sticky;
+            top: 190px;
+            background: rgba(10, 11, 45, 0.95);
+            padding: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 99;
+            backdrop-filter: blur(10px);
+        }
+        
+        .token-display-mini {
+            display: flex;
+            align-items: baseline;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 8px;
+        }
+        
+        .token-display-mini .token-amount {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .token-display-mini .token-symbol {
+            font-size: 16px;
+            color: var(--text-secondary);
+        }
+        
+        .balance-status {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+        
+        .dashboard-content {
+            min-height: 400px;
+        }
+        
+        .dashboard-tab-content {
+            display: none;
+            animation: fadeIn 0.3s ease;
+            padding: 20px 0;
+        }
+        
+        .dashboard-tab-content.active {
+            display: block;
         }
         
         .wallet-address-display {
@@ -1326,6 +1464,127 @@
             .share-platforms-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
+        }
+        
+        /* ========== RESPONSIVE DASHBOARD TABS ========== */
+        @media (max-width: 768px) {
+            .dashboard-header {
+                top: 60px;
+                padding-top: 5px;
+                margin-bottom: 10px;
+            }
+            
+            .dashboard-tabs-container {
+                top: 120px;
+            }
+            
+            .sticky-balance-bar {
+                top: 180px;
+            }
+            
+            .dashboard-tabs-nav {
+                gap: 6px;
+                padding: 10px 12px;
+            }
+            
+            .dashboard-tab {
+                padding: 8px 10px;
+                font-size: 12px;
+                min-height: 40px;
+            }
+            
+            .dashboard-tab i {
+                font-size: 12px;
+            }
+            
+            .tab-badge {
+                font-size: 9px;
+                padding: 1px 4px;
+            }
+            
+            /* Hide text on very small screens, show only icons */
+            @media (max-width: 400px) {
+                .dashboard-tab span:not(.tab-badge) {
+                    display: none;
+                }
+                
+                .dashboard-tab {
+                    padding: 10px;
+                    min-width: 44px;
+                    justify-content: center;
+                }
+            }
+        }
+        
+        /* ========== TAB-SPECIFIC STYLES ========== */
+        .tasks-placeholder {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-secondary);
+        }
+        
+        .tasks-placeholder i {
+            font-size: 48px;
+            color: var(--secondary);
+            margin-bottom: 20px;
+            opacity: 0.5;
+        }
+        
+        .withdrawal-progress-section {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .leaderboard-entry {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            margin-bottom: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .leaderboard-rank {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        
+        .rank-1 .leaderboard-rank {
+            background: linear-gradient(135deg, #ffd700, #ffaa00);
+            color: #000;
+        }
+        
+        .rank-2 .leaderboard-rank {
+            background: linear-gradient(135deg, #c0c0c0, #999999);
+            color: #000;
+        }
+        
+        .rank-3 .leaderboard-rank {
+            background: linear-gradient(135deg, #cd7f32, #a0522d);
+            color: #000;
+        }
+        
+        .overview-quick-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin: 20px 0;
+        }
+        
+        .overview-quick-stats .stat-item {
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.03);
         }
     </style>
 </head>
@@ -2070,146 +2329,146 @@
             </section>
             
             <!-- Airdrop Section -->
-<section id="airdrop" class="section">
-    <div class="section-header">
-        <h2>Airdrop Program</h2>
-        <p>Claim your free APRO tokens and start earning through referrals</p>
-    </div>
-    
-    <!-- Airdrop Dashboard Container -->
-    <div id="airdropDashboard">
-        <div class="presale-container" style="grid-template-columns: 1fr;">
-            <div style="display: grid; grid-template-columns: 1fr; gap: 30px;">
-                
-                <!-- Left: Wallet Input Card -->
-                <div class="card" style="text-align: center; padding: 40px 20px;">
-                    <div style="font-size: 64px; color: var(--primary); margin-bottom: 20px;">
-                        <i class="fas fa-rocket"></i>
-                    </div>
-                    <h3 style="color: var(--text-primary); margin-bottom: 15px; font-size: 24px;">Complete Airdrop Platform</h3>
-                    <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto 30px;">
-                        Enter your Ethereum wallet address to check eligibility, claim APRO tokens, and start earning through referrals.
-                    </p>
-                    
-                    <!-- Wallet Input Form -->
-                    <div class="input-group">
-                        <label for="airdropWalletAddress">Your Ethereum Wallet Address</label>
-                        <input 
-                            type="text" 
-                            id="airdropWalletAddress" 
-                            placeholder="0x..."
-                            value=""
-                        >
-                    </div>
-                    
-                    <div class="input-group">
-                        <label for="airdropReferralCode">Referral Code (Optional)</label>
-                        <input 
-                            type="text" 
-                            id="airdropReferralCode" 
-                            placeholder="Enter a referral code to earn bonus tokens"
-                            value=""
-                        >
-                    </div>
-                    
-                    <!-- ONLY CHECK ELIGIBILITY BUTTON - Claim button moved to dashboard -->
-                    <button class="btn" id="checkEligibilityBtn" style="margin-bottom: 15px; background: linear-gradient(90deg, var(--secondary), var(--accent));">
-                        <i class="fas fa-check-circle"></i> Check Eligibility
-                    </button>
-                    
-                    <div class="loading" id="airdropLoading" style="display: none;">
-                        <div class="spinner"></div>
-                        <div style="margin-top: 10px; color: var(--text-secondary);">Processing...</div>
-                    </div>
-                    
-                    <div id="airdropStatus" style="margin-top: 20px; display: none;"></div>
+            <section id="airdrop" class="section">
+                <div class="section-header">
+                    <h2>Airdrop Program</h2>
+                    <p>Claim your free APRO tokens and start earning through referrals</p>
                 </div>
                 
-                <!-- Right: Guide Card -->
-                <div class="card" style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1);">
-                    <h3 style="color: var(--primary); margin-bottom: 25px; font-size: 22px; text-align: center;">
-                        <i class="fas fa-graduation-cap"></i> How Referrals Work
-                    </h3>
-                    
-                    <!-- Referral Steps -->
-                    <div style="display: flex; flex-direction: column; gap: 20px;">
-                        
-                        <!-- Step 1 -->
-                        <div style="display: flex; align-items: flex-start; gap: 15px; padding: 15px; background: rgba(0, 255, 136, 0.05); border-radius: 12px; border: 1px solid rgba(0, 255, 136, 0.1);">
-                            <div style="width: 32px; height: 32px; background: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; flex-shrink: 0;">
-                                1
-                            </div>
-                            <div>
-                                <h4 style="color: var(--primary); margin-bottom: 8px; font-size: 16px;">Earn 121 APRO per Referral</h4>
-                                <p style="color: var(--text-secondary); font-size: 14px; line-height: 1.5;">
-                                    You earn 121 APRO for each friend who claims tokens using your referral
+                <!-- Airdrop Dashboard Container -->
+                <div id="airdropDashboard">
+                    <div class="presale-container" style="grid-template-columns: 1fr;">
+                        <div style="display: grid; grid-template-columns: 1fr; gap: 30px;">
+                            
+                            <!-- Left: Wallet Input Card -->
+                            <div class="card" style="text-align: center; padding: 40px 20px;">
+                                <div style="font-size: 64px; color: var(--primary); margin-bottom: 20px;">
+                                    <i class="fas fa-rocket"></i>
+                                </div>
+                                <h3 style="color: var(--text-primary); margin-bottom: 15px; font-size: 24px;">Complete Airdrop Platform</h3>
+                                <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto 30px;">
+                                    Enter your Ethereum wallet address to check eligibility, claim APRO tokens, and start earning through referrals.
                                 </p>
+                                
+                                <!-- Wallet Input Form -->
+                                <div class="input-group">
+                                    <label for="airdropWalletAddress">Your Ethereum Wallet Address</label>
+                                    <input 
+                                        type="text" 
+                                        id="airdropWalletAddress" 
+                                        placeholder="0x..."
+                                        value=""
+                                    >
+                                </div>
+                                
+                                <div class="input-group">
+                                    <label for="airdropReferralCode">Referral Code (Optional)</label>
+                                    <input 
+                                        type="text" 
+                                        id="airdropReferralCode" 
+                                        placeholder="Enter a referral code to earn bonus tokens"
+                                        value=""
+                                    >
+                                </div>
+                                
+                                <!-- ONLY CHECK ELIGIBILITY BUTTON - Claim button moved to dashboard -->
+                                <button class="btn" id="checkEligibilityBtn" style="margin-bottom: 15px; background: linear-gradient(90deg, var(--secondary), var(--accent));">
+                                    <i class="fas fa-check-circle"></i> Check Eligibility
+                                </button>
+                                
+                                <div class="loading" id="airdropLoading" style="display: none;">
+                                    <div class="spinner"></div>
+                                    <div style="margin-top: 10px; color: var(--text-secondary);">Processing...</div>
+                                </div>
+                                
+                                <div id="airdropStatus" style="margin-top: 20px; display: none;"></div>
                             </div>
-                        </div>
-                        
-                        <!-- Step 2 -->
-                        <div style="display: flex; align-items: flex-start; gap: 15px; padding: 15px; background: rgba(102, 126, 234, 0.05); border-radius: 12px; border: 1px solid rgba(102, 126, 234, 0.1);">
-                            <div style="width: 32px; height: 32px; background: var(--secondary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; flex-shrink: 0;">
-                                2
-                            </div>
-                            <div>
-                                <h4 style="color: var(--secondary); margin-bottom: 8px; font-size: 16px;">Link Clicks Don't Count</h4>
-                                <p style="color: var(--text-secondary); font-size: 14px; line-height: 1.5;">
-                                    Only completed claims give you bonuses. Clicks without claims don't count.
-                                </p>
-                            </div>
-                        </div>
-                        
-                        <!-- Step 3 -->
-                        <div style="display: flex; align-items: flex-start; gap: 15px; padding: 15px; background: rgba(255, 170, 0, 0.05); border-radius: 12px; border: 1px solid rgba(255, 170, 0, 0.1);">
-                            <div style="width: 32px; height: 32px; background: var(--warning); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; flex-shrink: 0;">
-                                3
-                            </div>
-                            <div>
-                                <h4 style="color: var(--warning); margin-bottom: 8px; font-size: 16px;">Need 7+ Referrals to Withdraw</h4>
-                                <p style="color: var(--text-secondary); font-size: 14px; line-height: 1.5;">
-                                    Minimum 7 referrals required for withdrawal access
-                                </p>
-                            </div>
-                        </div>
-                        
-                        <!-- Step 4 -->
-                        <div style="display: flex; align-items: flex-start; gap: 15px; padding: 15px; background: rgba(118, 75, 162, 0.05); border-radius: 12px; border: 1px solid rgba(118, 75, 162, 0.1);">
-                            <div style="width: 32px; height: 32px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; flex-shrink: 0;">
-                                4
-                            </div>
-                            <div>
-                                <h4 style="color: var(--accent); margin-bottom: 8px; font-size: 16px;">Active Referrals Grow Your Network</h4>
-                                <p style="color: var(--text-secondary); font-size: 14px; line-height: 1.5;">
-                                    Active referrals (with 2+ referrals themselves) help grow your network
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Info Note -->
-                    <div style="margin-top: 25px; padding: 15px; background: rgba(255, 255, 255, 0.05); border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1);">
-                        <div style="display: flex; align-items: center; gap: 12px;">
-                            <div style="color: var(--primary); font-size: 20px;">
-                                <i class="fas fa-info-circle"></i>
-                            </div>
-                            <div>
-                                <div style="font-weight: 600; color: var(--text-primary); font-size: 14px; margin-bottom: 5px;">Check Your Status</div>
-                                <div style="color: var(--text-secondary); font-size: 13px;">
-                                    Enter your wallet address above to see your personalized airdrop status and referral dashboard
+                            
+                            <!-- Right: Guide Card -->
+                            <div class="card" style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1);">
+                                <h3 style="color: var(--primary); margin-bottom: 25px; font-size: 22px; text-align: center;">
+                                    <i class="fas fa-graduation-cap"></i> How Referrals Work
+                                </h3>
+                                
+                                <!-- Referral Steps -->
+                                <div style="display: flex; flex-direction: column; gap: 20px;">
+                                    
+                                    <!-- Step 1 -->
+                                    <div style="display: flex; align-items: flex-start; gap: 15px; padding: 15px; background: rgba(0, 255, 136, 0.05); border-radius: 12px; border: 1px solid rgba(0, 255, 136, 0.1);">
+                                        <div style="width: 32px; height: 32px; background: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; flex-shrink: 0;">
+                                            1
+                                        </div>
+                                        <div>
+                                            <h4 style="color: var(--primary); margin-bottom: 8px; font-size: 16px;">Earn 121 APRO per Referral</h4>
+                                            <p style="color: var(--text-secondary); font-size: 14px; line-height: 1.5;">
+                                                You earn 121 APRO for each friend who claims tokens using your referral
+                                            </p>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Step 2 -->
+                                    <div style="display: flex; align-items: flex-start; gap: 15px; padding: 15px; background: rgba(102, 126, 234, 0.05); border-radius: 12px; border: 1px solid rgba(102, 126, 234, 0.1);">
+                                        <div style="width: 32px; height: 32px; background: var(--secondary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; flex-shrink: 0;">
+                                            2
+                                        </div>
+                                        <div>
+                                            <h4 style="color: var(--secondary); margin-bottom: 8px; font-size: 16px;">Link Clicks Don't Count</h4>
+                                            <p style="color: var(--text-secondary); font-size: 14px; line-height: 1.5;">
+                                                Only completed claims give you bonuses. Clicks without claims don't count.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Step 3 -->
+                                    <div style="display: flex; align-items: flex-start; gap: 15px; padding: 15px; background: rgba(255, 170, 0, 0.05); border-radius: 12px; border: 1px solid rgba(255, 170, 0, 0.1);">
+                                        <div style="width: 32px; height: 32px; background: var(--warning); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; flex-shrink: 0;">
+                                            3
+                                        </div>
+                                        <div>
+                                            <h4 style="color: var(--warning); margin-bottom: 8px; font-size: 16px;">Need 7+ Referrals to Withdraw</h4>
+                                            <p style="color: var(--text-secondary); font-size: 14px; line-height: 1.5;">
+                                                Minimum 7 referrals required for withdrawal access
+                                            </p>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Step 4 -->
+                                    <div style="display: flex; align-items: flex-start; gap: 15px; padding: 15px; background: rgba(118, 75, 162, 0.05); border-radius: 12px; border: 1px solid rgba(118, 75, 162, 0.1);">
+                                        <div style="width: 32px; height: 32px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; flex-shrink: 0;">
+                                            4
+                                        </div>
+                                        <div>
+                                            <h4 style="color: var(--accent); margin-bottom: 8px; font-size: 16px;">Active Referrals Grow Your Network</h4>
+                                            <p style="color: var(--text-secondary); font-size: 14px; line-height: 1.5;">
+                                                Active referrals (with 2+ referrals themselves) help grow your network
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Info Note -->
+                                <div style="margin-top: 25px; padding: 15px; background: rgba(255, 255, 255, 0.05); border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1);">
+                                    <div style="display: flex; align-items: center; gap: 12px;">
+                                        <div style="color: var(--primary); font-size: 20px;">
+                                            <i class="fas fa-info-circle"></i>
+                                        </div>
+                                        <div>
+                                            <div style="font-weight: 600; color: var(--text-primary); font-size: 14px; margin-bottom: 5px;">Check Your Status</div>
+                                            <div style="color: var(--text-secondary); font-size: 13px;">
+                                                Enter your wallet address above to see your personalized airdrop status and referral dashboard
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
+                            
                         </div>
                     </div>
                 </div>
                 
-            </div>
-        </div>
-    </div>
-    
-    <!-- Hidden Dashboard Container - Will be populated dynamically -->
-    <div id="hiddenDashboardContainer" style="display: none;"></div>
-</section>
+                <!-- Hidden Dashboard Container - Will be populated dynamically -->
+                <div id="hiddenDashboardContainer" style="display: none;"></div>
+            </section>
         </div>
     </div>
     
@@ -2325,6 +2584,7 @@
         let referralData = null;
         let currentReferralCount = 0;
         let currentUserData = null; // Store user data from backend
+        let currentDashboardTab = 'overview'; // Track current dashboard tab
         
         // Web3 State
         let web3State = {
@@ -2389,6 +2649,162 @@
                 }
             }, 100);
         });
+        
+        // ==================== DASHBOARD TABS FUNCTIONS ====================
+        
+        function initDashboardTabs() {
+            // Setup tab switching
+            document.querySelectorAll('.dashboard-tab').forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // Remove active class from all tabs
+                    document.querySelectorAll('.dashboard-tab, .dashboard-tab-content')
+                        .forEach(el => el.classList.remove('active'));
+                    
+                    // Add active to clicked tab
+                    this.classList.add('active');
+                    
+                    // Update current dashboard tab
+                    currentDashboardTab = this.dataset.tab;
+                    
+                    // Show corresponding content
+                    document.getElementById(`${currentDashboardTab}Tab`).classList.add('active');
+                    
+                    // Update floating share button visibility
+                    updateShareButtonVisibility();
+                    
+                    // Load specific tab data if needed
+                    loadTabData(currentDashboardTab);
+                });
+            });
+            
+            // Initialize share button
+            const shareBtn = document.getElementById('dashboardShareBtn');
+            if (shareBtn) {
+                shareBtn.addEventListener('click', function() {
+                    shareReferralLink();
+                });
+            }
+            
+            // Initialize back button
+            const backBtn = document.getElementById('dashboardBackBtn');
+            if (backBtn) {
+                backBtn.addEventListener('click', showInitialForm);
+            }
+            
+            // Initialize copy wallet button
+            const copyWalletBtn = document.getElementById('copyWalletBtn');
+            if (copyWalletBtn) {
+                copyWalletBtn.addEventListener('click', copyDashboardWalletAddress);
+            }
+            
+            // Set initial share button visibility
+            updateShareButtonVisibility();
+        }
+        
+        function updateShareButtonVisibility() {
+            const shareBtn = document.getElementById('dashboardShareBtn');
+            if (shareBtn) {
+                // Show share button only on referral and overview tabs
+                if (currentDashboardTab === 'referral' || currentDashboardTab === 'overview') {
+                    shareBtn.style.display = 'flex';
+                } else {
+                    shareBtn.style.display = 'none';
+                }
+            }
+        }
+        
+        function loadTabData(tabId) {
+            const walletAddress = document.getElementById('dashboardWalletAddress')?.textContent;
+            
+            if (!walletAddress || !validateWalletAddress(walletAddress)) {
+                return;
+            }
+            
+            switch(tabId) {
+                case 'overview':
+                    // Overview data is loaded when dashboard is created
+                    break;
+                    
+                case 'referral':
+                    loadReferralStats(walletAddress);
+                    break;
+                    
+                case 'achievements':
+                    loadAchievements(walletAddress);
+                    break;
+                    
+                case 'tasks':
+                    // Tasks tab is placeholder for now
+                    break;
+                    
+                case 'network':
+                    loadNetworkAnalysis(walletAddress);
+                    break;
+                    
+                case 'leaderboard':
+                    loadLeaderboard();
+                    break;
+                    
+                case 'withdrawals':
+                    checkWithdrawalProgress();
+                    break;
+            }
+        }
+        
+        // ==================== SHARE REFERRAL LINK FUNCTION ====================
+        
+        function shareReferralLink() {
+            const code = getReferralCode();
+            const link = getReferralLink(code);
+            
+            // Show share options
+            if (navigator.share) {
+                // Use Web Share API if available
+                navigator.share({
+                    title: 'Claim FREE APRO Airdrop Tokens!',
+                    text: `Claim your FREE APRO airdrop tokens! Use my referral code ${code} for bonus tokens!`,
+                    url: link
+                }).then(() => {
+                    showToast('Shared successfully!', 'success');
+                }).catch(err => {
+                    console.log('Error sharing:', err);
+                    copyToClipboard(link);
+                });
+            } else {
+                // Fallback to copying to clipboard
+                copyToClipboard(link);
+            }
+        }
+        
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                showToast('Referral link copied to clipboard!', 'success');
+            });
+        }
+        
+        // ==================== DASHBOARD TOGGLE FUNCTIONS ====================
+        
+        function showDashboardView() {
+            // Hide the initial form
+            document.getElementById('airdropDashboard').style.display = 'none';
+            // Show the dashboard container
+            document.getElementById('hiddenDashboardContainer').style.display = 'block';
+            
+            // Initialize dashboard tabs
+            setTimeout(initDashboardTabs, 100);
+        }
+        
+        function showInitialForm() {
+            // Show the initial form
+            document.getElementById('airdropDashboard').style.display = 'block';
+            // Hide the dashboard container
+            document.getElementById('hiddenDashboardContainer').style.display = 'none';
+            // Reset form fields
+            document.getElementById('airdropWalletAddress').value = '';
+            document.getElementById('airdropReferralCode').value = '';
+            document.getElementById('airdropStatus').style.display = 'none';
+            document.getElementById('airdropStatus').innerHTML = '';
+        }
         
         // ==================== PAYMENT TABS ====================
         
@@ -3429,41 +3845,81 @@
             }
         }
         
-        // ==================== DASHBOARD TOGGLE FUNCTION ====================
-        function showDashboardView() {
-            // Hide the initial form
-            document.getElementById('airdropDashboard').style.display = 'none';
-            // Show the dashboard container
-            document.getElementById('hiddenDashboardContainer').style.display = 'block';
-        }
-        
-        function showInitialForm() {
-            // Show the initial form
-            document.getElementById('airdropDashboard').style.display = 'block';
-            // Hide the dashboard container
-            document.getElementById('hiddenDashboardContainer').style.display = 'none';
-            // Reset form fields
-            document.getElementById('airdropWalletAddress').value = '';
-            document.getElementById('airdropReferralCode').value = '';
-            document.getElementById('airdropStatus').style.display = 'none';
-            document.getElementById('airdropStatus').innerHTML = '';
-        }
-        
         async function loadHiddenDashboard(walletAddress, data) {
             const container = document.getElementById('hiddenDashboardContainer');
             const claimData = data.claim_data || null;
             const referralCode = data.referral_code || generateReferralCode();
             const isEligible = data.eligible || false;
             const alreadyClaimed = data.already_claimed || false;
+            const currentBalance = claimData ? claimData.amount : (isEligible && !alreadyClaimed ? 1005 : 0);
             
-            // Build the hidden dashboard HTML with ENHANCED referral section
+            // Calculate achievement badge
+            const achievementsUnlocked = data.claim_data ? Math.floor(data.claim_data.achievement_rewards / 100) : 0;
+            const achievementBadge = achievementsUnlocked > 0 ? `<span class="tab-badge">${achievementsUnlocked}/5</span>` : '';
+            
+            // Build the tabbed dashboard HTML
             container.innerHTML = `
                 <!-- Dashboard Header -->
                 <div class="dashboard-header">
-                    <h3 style="color: var(--primary); margin: 0; font-size: 22px;">Your Airdrop Dashboard</h3>
-                    <button class="check-another-wallet-btn" id="checkAnotherWalletBtn">
-                        <i class="fas fa-wallet"></i> Logout
+                    <button class="back-to-form-btn" id="dashboardBackBtn">
+                        <i class="fas fa-arrow-left"></i> Back
                     </button>
+                    
+                    <h3 style="color: var(--primary); margin: 0; font-size: 22px;">Airdrop Dashboard</h3>
+                    
+                    <button class="share-floating-btn" id="dashboardShareBtn" style="display: none;">
+                        <i class="fas fa-share-alt"></i>
+                    </button>
+                </div>
+                
+                <!-- Horizontal Tabs Navigation -->
+                <div class="dashboard-tabs-container">
+                    <nav class="dashboard-tabs-nav">
+                        <button class="dashboard-tab active" data-tab="overview">
+                            <i class="fas fa-chart-pie"></i>
+                            <span>Overview</span>
+                        </button>
+                        
+                        <button class="dashboard-tab" data-tab="referral">
+                            <i class="fas fa-link"></i>
+                            <span>Referral</span>
+                        </button>
+                        
+                        <button class="dashboard-tab" data-tab="achievements">
+                            <i class="fas fa-trophy"></i>
+                            <span>Achievements</span>
+                            ${achievementBadge}
+                        </button>
+                        
+                        <button class="dashboard-tab" data-tab="tasks">
+                            <i class="fas fa-tasks"></i>
+                            <span>Tasks</span>
+                        </button>
+                        
+                        <button class="dashboard-tab" data-tab="network">
+                            <i class="fas fa-chart-network"></i>
+                            <span>Network</span>
+                        </button>
+                        
+                        <button class="dashboard-tab" data-tab="leaderboard">
+                            <i class="fas fa-trophy"></i>
+                            <span>Leaderboard</span>
+                        </button>
+                        
+                        <button class="dashboard-tab" data-tab="withdrawals">
+                            <i class="fas fa-wallet"></i>
+                            <span>Withdrawals</span>
+                        </button>
+                    </nav>
+                </div>
+                
+                <!-- Sticky Balance Bar -->
+                <div class="sticky-balance-bar">
+                    <div class="token-display-mini">
+                        <div class="token-amount">${formatNumber(currentBalance)}</div>
+                        <div class="token-symbol">APRO</div>
+                    </div>
+                    <div class="balance-status">Available to Claim</div>
                 </div>
                 
                 <!-- Wallet Address Display -->
@@ -3475,288 +3931,350 @@
                     </button>
                 </div>
                 
-                <!-- Balance Display Card -->
-                <div class="card" style="text-align: center;">
-                    <div style="text-align: center; margin-bottom: 30px;">
-                        <div class="token-display">
-                            <div class="token-icon">
-                                <i class="fas fa-coins"></i>
-                            </div>
-                            <div class="token-info">
-                                <div class="token-amount" id="availableTokens">
-                                    ${claimData ? formatNumber(claimData.amount) : 
-                                      (isEligible && !alreadyClaimed ? formatNumber(1005) : '0')} APRO
+                <!-- Dashboard Content -->
+                <div class="dashboard-content">
+                    
+                    <!-- Tab 1: Overview -->
+                    <div id="overviewTab" class="dashboard-tab-content active">
+                        <div class="card">
+                            <div style="text-align: center;">
+                                <div style="font-size: 48px; color: var(--primary); margin-bottom: 20px;">
+                                    <i class="fas fa-gift"></i>
                                 </div>
-                                <div class="token-symbol">Available to Claim</div>
+                                
+                                <!-- CLAIM AIRDROP BUTTON - Only show if eligible and not already claimed -->
+                                ${isEligible && !alreadyClaimed ? `
+                                    <button class="btn" id="dashboardClaimBtn" style="margin-bottom: 20px; background: linear-gradient(90deg, var(--primary), var(--primary-dark));">
+                                        <i class="fas fa-gift"></i> Claim ${formatNumber(1005)} APRO Welcome Bonus
+                                    </button>
+                                    
+                                    <div style="margin-bottom: 15px; color: var(--text-secondary); font-size: 13px;">
+                                        <i class="fas fa-info-circle"></i> You can earn more through referrals and achievements
+                                    </div>
+                                ` : ''}
+                                
+                                ${alreadyClaimed ? `
+                                    <div style="margin-bottom: 20px; padding: 15px; background: rgba(0, 255, 136, 0.1); border-radius: 10px; border: 1px solid rgba(0, 255, 136, 0.3);">
+                                        <div style="display: flex; align-items: center; gap: 10px; justify-content: center; color: var(--primary);">
+                                            <i class="fas fa-check-circle"></i>
+                                            <span>Airdrop Already Claimed</span>
+                                        </div>
+                                    </div>
+                                ` : ''}
+                                
+                                <!-- Quick Stats -->
+                                <div class="overview-quick-stats">
+                                    <div class="stat-item">
+                                        <div class="stat-value">${data.claim_data ? formatNumber(data.claim_data.referral_count) : 0}</div>
+                                        <div class="stat-label">Referrals</div>
+                                    </div>
+                                    <div class="stat-item">
+                                        <div class="stat-value">${achievementsUnlocked}</div>
+                                        <div class="stat-label">Achievements</div>
+                                    </div>
+                                    <div class="stat-item">
+                                        <div class="stat-value">${data.claim_data ? formatNumber(data.claim_data.referral_bonus) : 0}</div>
+                                        <div class="stat-label">Bonus</div>
+                                    </div>
+                                    <div class="stat-item">
+                                        <div class="stat-value">${formatNumber(currentBalance)}</div>
+                                        <div class="stat-label">Total</div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Referral Code Quick View -->
+                                <div style="margin-top: 25px;">
+                                    <div style="color: var(--text-secondary); font-size: 14px; margin-bottom: 8px;">
+                                        <i class="fas fa-link"></i> Your Referral Code:
+                                    </div>
+                                    <div class="code-display" style="font-size: 20px; letter-spacing: 2px;">
+                                        ${referralCode}
+                                    </div>
+                                    <button class="btn-secondary" onclick="copyReferralCode()" style="margin-top: 10px; padding: 8px 15px; font-size: 13px;">
+                                        <i class="fas fa-copy"></i> Copy Code
+                                    </button>
+                                </div>
                             </div>
                         </div>
                         
-                        <!-- CLAIM AIRDROP BUTTON - Only show if eligible and not already claimed -->
-                        ${isEligible && !alreadyClaimed ? `
-                            <button class="btn" id="dashboardClaimBtn" style="margin-top: 20px; background: linear-gradient(90deg, var(--primary), var(--primary-dark));">
-                                <i class="fas fa-gift"></i> Claim ${formatNumber(1005)} APRO Welcome Bonus
+                        <div id="airdropStatusDetails" style="display: ${claimData ? 'block' : 'none'}">
+                            ${claimData ? `
+                                <div class="card" style="background: rgba(0, 255, 136, 0.1); border: 1px solid rgba(0, 255, 136, 0.3);">
+                                    <h4 style="color: var(--primary); margin-bottom: 10px;">✅ Airdrop Already Claimed</h4>
+                                    <div style="margin: 10px 0;">
+                                        <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                                            <span style="color: var(--text-secondary);">Total Amount:</span>
+                                            <strong style="color: var(--primary);">${formatNumber(claimData.amount)} APRO</strong>
+                                        </div>
+                                        <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                                            <span style="color: var(--text-secondary);">Base Amount:</span>
+                                            <strong>${formatNumber(claimData.base_amount)} APRO</strong>
+                                        </div>
+                                        <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                                            <span style="color: var(--text-secondary);">Referral Bonus:</span>
+                                            <strong style="color: var(--warning);">${formatNumber(claimData.referral_bonus)} APRO</strong>
+                                        </div>
+                                        <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                                            <span style="color: var(--text-secondary);">Achievements:</span>
+                                            <strong style="color: var(--secondary);">${formatNumber(claimData.achievement_rewards)} APRO</strong>
+                                        </div>
+                                        <div style="display: flex; justify-content: space-between; margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+                                            <span style="color: var(--text-secondary);">Transaction:</span>
+                                            <code style="color: var(--primary); font-size: 12px;">${claimData.tx_hash.substring(0, 20)}...</code>
+                                        </div>
+                                    </div>
+                                </div>
+                            ` : ''}
+                        </div>
+                    </div>
+                    
+                    <!-- Tab 2: Referral Center -->
+                    <div id="referralTab" class="dashboard-tab-content">
+                        <div class="card">
+                            <div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 15px;">
+                                <i class="fas fa-link" style="color: var(--primary); font-size: 20px;"></i>
+                                <h3 style="color: var(--primary); margin: 0; font-size: 20px;">Your Referral Code</h3>
+                            </div>
+                            
+                            <!-- Referral Code Display -->
+                            <div class="code-display" id="referralCodeDisplay" style="font-size: 22px; letter-spacing: 3px;">
+                                ${referralCode}
+                            </div>
+                            
+                            <!-- Referral Link -->
+                            <div style="margin: 20px 0;">
+                                <div style="color: var(--text-secondary); font-size: 14px; margin-bottom: 8px; text-align: center;">
+                                    <i class="fas fa-external-link-alt"></i> Your Referral Link:
+                                </div>
+                                <div class="referral-link-container">
+                                    <div class="address-display" id="referralLinkDisplay" style="text-align: center; font-size: 14px; cursor: pointer;">
+                                        Loading...
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- QR Code Option -->
+                            <div style="text-align: center; margin: 15px 0;">
+                                <button id="showQrBtn" class="btn-secondary" style="padding: 8px 15px; font-size: 13px;">
+                                    <i class="fas fa-qrcode"></i> Show QR Code
+                                </button>
+                                <div id="qrContainer" style="display: none; margin-top: 15px;"></div>
+                            </div>
+                            
+                            <!-- Share on Platforms -->
+                            <div style="margin: 25px 0;">
+                                <div style="color: var(--text-secondary); font-size: 14px; margin-bottom: 15px; text-align: center;">
+                                    <i class="fas fa-share-alt"></i> Share on:
+                                </div>
+                                
+                                <div class="share-platforms-grid">
+                                    <!-- Twitter Button -->
+                                    <button class="share-platform-btn" data-platform="twitter" onclick="shareOnTwitter()">
+                                        <div class="platform-icon" style="background: #1DA1F2;">
+                                            <i class="fab fa-x-twitter"></i>
+                                        </div>
+                                        <span style="font-size: 13px; font-weight: 600;">X (Twitter)</span>
+                                    </button>
+                                    
+                                    <!-- Telegram Button -->
+                                    <button class="share-platform-btn" data-platform="telegram" onclick="shareOnTelegram()">
+                                        <div class="platform-icon" style="background: #26A5E4;">
+                                            <i class="fab fa-telegram"></i>
+                                        </div>
+                                        <span style="font-size: 13px; font-weight: 600;">Telegram</span>
+                                    </button>
+                                    
+                                    <!-- Discord Button -->
+                                    <button class="share-platform-btn" data-platform="discord" onclick="shareOnDiscord()">
+                                        <div class="platform-icon" style="background: #5865F2;">
+                                            <i class="fab fa-discord"></i>
+                                        </div>
+                                        <span style="font-size: 13px; font-weight: 600;">Discord</span>
+                                    </button>
+                                    
+                                    <!-- Reddit Button (Optional) -->
+                                    <button class="share-platform-btn" data-platform="reddit" onclick="shareOnReddit()" style="grid-column: span 3; max-width: 200px; margin: 0 auto;">
+                                        <div class="platform-icon" style="background: #FF4500;">
+                                            <i class="fab fa-reddit"></i>
+                                        </div>
+                                        <span style="font-size: 13px; font-weight: 600;">Reddit</span>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <!-- Copy Buttons -->
+                            <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+                                <button class="btn" id="copyCodeBtn" style="flex: 1;">
+                                    <i class="fas fa-copy"></i> Copy Code
+                                </button>
+                                <button class="btn btn-secondary" id="copyLinkBtn" style="flex: 1;">
+                                    <i class="fas fa-link"></i> Copy Link
+                                </button>
+                            </div>
+                            
+                            <!-- Incentive Message -->
+                            <div style="background: rgba(0, 255, 136, 0.1); padding: 12px; border-radius: 8px; text-align: center; border: 1px solid rgba(0, 255, 136, 0.3);">
+                                <div style="color: var(--primary); font-weight: 600; font-size: 14px; display: flex; align-items: center; justify-content: center; gap: 8px;">
+                                    <i class="fas fa-gift"></i>
+                                    Share to earn 121 bonus tokens per referral
+                                </div>
+                                <div style="color: var(--text-secondary); font-size: 12px; margin-top: 5px;">
+                                    Minimum 7 referrals required for withdrawal
+                                </div>
+                            </div>
+                            
+                            <div class="stats-grid" style="margin-top: 20px;">
+                                <div class="stat-item">
+                                    <div class="stat-value" id="totalReferrals">0</div>
+                                    <div class="stat-label">Total Referrals</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-value" id="totalBonus">0</div>
+                                    <div class="stat-label">Total Bonus</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-value" id="linkClicks">0</div>
+                                    <div class="stat-label">Link Clicks</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-value" id="conversionRate">0%</div>
+                                    <div class="stat-label">Conversion Rate</div>
+                                </div>
+                            </div>
+                            
+                            <button class="btn btn-secondary" id="refreshStatsBtn" style="margin-top: 10px; width: 100%;">
+                                <i class="fas fa-sync-alt"></i> Refresh Stats
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Tab 3: Achievements -->
+                    <div id="achievementsTab" class="dashboard-tab-content">
+                        <div class="card">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;">
+                                <h3 style="color: var(--primary); margin: 0; font-size: 20px;">
+                                    <i class="fas fa-trophy" style="margin-right: 10px;"></i> Your Achievements
+                                </h3>
+                                <div style="display: flex; align-items: center; gap: 15px;">
+                                    <div style="background: rgba(0, 255, 136, 0.1); padding: 8px 15px; border-radius: 20px; border: 1px solid rgba(0, 255, 136, 0.3);">
+                                        <span style="color: var(--primary); font-weight: 600; font-size: 14px;">
+                                            <span id="achievementsUnlocked">0</span>/5 Unlocked
+                                        </span>
+                                    </div>
+                                    <div style="background: rgba(102, 126, 234, 0.1); padding: 8px 15px; border-radius: 20px; border: 1px solid rgba(102, 126, 234, 0.3);">
+                                        <span style="color: var(--secondary); font-weight: 600; font-size: 14px;">
+                                            +<span id="achievementsRewards">0</span> APRO Bonus
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Achievement Progress Bar -->
+                            <div style="margin-bottom: 25px;">
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 13px; color: var(--text-secondary);">
+                                    <span>Achievement Progress</span>
+                                    <span id="achievementsProgress">0%</span>
+                                </div>
+                                <div style="height: 6px; background: rgba(255, 255, 255, 0.1); border-radius: 3px; overflow: hidden; margin-bottom: 5px;">
+                                    <div id="achievementsProgressBar" style="height: 100%; background: linear-gradient(90deg, var(--primary), var(--secondary)); border-radius: 3px; width: 0%; transition: width 0.5s ease;"></div>
+                                </div>
+                            </div>
+                            
+                            <!-- Achievements Grid -->
+                            <div id="achievementsGrid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 15px;">
+                                <!-- Achievement cards will be dynamically inserted here -->
+                            </div>
+                            
+                            <!-- Achievement Info -->
+                            <div style="margin-top: 25px; padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+                                <div style="display: flex; align-items: flex-start; gap: 10px; background: rgba(255, 255, 255, 0.03); padding: 15px; border-radius: 10px; border: 1px solid rgba(255, 255, 255, 0.1);">
+                                    <div style="color: var(--primary); font-size: 18px;">
+                                        <i class="fas fa-lightbulb"></i>
+                                    </div>
+                                    <div style="flex: 1;">
+                                        <div style="font-weight: 600; color: var(--text-primary); margin-bottom: 5px; font-size: 14px;">How Achievements Work</div>
+                                        <div style="color: var(--text-secondary); font-size: 13px;">
+                                            Complete tasks to unlock achievements and earn bonus APRO tokens. Each achievement gives permanent bonus rewards added to your total balance.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Tab 4: Tasks (Placeholder) -->
+                    <div id="tasksTab" class="dashboard-tab-content">
+                        <div class="card">
+                            <div class="tasks-placeholder">
+                                <i class="fas fa-tasks"></i>
+                                <h3 style="color: var(--primary); margin-bottom: 15px;">Coming Soon!</h3>
+                                <p style="color: var(--text-secondary); margin-bottom: 20px;">
+                                    The tasks system is under development. Check back soon for daily and weekly challenges to earn extra APRO tokens!
+                                </p>
+                                <div style="background: rgba(255, 255, 255, 0.05); padding: 15px; border-radius: 10px; border: 1px solid rgba(255, 255, 255, 0.1);">
+                                    <h4 style="color: var(--primary); margin-bottom: 10px; font-size: 16px;">Planned Features:</h4>
+                                    <ul style="color: var(--text-secondary); text-align: left; padding-left: 20px;">
+                                        <li style="margin-bottom: 8px;">Daily social media tasks</li>
+                                        <li style="margin-bottom: 8px;">Weekly community challenges</li>
+                                        <li style="margin-bottom: 8px;">Special event participation rewards</li>
+                                        <li>Exclusive task-based achievements</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Tab 5: Network Analysis -->
+                    <div id="networkTab" class="dashboard-tab-content">
+                        <div class="card">
+                            <h3 style="color: var(--primary); margin-bottom: 20px; font-size: 20px;">
+                                <i class="fas fa-chart-network"></i> Network Analysis
+                            </h3>
+                            <div id="networkAnalysisContent">
+                                <!-- Network analysis will be loaded here -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Tab 6: Leaderboard -->
+                    <div id="leaderboardTab" class="dashboard-tab-content">
+                        <div class="card">
+                            <h3 style="color: var(--primary); margin-bottom: 20px; font-size: 20px;">🏆 Top Referrers</h3>
+                            <div id="leaderboardContent">
+                                <!-- Leaderboard will be loaded here -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Tab 7: Withdrawals -->
+                    <div id="withdrawalsTab" class="dashboard-tab-content">
+                        <div class="card">
+                            <h3 style="color: var(--primary); margin-bottom: 20px; font-size: 20px;">
+                                <i class="fas fa-wallet"></i> Withdrawal
+                            </h3>
+                            
+                            <div style="margin-bottom: 20px;">
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                                    <span style="color: var(--text-secondary); font-size: 14px;">
+                                        <i class="fas fa-users"></i> Referral Progress to Unlock Withdrawals
+                                    </span>
+                                    <span style="color: var(--primary); font-weight: 600; font-size: 14px;" id="referralProgressText">0/7</span>
+                                </div>
+                                <div style="height: 10px; background: rgba(255, 255, 255, 0.1); border-radius: 5px; overflow: hidden; margin-bottom: 10px;">
+                                    <div id="referralProgressBar" style="height: 100%; background: linear-gradient(90deg, var(--primary), var(--secondary)); border-radius: 5px; width: 0%; transition: width 0.5s ease;"></div>
+                                </div>
+                            </div>
+                            
+                            <button class="btn" id="withdrawBtn" style="background: linear-gradient(90deg, #667eea, #764ba2); width: 100%;">
+                                <i class="fas fa-paper-plane"></i> Check Withdrawal Status
                             </button>
                             
-                            <div style="margin-top: 15px; color: var(--text-secondary); font-size: 13px;">
-                                <i class="fas fa-info-circle"></i> You can earn more through referrals and achievements
-                            </div>
-                        ` : ''}
-                        
-                        ${alreadyClaimed ? `
-                            <div style="margin-top: 20px; padding: 15px; background: rgba(0, 255, 136, 0.1); border-radius: 10px; border: 1px solid rgba(0, 255, 136, 0.3);">
-                                <div style="display: flex; align-items: center; gap: 10px; justify-content: center; color: var(--primary);">
-                                    <i class="fas fa-check-circle"></i>
-                                    <span>Airdrop Already Claimed</span>
-                                </div>
-                            </div>
-                        ` : ''}
-                    </div>
-                    
-                    <div id="airdropStatusDetails" style="display: ${claimData ? 'block' : 'none'}">
-                        ${claimData ? `
-                            <div style="background: rgba(0, 255, 136, 0.1); padding: 20px; border-radius: 10px; border: 1px solid rgba(0, 255, 136, 0.3); margin-top: 20px;">
-                                <h4 style="color: var(--primary); margin-bottom: 10px;">✅ Airdrop Already Claimed</h4>
-                                <div style="margin: 10px 0;">
-                                    <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
-                                        <span style="color: var(--text-secondary);">Total Amount:</span>
-                                        <strong style="color: var(--primary);">${formatNumber(claimData.amount)} APRO</strong>
-                                    </div>
-                                    <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
-                                        <span style="color: var(--text-secondary);">Base Amount:</span>
-                                        <strong>${formatNumber(claimData.base_amount)} APRO</strong>
-                                    </div>
-                                    <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
-                                        <span style="color: var(--text-secondary);">Referral Bonus:</span>
-                                        <strong style="color: var(--warning);">${formatNumber(claimData.referral_bonus)} APRO</strong>
-                                    </div>
-                                    <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
-                                        <span style="color: var(--text-secondary);">Achievements:</span>
-                                        <strong style="color: var(--secondary);">${formatNumber(claimData.achievement_rewards)} APRO</strong>
-                                    </div>
-                                    <div style="display: flex; justify-content: space-between; margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(255, 255, 255, 0.1);">
-                                        <span style="color: var(--text-secondary);">Transaction:</span>
-                                        <code style="color: var(--primary); font-size: 12px;">${claimData.tx_hash.substring(0, 20)}...</code>
-                                    </div>
-                                </div>
-                            </div>
-                        ` : ''}
-                    </div>
-                </div>
-                
-                <!-- Network Analysis Card -->
-                <div class="card" id="networkAnalysisSection" style="display: none;">
-                    <h3 style="color: var(--primary); margin-bottom: 20px; font-size: 20px;">
-                        <i class="fas fa-chart-network"></i> Network Analysis
-                    </h3>
-                    <div id="networkAnalysisContent">
-                        <!-- Network analysis will be loaded here -->
-                    </div>
-                </div>
-                
-                <!-- ENHANCED Referral Dashboard Card -->
-                <div class="card" id="referralSection">
-                    <div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 15px;">
-                        <i class="fas fa-link" style="color: var(--primary); font-size: 20px;"></i>
-                        <h3 style="color: var(--primary); margin: 0; font-size: 20px;">Your Referral Code</h3>
-                    </div>
-                    
-                    <!-- Referral Code Display -->
-                    <div class="code-display" id="referralCodeDisplay" style="font-size: 22px; letter-spacing: 3px;">
-                        ${referralCode}
-                    </div>
-                    
-                    <!-- Referral Link -->
-                    <div style="margin: 20px 0;">
-                        <div style="color: var(--text-secondary); font-size: 14px; margin-bottom: 8px; text-align: center;">
-                            <i class="fas fa-external-link-alt"></i> Your Referral Link:
-                        </div>
-                        <div class="referral-link-container">
-                            <div class="address-display" id="referralLinkDisplay" style="text-align: center; font-size: 14px; cursor: pointer;">
-                                Loading...
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- QR Code Option -->
-                    <div style="text-align: center; margin: 15px 0;">
-                        <button id="showQrBtn" class="btn-secondary" style="padding: 8px 15px; font-size: 13px;">
-                            <i class="fas fa-qrcode"></i> Show QR Code
-                        </button>
-                        <div id="qrContainer" style="display: none; margin-top: 15px;"></div>
-                    </div>
-                    
-                    <!-- Share on Platforms -->
-                    <div style="margin: 25px 0;">
-                        <div style="color: var(--text-secondary); font-size: 14px; margin-bottom: 15px; text-align: center;">
-                            <i class="fas fa-share-alt"></i> Share on:
-                        </div>
-                        
-                        <div class="share-platforms-grid">
-                            <!-- Twitter Button -->
-                            <button class="share-platform-btn" data-platform="twitter" onclick="shareOnTwitter()">
-                                <div class="platform-icon" style="background: #1DA1F2;">
-                                    <i class="fab fa-x-twitter"></i>
-                                </div>
-                                <span style="font-size: 13px; font-weight: 600;">X (Twitter)</span>
-                            </button>
+                            <div id="withdrawalStatus" style="margin-top: 15px; display: none;"></div>
                             
-                            <!-- Telegram Button -->
-                            <button class="share-platform-btn" data-platform="telegram" onclick="shareOnTelegram()">
-                                <div class="platform-icon" style="background: #26A5E4;">
-                                    <i class="fab fa-telegram"></i>
-                                </div>
-                                <span style="font-size: 13px; font-weight: 600;">Telegram</span>
-                            </button>
-                            
-                            <!-- Discord Button -->
-                            <button class="share-platform-btn" data-platform="discord" onclick="shareOnDiscord()">
-                                <div class="platform-icon" style="background: #5865F2;">
-                                    <i class="fab fa-discord"></i>
-                                </div>
-                                <span style="font-size: 13px; font-weight: 600;">Discord</span>
-                            </button>
-                            
-                            <!-- Reddit Button (Optional) -->
-                            <button class="share-platform-btn" data-platform="reddit" onclick="shareOnReddit()" style="grid-column: span 3; max-width: 200px; margin: 0 auto;">
-                                <div class="platform-icon" style="background: #FF4500;">
-                                    <i class="fab fa-reddit"></i>
-                                </div>
-                                <span style="font-size: 13px; font-weight: 600;">Reddit</span>
+                            <button class="btn btn-secondary" id="viewLeaderboardBtn" style="margin-top: 10px; width: 100%;">
+                                <i class="fas fa-trophy"></i> View Leaderboard
                             </button>
                         </div>
-                    </div>
-                    
-                    <!-- Copy Buttons -->
-                    <div style="display: flex; gap: 10px; margin-bottom: 15px;">
-                        <button class="btn" id="copyCodeBtn" style="flex: 1;">
-                            <i class="fas fa-copy"></i> Copy Code
-                        </button>
-                        <button class="btn btn-secondary" id="copyLinkBtn" style="flex: 1;">
-                            <i class="fas fa-link"></i> Copy Link
-                        </button>
-                    </div>
-                    
-                    <!-- Incentive Message -->
-                    <div style="background: rgba(0, 255, 136, 0.1); padding: 12px; border-radius: 8px; text-align: center; border: 1px solid rgba(0, 255, 136, 0.3);">
-                        <div style="color: var(--primary); font-weight: 600; font-size: 14px; display: flex; align-items: center; justify-content: center; gap: 8px;">
-                            <i class="fas fa-gift"></i>
-                            Share to earn 121 bonus tokens per referral
-                        </div>
-                        <div style="color: var(--text-secondary); font-size: 12px; margin-top: 5px;">
-                            Minimum 7 referrals required for withdrawal
-                        </div>
-                    </div>
-                    
-                    <div class="stats-grid" style="margin-top: 20px;">
-                        <div class="stat-item">
-                            <div class="stat-value" id="totalReferrals">0</div>
-                            <div class="stat-label">Total Referrals</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-value" id="totalBonus">0</div>
-                            <div class="stat-label">Total Bonus</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-value" id="linkClicks">0</div>
-                            <div class="stat-label">Link Clicks</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-value" id="conversionRate">0%</div>
-                            <div class="stat-label">Conversion Rate</div>
-                        </div>
-                    </div>
-                    
-                    <button class="btn btn-secondary" id="refreshStatsBtn" style="margin-top: 10px; width: 100%;">
-                        <i class="fas fa-sync-alt"></i> Refresh Stats
-                    </button>
-                </div>
-                
-                <!-- Achievements Section -->
-                <div class="card" id="achievementsSection" style="display: none;">
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;">
-                        <h3 style="color: var(--primary); margin: 0; font-size: 20px;">
-                            <i class="fas fa-trophy" style="margin-right: 10px;"></i> Your Achievements
-                        </h3>
-                        <div style="display: flex; align-items: center; gap: 15px;">
-                            <div style="background: rgba(0, 255, 136, 0.1); padding: 8px 15px; border-radius: 20px; border: 1px solid rgba(0, 255, 136, 0.3);">
-                                <span style="color: var(--primary); font-weight: 600; font-size: 14px;">
-                                    <span id="achievementsUnlocked">0</span>/5 Unlocked
-                                </span>
-                            </div>
-                            <div style="background: rgba(102, 126, 234, 0.1); padding: 8px 15px; border-radius: 20px; border: 1px solid rgba(102, 126, 234, 0.3);">
-                                <span style="color: var(--secondary); font-weight: 600; font-size: 14px;">
-                                    +<span id="achievementsRewards">0</span> APRO Bonus
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Achievement Progress Bar -->
-                    <div style="margin-bottom: 25px;">
-                        <div style="display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 13px; color: var(--text-secondary);">
-                            <span>Achievement Progress</span>
-                            <span id="achievementsProgress">0%</span>
-                        </div>
-                        <div style="height: 6px; background: rgba(255, 255, 255, 0.1); border-radius: 3px; overflow: hidden; margin-bottom: 5px;">
-                            <div id="achievementsProgressBar" style="height: 100%; background: linear-gradient(90deg, var(--primary), var(--secondary)); border-radius: 3px; width: 0%; transition: width 0.5s ease;"></div>
-                        </div>
-                    </div>
-                    
-                    <!-- Achievements Grid -->
-                    <div id="achievementsGrid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 15px;">
-                        <!-- Achievement cards will be dynamically inserted here -->
-                    </div>
-                    
-                    <!-- Achievement Info -->
-                    <div style="margin-top: 25px; padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.1);">
-                        <div style="display: flex; align-items: flex-start; gap: 10px; background: rgba(255, 255, 255, 0.03); padding: 15px; border-radius: 10px; border: 1px solid rgba(255, 255, 255, 0.1);">
-                            <div style="color: var(--primary); font-size: 18px;">
-                                <i class="fas fa-lightbulb"></i>
-                            </div>
-                            <div style="flex: 1;">
-                                <div style="font-weight: 600; color: var(--text-primary); margin-bottom: 5px; font-size: 14px;">How Achievements Work</div>
-                                <div style="color: var(--text-secondary); font-size: 13px;">
-                                    Complete tasks to unlock achievements and earn bonus APRO tokens. Each achievement gives permanent bonus rewards added to your total balance.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Withdrawal Section Card -->
-                <div class="card" id="withdrawalSection">
-                    <h3 style="color: var(--primary); margin-bottom: 20px; font-size: 20px;">
-                        <i class="fas fa-wallet"></i> Withdrawal
-                    </h3>
-                    
-                    <div style="margin-bottom: 20px;">
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-                            <span style="color: var(--text-secondary); font-size: 14px;">
-                                <i class="fas fa-users"></i> Referral Progress to Unlock Withdrawals
-                            </span>
-                            <span style="color: var(--primary); font-weight: 600; font-size: 14px;" id="referralProgressText">0/7</span>
-                        </div>
-                        <div style="height: 10px; background: rgba(255, 255, 255, 0.1); border-radius: 5px; overflow: hidden; margin-bottom: 10px;">
-                            <div id="referralProgressBar" style="height: 100%; background: linear-gradient(90deg, var(--primary), var(--secondary)); border-radius: 5px; width: 0%; transition: width 0.5s ease;"></div>
-                        </div>
-                    </div>
-                    
-                    <button class="btn" id="withdrawBtn" style="background: linear-gradient(90deg, #667eea, #764ba2); width: 100%;">
-                        <i class="fas fa-paper-plane"></i> Check Withdrawal Status
-                    </button>
-                    
-                    <div id="withdrawalStatus" style="margin-top: 15px; display: none;"></div>
-                    
-                    <button class="btn btn-secondary" id="viewLeaderboardBtn" style="margin-top: 10px; width: 100%;">
-                        <i class="fas fa-trophy"></i> View Leaderboard
-                    </button>
-                </div>
-                
-                <!-- Leaderboard Section -->
-                <div class="card" id="leaderboardSection" style="display: none;">
-                    <h3 style="color: var(--primary); margin-bottom: 20px; font-size: 20px;">🏆 Top Referrers</h3>
-                    <div id="leaderboardContent">
-                        <!-- Leaderboard will be loaded here -->
                     </div>
                 </div>
             `;
@@ -3766,12 +4284,13 @@
             
             // Initialize event listeners for the dashboard
             setTimeout(() => {
+                // Initialize dashboard tabs
+                initDashboardTabs();
+                
                 // Initialize referral link
                 initReferralLink();
                 
                 // Initialize buttons
-                document.getElementById('checkAnotherWalletBtn')?.addEventListener('click', showInitialForm);
-                document.getElementById('copyWalletBtn')?.addEventListener('click', copyDashboardWalletAddress);
                 document.getElementById('copyCodeBtn')?.addEventListener('click', copyReferralCode);
                 document.getElementById('copyLinkBtn')?.addEventListener('click', copyReferralLink);
                 document.getElementById('refreshStatsBtn')?.addEventListener('click', refreshReferralStats);
@@ -3782,17 +4301,14 @@
                 // Initialize QR code button
                 initQRCodeButton();
                 
-                // Load data for the dashboard
+                // Load initial data for the current tab
                 if (walletAddress && validateWalletAddress(walletAddress)) {
-                    loadReferralStats(walletAddress);
-                    loadNetworkAnalysis(walletAddress);
-                    loadAchievements(walletAddress);
-                    checkWithdrawalProgress();
+                    loadTabData(currentDashboardTab);
                 }
             }, 100);
         }
         
-        // ==================== CLAIM AIRDROP FUNCTION (MOVED TO DASHBOARD) ====================
+        // ==================== CLAIM AIRDROP FUNCTION ====================
         async function claimAirdrop() {
             // Get wallet address from dashboard, not initial form
             const walletAddress = document.getElementById('dashboardWalletAddress')?.textContent || 
@@ -3840,7 +4356,10 @@
                         showToast(`✅ Successfully claimed ${formatNumber(data.data.amount)} APRO tokens!`, 'success');
                         
                         // Update token display in dashboard
-                        document.getElementById('availableTokens').textContent = formatNumber(data.data.amount) + ' APRO';
+                        const balanceAmount = document.querySelector('.token-display-mini .token-amount');
+                        if (balanceAmount) {
+                            balanceAmount.textContent = formatNumber(data.data.amount);
+                        }
                         
                         // Remove claim button (since already claimed)
                         if (claimBtn) {
@@ -3851,9 +4370,12 @@
                         currentReferralCount = data.data.referral_count;
                         
                         // Reload dashboard sections with new data
-                        await loadReferralStats(walletAddress);
-                        await loadNetworkAnalysis(walletAddress);
-                        await loadAchievements(walletAddress);
+                        const walletAddress = document.getElementById('dashboardWalletAddress')?.textContent;
+                        if (walletAddress) {
+                            await loadReferralStats(walletAddress);
+                            await loadNetworkAnalysis(walletAddress);
+                            await loadAchievements(walletAddress);
+                        }
                         
                         // Show success animation
                         showConfetti();
@@ -3861,7 +4383,7 @@
                         // Update airdrop status details
                         document.getElementById('airdropStatusDetails').style.display = 'block';
                         document.getElementById('airdropStatusDetails').innerHTML = `
-                            <div style="background: rgba(0, 255, 136, 0.1); padding: 20px; border-radius: 10px; border: 1px solid rgba(0, 255, 136, 0.3); margin-top: 20px;">
+                            <div class="card" style="background: rgba(0, 255, 136, 0.1); border: 1px solid rgba(0, 255, 136, 0.3);">
                                 <h4 style="color: var(--primary); margin-bottom: 10px;">✅ Airdrop Claimed Successfully!</h4>
                                 <div style="margin: 10px 0;">
                                     <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
@@ -4077,7 +4599,6 @@
                 const data = await response.json();
                 
                 if (data.success) {
-                    document.getElementById('referralSection').style.display = 'block';
                     document.getElementById('totalReferrals').textContent = data.data.referral_count;
                     document.getElementById('totalBonus').textContent = formatNumber(data.data.total_bonus);
                     document.getElementById('linkClicks').textContent = data.data.link_clicks;
@@ -4108,8 +4629,8 @@
                 const data = await response.json();
                 
                 if (data.success) {
-                    document.getElementById('networkAnalysisSection').style.display = 'block';
-                    document.getElementById('networkAnalysisContent').innerHTML = `
+                    const networkContent = document.getElementById('networkAnalysisContent');
+                    networkContent.innerHTML = `
                         <div class="stats-grid">
                             <div class="stat-item">
                                 <div class="stat-value">${data.data.direct_referrals_count}</div>
@@ -4156,7 +4677,6 @@
                 const data = await response.json();
                 
                 if (data.success) {
-                    document.getElementById('achievementsSection').style.display = 'block';
                     displayAchievements(data.data);
                 }
             } catch (error) {
@@ -4225,6 +4745,12 @@
                 
                 achievementsGrid.appendChild(card);
             });
+            
+            // Update achievement badge on tab
+            const achievementTab = document.querySelector('.dashboard-tab[data-tab="achievements"] .tab-badge');
+            if (achievementTab) {
+                achievementTab.textContent = `${achievementsData.total_unlocked}/5`;
+            }
         }
         
         async function loadLeaderboard() {
@@ -4241,10 +4767,7 @@
                 const data = await response.json();
                 
                 if (data.success) {
-                    const leaderboardSection = document.getElementById('leaderboardSection');
                     const leaderboardContent = document.getElementById('leaderboardContent');
-                    
-                    leaderboardSection.style.display = 'block';
                     
                     let html = `
                         <div style="margin-bottom: 20px;">
@@ -4256,11 +4779,11 @@
                     `;
                     
                     data.data.top_referrers.forEach(user => {
+                        const rankClass = user.rank <= 3 ? `rank-${user.rank}` : '';
                         html += `
-                            <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px 15px; background: rgba(255, 255, 255, 0.05); border-radius: 8px; margin-bottom: 8px; border: 1px solid rgba(255, 255, 255, 0.1);">
+                            <div class="leaderboard-entry ${rankClass}">
                                 <div style="display: flex; align-items: center; gap: 10px;">
-                                    <div style="width: 30px; height: 30px; background: ${user.rank <= 3 ? 'linear-gradient(135deg, var(--primary), var(--primary-dark))' : 'rgba(255, 255, 255, 0.1)'}; 
-                                        border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; color: white; font-size: 12px;">
+                                    <div class="leaderboard-rank">
                                         ${user.rank}
                                     </div>
                                     <span style="font-size: 14px;">${user.display_wallet}</span>
@@ -4277,9 +4800,9 @@
                         html += `
                             <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.1);">
                                 <h4 style="color: var(--text-secondary); font-size: 14px; margin-bottom: 10px;">Your Position</h4>
-                                <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px 15px; background: rgba(102, 126, 234, 0.1); border-radius: 8px; border: 1px solid rgba(102, 126, 234, 0.3);">
+                                <div class="leaderboard-entry" style="background: rgba(102, 126, 234, 0.1); border: 1px solid rgba(102, 126, 234, 0.3);">
                                     <div style="display: flex; align-items: center; gap: 10px;">
-                                        <div style="width: 30px; height: 30px; background: rgba(255, 255, 255, 0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; color: white; font-size: 12px;">
+                                        <div class="leaderboard-rank">
                                             ${data.data.current_user.rank}
                                         </div>
                                         <span style="font-size: 14px;">${data.data.current_user.display_wallet}</span>
@@ -4295,8 +4818,6 @@
                     
                     html += '</div>';
                     leaderboardContent.innerHTML = html;
-                    
-                    leaderboardSection.scrollIntoView({ behavior: 'smooth' });
                     
                 } else {
                     showToast('Error loading leaderboard', 'error');
